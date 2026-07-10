@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resumo dos Exames de Sangue — Luiz Henrique Gobato</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
 <style>
   :root{
     --bg:#0f172a; --card:#1e293b; --card2:#273449; --ink:#e2e8f0; --muted:#94a3b8;
@@ -45,7 +46,7 @@
   .p-warn{background:rgba(245,158,11,.15);color:var(--warn)}
   .p-bad{background:rgba(239,68,68,.15);color:var(--bad)}
   .ref{font-size:12px;color:var(--muted);margin-top:6px}
-  .chartbox{margin-top:14px;height:120px}
+  .chartbox{margin-top:14px;height:135px}
   .serology{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
   .sero{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
   .sero b{display:block;color:var(--good);font-size:13px;margin-top:3px}
@@ -90,6 +91,26 @@
   .haplo{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
   .haplo .h{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px 22px;text-align:center}
   .haplo .h b{display:block;font-size:24px;color:var(--accent);margin-top:4px}
+  /* bioimpedância */
+  .kpi{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:8px}
+  .kbox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .kbox .kl{font-size:12px;color:var(--muted)}
+  .kbox .kv{font-size:24px;font-weight:700;margin-top:2px}
+  .kbox .kd{font-size:12px;font-weight:700;margin-top:3px}
+  .kd.down{color:var(--good)} .kd.up{color:var(--good)} .kd.flat{color:var(--muted)}
+  .kbox .goal{font-size:11px;color:#64748b;margin-top:4px}
+  /* dieta */
+  .meal{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px;border-left:4px solid var(--accent)}
+  .meal .mh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+  .meal .mt{font-size:16px;font-weight:700}
+  .meal .mtime{font-size:12.5px;color:var(--muted)}
+  .meal ul{margin:0;padding-left:18px}
+  .meal li{margin:5px 0;font-size:14px;line-height:1.5}
+  .meal .macros{margin-top:10px;font-size:11.5px;color:#64748b;font-family:monospace}
+  .swap{background:rgba(56,189,248,.07);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px;color:#cbd5e1;margin-top:6px}
+  .macrobar{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
+  .macropill{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:8px 16px;font-size:13px}
+  .macropill b{color:var(--accent);font-size:16px}
 </style>
 </head>
 <body>
@@ -102,6 +123,8 @@
 <div class="tabs">
   <div class="tab active" data-tab="sangue">🩸 Exames de Sangue</div>
   <div class="tab" data-tab="gene">🧬 Exame Genético</div>
+  <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
+  <div class="tab" data-tab="dieta">🍽️ Dieta Ideal</div>
 </div>
 
 <div class="wrap tabpane active" id="tab-sangue">
@@ -337,12 +360,145 @@
   </div>
 </div>
 
+<!-- ===================== ABA BIOIMPEDÂNCIA ===================== -->
+<div class="wrap tabpane" id="tab-bio">
+  <div class="lead">
+    <h3>⚖️ Evolução corporal — set/2025 a dez/2025 (5 medições)</h3>
+    <ul>
+      <li><span class="tag t-good">EXCELENTE</span><div><b>-5,1 kg de peso</b> (92,3 → 87,2 kg) com <b>massa muscular preservada</b> (42,0 → 41,9 kg). Você perdeu praticamente só gordura — o cenário ideal.</div></li>
+      <li><span class="tag t-good">GORDURA</span><div><b>Gordura corporal caiu 4 pontos</b> (24,8% → 20,8%) = <b>-4,8 kg de gordura</b>. Visceral baixou de 11 para 9.</div></li>
+      <li><span class="tag t-good">METABOLISMO</span><div><b>Idade metabólica -5 anos</b> (39 → 34) e hidratação subiu (55,8% → 58,2%). TMB estável (~1.867 kcal).</div></li>
+      <li><span class="tag t-warn">PRÓXIMO PASSO</span><div>Faltam <b>~2,2 kg</b> para a meta (85 kg) e a gordura para 18%. Daqui, foco em <b>ganhar músculo</b> (meta 44 kg) — seus genes favorecem.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Onde você está hoje (04/12/2025)</h2>
+  <div class="kpi">
+    <div class="kbox"><div class="kl">Peso</div><div class="kv">87,2 kg</div><div class="kd down">▼ 5,1 kg</div><div class="goal">Meta: 85 kg</div></div>
+    <div class="kbox"><div class="kl">Gordura corporal</div><div class="kv">20,8%</div><div class="kd down">▼ 4,0 pts</div><div class="goal">Meta: 18%</div></div>
+    <div class="kbox"><div class="kl">Massa de gordura</div><div class="kv">18,1 kg</div><div class="kd down">▼ 4,8 kg</div><div class="goal">Meta: 15 kg</div></div>
+    <div class="kbox"><div class="kl">Massa muscular</div><div class="kv">41,9 kg</div><div class="kd flat">▬ estável</div><div class="goal">Meta: 44 kg</div></div>
+    <div class="kbox"><div class="kl">Massa magra</div><div class="kv">69,1 kg</div><div class="kd flat">▬ estável</div><div class="goal">Meta: 70 kg</div></div>
+    <div class="kbox"><div class="kl">Água corporal</div><div class="kv">58,2%</div><div class="kd up">▲ 2,4 pts</div><div class="goal">Meta: 60%</div></div>
+    <div class="kbox"><div class="kl">Gordura visceral</div><div class="kv">9</div><div class="kd down">▼ 2</div><div class="goal">Meta: 8</div></div>
+    <div class="kbox"><div class="kl">IMC</div><div class="kv">28,1</div><div class="kd down">▼ 1,7</div><div class="goal">Meta: 25</div></div>
+    <div class="kbox"><div class="kl">Idade metabólica</div><div class="kv">34 anos</div><div class="kd down">▼ 5 anos</div><div class="goal">Meta: 30</div></div>
+    <div class="kbox"><div class="kl">TMB</div><div class="kv">1.867</div><div class="kd flat">▬ estável</div><div class="goal">Meta: 1.900</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Evolução no tempo</h2>
+  <div class="grid">
+    <div class="card"><div class="name" style="margin-bottom:2px">Peso (kg)</div><div class="chartbox"><canvas id="bch0"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Gordura corporal (%)</div><div class="chartbox"><canvas id="bch1"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Massa muscular (kg)</div><div class="chartbox"><canvas id="bch2"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Gordura visceral</div><div class="chartbox"><canvas id="bch3"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Água corporal (%)</div><div class="chartbox"><canvas id="bch4"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Idade metabólica (anos)</div><div class="chartbox"><canvas id="bch5"></canvas></div></div>
+  </div>
+
+  <h2><span class="dot"></span>Massa muscular segmentar (kg)</h2>
+  <div class="tablewrap"><table id="segtable"></table></div>
+
+  <div class="disc" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);color:#bbf7d0">
+    ✅ <b>Conclusão:</b> excelente resposta — perda de gordura eficiente com manutenção de massa magra e melhora metabólica. Continue o caminho; agora dá para inclinar levemente para <b>ganho de músculo</b>.
+  </div>
+</div>
+
+<!-- ===================== ABA DIETA IDEAL ===================== -->
+<div class="wrap tabpane" id="tab-dieta">
+  <div class="lead">
+    <h3>🍽️ Sua dieta ideal — 5 refeições/dia</h3>
+    <ul>
+      <li><span class="tag t-good">BASE</span><div>Estruturada a partir do seu <b>protocolo atual (Nutri Bruno SM)</b>, que vem funcionando — você perdeu 4,8 kg de gordura mantendo músculo.</div></li>
+      <li><span class="tag t-good">AJUSTADA A VOCÊ</span><div>Proteína alta em todas as refeições (saciedade — genes FTO), <b>gordura moderada</b> (você responde melhor a low-fat e protege o LDL), <b>pouco açúcar</b> (glicada 5,7%) e salada colorida (folato/vitaminas).</div></li>
+      <li><span class="tag t-warn">REGRAS DE OURO</span><div>Não cozinhar com óleo (azeite cru), pesar alimentos cozidos, <b>4 L de água/dia</b>, salada em ≥2 refeições (3 cores).</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Metas do dia (aproximado)</h2>
+  <div class="macrobar">
+    <div class="macropill"><b>~2.300</b> kcal</div>
+    <div class="macropill">Proteína <b>~200 g</b></div>
+    <div class="macropill">Carboidrato <b>~240 g</b></div>
+    <div class="macropill">Gordura <b>~55 g</b></div>
+    <div class="macropill">Água <b>4 L</b></div>
+  </div>
+  <p style="color:var(--muted);font-size:12.5px;margin:-8px 0 16px">Estimado para fase de perda de gordura a ~87 kg. Ajuste com seu nutricionista conforme a evolução.</p>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">1 · Café da manhã / Pós-treino</div><div class="mtime">ao acordar / após treinar</div></div>
+    <ul>
+      <li>2 fatias de <b>pão integral</b> + 30 g de doce de leite <i>ou</i> goiabada</li>
+      <li>30 g de <b>whey protein</b> <i>ou</i> 5 claras <i>ou</i> 100 g de filezinho sassami</li>
+    </ul>
+    <div class="macros">≈ 330 kcal · P 30 g · C 45 g · G 4 g</div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">2 · Almoço</div><div class="mtime">refeição base</div></div>
+    <ul>
+      <li>200 g de <b>arroz</b> <i>ou</i> batata doce <i>ou</i> mandioca <i>ou</i> macarrão (<i>ou</i> 100 g arroz + 120 g feijão)</li>
+      <li>150 g de <b>peito de frango</b> <i>ou</i> proteína da lista</li>
+      <li>1 colher de sopa de <b>azeite de oliva</b> (cru)</li>
+      <li><b>Salada 3 cores</b> à vontade (ex.: brócolis, cenoura, beterraba)</li>
+    </ul>
+    <div class="macros">≈ 560 kcal · P 42 g · C 65 g · G 14 g</div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">3 · Lanche da tarde</div><div class="mtime">meio da tarde</div></div>
+    <ul>
+      <li>30 g de <b>aveia</b> <i>ou</i> 2 fatias de pão integral</li>
+      <li>2 <b>ovos</b> inteiros</li>
+      <li>150 g de <b>mamão</b> (ou fruta da lista) + 1 banana</li>
+      <li>160 g de <b>iogurte natural desnatado</b></li>
+    </ul>
+    <div class="macros">≈ 450 kcal · P 25 g · C 55 g · G 12 g</div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">4 · Jantar</div><div class="mtime">refeição base</div></div>
+    <ul>
+      <li>200 g de <b>arroz</b> <i>ou</i> mandioca <i>ou</i> macarrão</li>
+      <li>150 g de <b>peito de frango</b> <i>ou</i> proteína da lista</li>
+      <li>1 colher de sopa de <b>azeite de oliva</b> (cru)</li>
+      <li><b>Salada 3 cores</b></li>
+    </ul>
+    <div class="macros">≈ 560 kcal · P 42 g · C 65 g · G 14 g</div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">5 · Ceia</div><div class="mtime">antes de dormir</div></div>
+    <ul>
+      <li>30 g de <b>aveia</b> <i>ou</i> 2 fatias de pão integral</li>
+      <li>30 g de <b>whey</b> <i>ou</i> 5 claras <i>ou</i> 100 g de filezinho sassami</li>
+      <li>2 <b>maçãs</b> <i>ou</i> 200 g de fruta da lista</li>
+      <li>20 g de <b>pasta de amendoim</b></li>
+    </ul>
+    <div class="macros">≈ 420 kcal · P 32 g · C 42 g · G 11 g</div>
+  </div>
+
+  <div class="swap"><b>Proteínas substitutas</b> (mesma quantidade): patinho, filé mignon, coxão, filé mignon suíno, tilápia, peito de frango. &nbsp;•&nbsp; <b>Frutas:</b> abacaxi, melão, morango, acerola, pêra, kiwi, melancia, uva.</div>
+  <div class="swap"><b>Suplementos (opcional):</b> creatina 5 g pós-treino · cafeína 420 mg pré-treino (só antes das 17h) · multivitamínico após o café · beta-alanina 6 g pré-treino. Multivitamínico vira <b>obrigatório</b> se não comer salada no almoço e no jantar.</div>
+
+  <div class="disc">
+    ⚠️ Este plano reproduz e organiza seu protocolo atual com ajustes gerais alinhados aos seus exames. <b>Não substitui o acompanhamento do seu nutricionista</b> — use como referência prática do dia a dia.
+  </div>
+</div>
+
 <footer>
   Gerado a partir de 12 PDFs de sangue + 11 relatórios Genera · valores conforme laudos originais.<br>
   Faixas de referência do laboratório (adulto masculino). Testes genéticos são de triagem, não diagnóstico.
 </footer>
 
 <script>
+// registrar rótulos de dados e defaults globais dos gráficos
+if(window.ChartDataLabels){Chart.register(ChartDataLabels);}
+Chart.defaults.plugins.datalabels={
+  align:'top',anchor:'end',clamp:true,color:'#e2e8f0',
+  font:{size:10,weight:'700'},
+  formatter:function(v){return v==null?'':String(v).replace('.',',');}
+};
 // alternância de abas
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
@@ -435,10 +591,10 @@ categories.forEach(group=>{
     data:{labels:pts.map(p=>p.x),datasets:[{data:pts.map(p=>p.y),
       borderColor:colors[c.status],backgroundColor:colors[c.status]+'22',
       fill:true,tension:.35,pointRadius:3,pointBackgroundColor:colors[c.status],borderWidth:2}]},
-    options:{responsive:true,maintainAspectRatio:false,
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20}},
       plugins:{legend:{display:false},tooltip:{enabled:true}},
       scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},
-        y:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'#1e293b'}}}}
+        y:{ticks:{display:false},grid:{color:'#1e293b'},grace:'25%'}}}
   });
   });
 });
@@ -480,6 +636,23 @@ rows.forEach(r=>{
   body+=`<tr><td>${r[0]}</td><td style="color:#64748b">${r[2]}</td>${cells}</tr>`;
 });
 tbl.innerHTML=head+body;
+// ===== Bioimpedância =====
+const bL=['08/09','01/10','31/10','16/11','04/12'];
+const bio={peso:[92.3,89.4,88.6,88.0,87.2],gc:[24.8,22.9,22.1,21.6,20.8],mm:[42.0,41.2,41.0,41.3,41.9],visc:[11,10,10,9,9],agua:[55.8,56.9,57.4,57.7,58.2],idade:[39,37,36,35,34]};
+function bchart(id,arr,color){
+  new Chart(document.getElementById(id),{type:'line',
+    data:{labels:bL,datasets:[{data:arr,borderColor:color,backgroundColor:color+'22',fill:true,tension:.35,pointRadius:3,pointBackgroundColor:color,borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20}},plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},y:{ticks:{display:false},grid:{color:'#1e293b'},grace:'25%'}}}});
+}
+bchart('bch0',bio.peso,'#22c55e');bchart('bch1',bio.gc,'#22c55e');bchart('bch2',bio.mm,'#38bdf8');
+bchart('bch3',bio.visc,'#22c55e');bchart('bch4',bio.agua,'#38bdf8');bchart('bch5',bio.idade,'#22c55e');
+const seg=[['Braço direito',[4.57,4.36,4.35,4.37,4.50],4.7],['Braço esquerdo',[4.65,4.48,4.42,4.50,4.58],4.7],['Perna direita',[9.66,9.66,9.69,9.67,9.77],10.2],['Perna esquerda',[9.57,9.51,9.50,9.50,9.68],10.2],['Tronco',[33.71,32.69,32.43,32.74,33.29],34.0]];
+const segT=document.getElementById('segtable');
+if(segT){let hh='<tr><th>Região</th>'+bL.map(l=>`<th>${l}</th>`).join('')+'<th>Meta</th></tr>';let bb='';
+  seg.forEach(r=>{const cells=r[1].map(v=>`<td>${String(v).replace('.',',')}</td>`).join('');bb+=`<tr><td>${r[0]}</td>${cells}<td style="color:#64748b">${String(r[2]).replace('.',',')}</td></tr>`;});
+  segT.innerHTML=hh+bb;}
+
 </script>
 </body>
 </html>
