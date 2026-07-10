@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumo dos Exames de Sangue — Luiz Henrique Gobato</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#0f172a; --card:#1e293b; --card2:#273449; --ink:#e2e8f0; --muted:#94a3b8;
+    --line:#334155; --good:#22c55e; --warn:#f59e0b; --bad:#ef4444; --accent:#38bdf8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:linear-gradient(160deg,#0b1120,#0f172a);color:var(--ink);line-height:1.5;padding:0 0 60px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  header{padding:44px 20px 30px;text-align:center;background:radial-gradient(ellipse at top,#15233f,transparent 70%)}
+  header h1{font-size:30px;font-weight:700;letter-spacing:-.5px}
+  header p{color:var(--muted);margin-top:8px;font-size:15px}
+  .badge{display:inline-block;background:var(--card2);color:var(--accent);border:1px solid var(--line);
+    padding:4px 12px;border-radius:20px;font-size:12.5px;margin-top:14px}
+  h2{font-size:19px;margin:38px 0 16px;display:flex;align-items:center;gap:9px;font-weight:650}
+  h2 .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  h3.cat{font-size:14px;font-weight:700;color:var(--accent);margin:26px 0 12px;
+    text-transform:uppercase;letter-spacing:.5px;display:flex;align-items:center;gap:8px}
+  h3.cat::before{content:'';font-size:16px}
+  h3.cat span.ic{font-size:17px}
+  .lead{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;margin-top:24px}
+  .lead h3{font-size:16px;margin-bottom:12px;color:var(--accent)}
+  .lead ul{list-style:none}
+  .lead li{padding:8px 0;border-bottom:1px dashed var(--line);display:flex;gap:10px;font-size:14.5px}
+  .lead li:last-child{border:none}
+  .lead li .tag{flex:none;font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;height:fit-content;margin-top:2px}
+  .t-good{background:rgba(34,197,94,.15);color:var(--good)}
+  .t-warn{background:rgba(245,158,11,.15);color:var(--warn)}
+  .t-bad{background:rgba(239,68,68,.15);color:var(--bad)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card .top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:4px}
+  .card .name{font-size:14px;color:var(--muted);font-weight:500}
+  .card .val{font-size:27px;font-weight:700;margin-top:2px}
+  .card .unit{font-size:13px;color:var(--muted);font-weight:400}
+  .pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
+  .p-good{background:rgba(34,197,94,.15);color:var(--good)}
+  .p-warn{background:rgba(245,158,11,.15);color:var(--warn)}
+  .p-bad{background:rgba(239,68,68,.15);color:var(--bad)}
+  .ref{font-size:12px;color:var(--muted);margin-top:6px}
+  .chartbox{margin-top:14px;height:120px}
+  .serology{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px}
+  .sero{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:13.5px}
+  .sero b{display:block;color:var(--good);font-size:13px;margin-top:3px}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  .tablewrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px}
+  th,td{padding:9px 10px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{color:var(--muted);font-weight:600;font-size:11.5px;position:sticky;top:0;background:var(--card)}
+  td:first-child,th:first-child{text-align:left;font-weight:600;position:sticky;left:0;background:var(--card)}
+  .hi{color:var(--bad);font-weight:700}
+  .lo{color:var(--accent);font-weight:700}
+  footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:44px;padding:0 20px;line-height:1.7}
+  .disc{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:12px;
+    padding:14px 18px;margin-top:30px;font-size:13px;color:#fcd9a4}
+  /* abas */
+  .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px auto 0;max-width:1080px;padding:0 20px}
+  .tab{background:var(--card);border:1px solid var(--line);color:var(--muted);
+    padding:11px 22px;border-radius:12px 12px 0 0;font-size:15px;font-weight:650;cursor:pointer;transition:.15s}
+  .tab:hover{color:var(--ink)}
+  .tab.active{background:var(--card);color:var(--accent);border-color:var(--accent);border-bottom-color:var(--card)}
+  .tabpane{display:none} .tabpane.active{display:block}
+  /* genética */
+  .gcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .gcard .gt{font-size:14.5px;font-weight:650;margin-bottom:4px}
+  .gcard .gr{font-size:13px;color:var(--muted)}
+  .gcard .gene{font-size:11px;color:#64748b;margin-top:8px;font-family:monospace}
+  .gcard .act{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-size:12.8px;color:#cbd5e1}
+  .gcard .act b{color:var(--accent)}
+  .gcard .act ul{margin:5px 0 0;padding-left:16px}
+  .gcard .act li{margin:3px 0;line-height:1.45}
+  .grid.gene-grid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr))}
+  .gcard.a{border-left:4px solid var(--bad)}
+  .gcard.w{border-left:4px solid var(--warn)}
+  .gcard.g{border-left:4px solid var(--good)}
+  .gcard.i{border-left:4px solid var(--accent)}
+  .anc{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center}
+  .ancbar{flex:1;min-width:280px}
+  .ancrow{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13.5px}
+  .ancrow .lbl{width:130px;flex:none}
+  .ancrow .bar{flex:1;height:16px;background:var(--card2);border-radius:8px;overflow:hidden}
+  .ancrow .fill{height:100%;background:linear-gradient(90deg,#38bdf8,#818cf8);border-radius:8px}
+  .ancrow .pc{width:44px;text-align:right;font-weight:700;flex:none}
+  .haplo{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:16px}
+  .haplo .h{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:14px 22px;text-align:center}
+  .haplo .h b{display:block;font-size:24px;color:var(--accent);margin-top:4px}
+</style>
+</head>
+<body>
+<header>
+  <h1>🩸 Meus Exames de Sangue</h1>
+  <p>Luiz Henrique Gobato &nbsp;·&nbsp; 12 coletas de Mar/2019 a Nov/2025</p>
+  <div class="badge">Sangue: até 16/11/2025 (DASA) · Genético: Genera</div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="sangue">🩸 Exames de Sangue</div>
+  <div class="tab" data-tab="gene">🧬 Exame Genético</div>
+</div>
+
+<div class="wrap tabpane active" id="tab-sangue">
+
+  <div class="lead">
+    <h3>⚡ Resumo rápido — o que merece atenção</h3>
+    <ul>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Colesterol LDL oscilando alto.</b> Chegou a 162 em Jun/2025 e está em 138 agora — acima do ideal (&lt;130). Vale acompanhar dieta e reavaliar.</div></li>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Testosterona total em queda gradual</b> (609 → 406 ng/dL em 5 anos). Ainda dentro da faixa, mas a testosterona livre caiu para 8,16 ng/dL (limite baixo).</div></li>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Enzimas do fígado (TGO/TGP) subiram</b> no último exame (44/47 U/L). TGO ligeiramente acima do limite. Convém repetir e evitar álcool/suplementos hepatotóxicos antes.</div></li>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Hemoglobina glicada 5,7%</b> — no limiar de pré-diabetes (5,7–6,4%). Sinal para cuidar de açúcar e carboidratos.</div></li>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Sem proteção vacinal para Hepatite B</b> (Anti-HBs 8,8 — abaixo de 10). Considere reforço da vacina.</div></li>
+      <li><span class="tag t-good">OK</span><div><b>Função renal, tireoide, vitaminas D e B12 e sorologias</b> (HIV, Hepatites, Sífilis) todas normais/negativas. Ferro no limite inferior — vale observar.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Panorama do último exame (Nov/2025)</h2>
+  <div id="cards"></div>
+
+  <h2><span class="dot"></span>Sorologias — tudo negativo ✓</h2>
+  <div class="serology">
+    <div class="sero">HIV 1/2<b>Não reagente</b></div>
+    <div class="sero">Hepatite B (HBsAg)<b>Não reagente</b></div>
+    <div class="sero">Hepatite C<b>Não reagente</b></div>
+    <div class="sero">Sífilis<b>Não reagente</b></div>
+    <div class="sero">HTLV I/II<b>Não reagente</b></div>
+    <div class="sero" style="border-color:rgba(245,158,11,.4)">Anti-HBs (vacina)<b style="color:var(--warn)">8,8 — sem proteção</b></div>
+  </div>
+
+  <h2><span class="dot"></span>Evolução ao longo do tempo</h2>
+  <div class="tablewrap">
+    <table id="bigtable"></table>
+  </div>
+
+  <div class="disc">
+    ⚠️ <b>Aviso:</b> este resumo é uma organização visual dos seus próprios resultados para facilitar o acompanhamento — não substitui avaliação médica. A interpretação diagnóstica é ato médico e deve considerar seu histórico clínico completo. Leve estes dados ao seu médico.
+  </div>
+</div>
+
+<!-- ===================== ABA GENÉTICA ===================== -->
+<div class="wrap tabpane" id="tab-gene">
+
+  <div class="lead">
+    <h3>🧬 O que seu DNA diz — e como usar a favor da sua qualidade de vida</h3>
+    <ul>
+      <li><span class="tag t-bad">PRIORIDADE</span><div><b>Risco genético aumentado para câncer de próstata</b> (≈31,6% estimado). Não é diagnóstico, mas justifica <b>rastreamento regular (PSA + exame)</b> a partir dos 40–45 anos com urologista.</div></li>
+      <li><span class="tag t-warn">DIETA</span><div><b>Genes FTO</b> te dão menor saciedade, mais fome emocional e maior facilidade de acumular gordura + <b>tendência a consumir mais açúcar</b> (SLC2A2). Isso conversa com sua glicada 5,7%. Estratégia: priorizar <b>proteína e fibras</b>, controlar açúcar refinado.</div></li>
+      <li><span class="tag t-good">DIETA CERTA</span><div>Seu DNA responde melhor à <b>dieta LOW FAT</b> (TCF7L2) e à <b>dieta mediterrânea</b> (PPARG) para perder peso — melhores escolhas que low-carb/high-fat no seu caso.</div></li>
+      <li><span class="tag t-good">TREINO</span><div>Perfil favorável para <b>força e explosão</b> (ACTN3), <b>ganho de massa muscular fácil</b> (PPARD) e boa resistência. Ponto fraco: <b>menor capacidade cardiorrespiratória</b> — inclua aeróbico regular.</div></li>
+      <li><span class="tag t-warn">OSSOS</span><div><b>Menor densidade óssea</b> (WNT16) somada à sua predisposição a <b>vitamina D baixa</b> — reforce vit. D, cálcio e musculação para proteger os ossos a longo prazo.</div></li>
+      <li><span class="tag t-warn">SONO</span><div><b>Cronotipo noturno</b> (CLOCK) + tendência a <b>dormir menos</b> (ABCC9). Higiene do sono é especialmente importante para você.</div></li>
+      <li><span class="tag t-good">TRANQUILO</span><div><b>Nenhuma doença genética grave detectada</b> (Parkinson, trombofilias, hemocromatose, câncer hereditário — todas negativas) + proteção natural contra <b>tromboses</b>. Riscos <b>reduzidos</b> para melanoma, fibrilação atrial e câncer colorretal.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Escala de Risco Genético (doenças)</h2>
+  <div class="grid gene-grid">
+    <div class="gcard a"><div class="gt">🔴 Câncer de próstata</div><div class="gr">Risco <b>aumentado</b> (~31,6% estimado).</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Consultar urologista e iniciar rastreamento com <b>PSA + toque retal</b> a partir dos 40–45 anos (você tem 36 → converse já sobre o plano).</li>
+        <li>Repetir PSA anualmente conforme orientação médica.</li>
+        <li>Dieta rica em <b>licopeno</b> (tomate cozido), crucíferas (brócolis) e menos gordura saturada.</li>
+        <li>Manter peso e atividade física — obesidade piora o prognóstico.</li>
+      </ul></div></div>
+    <div class="gcard a"><div class="gt">🔴 Colite ulcerativa</div><div class="gr">Risco <b>aumentado</b> (~4,8%).</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Ficar atento a sinais: <b>diarreia persistente, sangue nas fezes, dor abdominal, urgência</b>.</li>
+        <li>Se surgirem, procurar gastroenterologista sem demora (quanto antes o diagnóstico, melhor o controle).</li>
+        <li>Dieta anti-inflamatória, evitar tabagismo e ultraprocessados.</li>
+      </ul></div></div>
+    <div class="gcard w"><div class="gt">🟠 Doença intestinal inflamatória</div><div class="gr">Risco <b>moderado</b> acima da média (~26%).</div>
+      <div class="act"><b>O que fazer:</b> priorizar <b>fibras, ômega-3 e probióticos</b>; reduzir ultraprocessados; não ignorar sintomas intestinais recorrentes.</div></div>
+    <div class="gcard g"><div class="gt">🟢 Melanoma</div><div class="gr">Risco <b>reduzido</b> (~2,4%).</div>
+      <div class="act"><b>Mesmo assim:</b> protetor solar diário e mapeamento de pintas com dermatologista — sua pele é sensível ao sol (ver aba Skin).</div></div>
+    <div class="gcard g"><div class="gt">🟢 Fibrilação atrial</div><div class="gr">Risco <b>reduzido</b> (~12%).</div>
+      <div class="act"><b>Manter:</b> boa saúde cardiovascular, cafeína/álcool com moderação, sono adequado.</div></div>
+    <div class="gcard g"><div class="gt">🟢 Câncer colorretal</div><div class="gr">Risco <b>reduzido</b> (~4,9%).</div>
+      <div class="act"><b>Manter:</b> fibras, pouca carne processada; colonoscopia de rotina a partir dos 45 anos (recomendação geral).</div></div>
+    <div class="gcard i"><div class="gt">⚪ Risco padrão (média da população)</div><div class="gr">Alzheimer, diabetes tipo 2, doença coronariana, câncer de mama/tireoide/bexiga, Crohn, celíaca, diabetes tipo 1, linfoma, leucemia, carcinoma basocelular.</div>
+      <div class="act"><b>O que fazer:</b> risco na média = prevenção padrão. Como sua <b>glicada já está em 5,7%</b>, foque especialmente em prevenir <b>diabetes tipo 2</b> (dieta e exercício).</div></div>
+    <div class="gcard g"><div class="gt">✅ Doenças hereditárias graves</div><div class="gr"><b>Nenhuma variante de risco detectada</b> em +20 condições (Parkinson, trombofilias, hemocromatose, câncer hereditário) + proteção contra tromboses.</div>
+      <div class="act"><b>Ótima notícia:</b> nada a fazer aqui além de manter os hábitos saudáveis.</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Nutrição (Genera Nutri)</h2>
+  <div class="grid gene-grid">
+    <div class="gcard w"><div class="gt">Vitamina D reduzida</div><div class="gr">Predisposição genética a níveis baixos.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li><b>Sol</b> 15–20 min/dia (braços e pernas, sem protetor nesse intervalo curto).</li>
+        <li>Comer gema de ovo, sardinha, salmão, cogumelos.</li>
+        <li><b>Suplementar</b> vit. D com dosagem definida pelo médico — no seu sangue ela já oscilou (chegou a 22 em 2024). Manter acima de 30 ng/mL.</li>
+      </ul></div><div class="gene">GC · rs7041</div></div>
+    <div class="gcard w"><div class="gt">Folato (B9) reduzido — MTHFR</div><div class="gr">Metaboliza ácido fólico com menos eficiência.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Comer folhas verdes escuras: <b>espinafre, couve, rúcula, brócolis</b>; feijão e ovos.</li>
+        <li>Se suplementar, preferir a forma <b>metilfolato</b> (mais bem aproveitada por quem tem MTHFR) — confirmar com médico.</li>
+        <li>Ajuda a controlar homocisteína e proteger o coração.</li>
+      </ul></div><div class="gene">MTHFR · rs1801133</div></div>
+    <div class="gcard w"><div class="gt">Mais fome emocional</div><div class="gr">Tende a comer em resposta a estresse/ansiedade.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Antes de comer fora de hora, pausar e perguntar: "é fome ou emoção?".</li>
+        <li>Ter <b>lanches proteicos</b> à mão (iogurte, ovo, castanhas) em vez de doces.</li>
+        <li>Gerenciar estresse: exercício, sono, respiração — atacam a raiz.</li>
+      </ul></div><div class="gene">FTO · rs9939609</div></div>
+    <div class="gcard w"><div class="gt">Menor saciedade</div><div class="gr">Demora mais para se sentir satisfeito.</div>
+      <div class="act"><b>O que fazer:</b> começar refeições por <b>salada/vegetais e proteína</b>; comer devagar; priorizar alimentos volumosos e ricos em fibra (leguminosas, verduras) que enchem mais com menos calorias.</div><div class="gene">FTO · rs9939609</div></div>
+    <div class="gcard w"><div class="gt">Acumula gordura mais fácil</div><div class="gr">Metabolismo tende a poupar energia.</div>
+      <div class="act"><b>O que fazer:</b> manter <b>déficit calórico leve</b> quando quiser emagrecer; não pular treinos; construir músculo (queima mais em repouso). A genética aqui é vencível com constância.</div><div class="gene">FTO · rs1421085</div></div>
+    <div class="gcard w"><div class="gt">Tende a consumir mais açúcar</div><div class="gr">Predisposição a buscar doces — atenção redobrada.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Reduzir <b>açúcar refinado e bebidas açucaradas</b> (liga direto à sua glicada 5,7%).</li>
+        <li>Trocar doce por fruta + fonte de proteína/gordura boa.</li>
+        <li>Ler rótulos: cortar açúcar oculto de molhos e industrializados.</li>
+      </ul></div><div class="gene">SLC2A2 · rs5400</div></div>
+    <div class="gcard g"><div class="gt">✓ Responde à dieta mediterrânea</div><div class="gr">Perde peso e reduz LDL com esse padrão.</div>
+      <div class="act"><b>Aproveite:</b> base de <b>azeite, peixe, vegetais, leguminosas, castanhas e grãos integrais</b>. Excelente para seu LDL, que anda oscilando alto.</div><div class="gene">PPARG · rs1801282</div></div>
+    <div class="gcard g"><div class="gt">✓ Melhor com dieta LOW FAT</div><div class="gr">Baixa gordura funciona melhor que high fat pra você.</div>
+      <div class="act"><b>Aproveite:</b> ao emagrecer, priorize <b>reduzir gordura</b> (não carboidrato) — mantendo proteína alta. Evite estratégias tipo cetogênica/high-fat, que rendem menos no seu perfil.</div><div class="gene">TCF7L2 · rs7903146</div></div>
+    <div class="gcard g"><div class="gt">✓ Sem intolerância à lactose</div><div class="gr">Tolera leite e derivados normalmente.</div>
+      <div class="act"><b>Aproveite:</b> laticínios são boa fonte de <b>proteína e cálcio</b> — úteis para seus ossos (densidade óssea menor).</div><div class="gene">MCM6</div></div>
+    <div class="gcard g"><div class="gt">✓ Cafeína sem ansiedade</div><div class="gr">Sem predisposição a ansiedade pós-café.</div>
+      <div class="act"><b>Ok com moderação:</b> café pode ser aliado pré-treino. Evite após ~16h para não atrapalhar o sono (você dorme menos).</div><div class="gene">ADORA2A</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Fitness & Corpo (Genera Fit)</h2>
+  <div class="grid gene-grid">
+    <div class="gcard g"><div class="gt">💪 Ganha músculo com facilidade</div><div class="gr">Bom retorno ao treino de força.</div>
+      <div class="act"><b>Aproveite:</b> priorize <b>musculação 3–5x/semana</b> com cargas progressivas. Proteína ~1,6–2,2 g/kg/dia. Você tende a ver resultado — use isso de motivação.</div><div class="gene">PPARD</div></div>
+    <div class="gcard g"><div class="gt">⚡ Força e explosão</div><div class="gr">Perfil para atividades de potência (fibras rápidas).</div>
+      <div class="act"><b>Aproveite:</b> treinos de <b>força pesada, saltos, sprints e HIIT</b> combinam com você. Bom desempenho em levantamento, crossfit, esportes explosivos.</div><div class="gene">ACTN3</div></div>
+    <div class="gcard g"><div class="gt">🏅 Boa habilidade esportiva</div><div class="gr">Predisposição atlética favorável.</div>
+      <div class="act"><b>Aproveite:</b> ótima base para adotar um esporte que goste — adesão vem mais fácil quando há aptidão.</div><div class="gene">PPARGC1A</div></div>
+    <div class="gcard g"><div class="gt">🫁 Boa resistência física</div><div class="gr">Maior captação de oxigênio muscular.</div>
+      <div class="act"><b>Aproveite:</b> apesar da capacidade cardiorrespiratória central menor (abaixo), seus músculos usam bem o O₂ — corrida/ciclismo de longa duração são viáveis com treino.</div><div class="gene">NFIA-AS2</div></div>
+    <div class="gcard g"><div class="gt">Menor dor muscular pós-treino</div><div class="gr">Recuperação muscular favorável.</div>
+      <div class="act"><b>Aproveite:</b> tolera bem volume/frequência maior — mas ainda respeite descanso e sono para evitar overtraining.</div><div class="gene">IGF2</div></div>
+    <div class="gcard g"><div class="gt">Adere bem a exercícios</div><div class="gr">Tende a manter a rotina de treino.</div>
+      <div class="act"><b>Aproveite:</b> ponto forte — crie uma rotina fixa e ela tende a "pegar". Bom preditor de sucesso a longo prazo.</div><div class="gene">GCKR</div></div>
+    <div class="gcard w"><div class="gt">Menor capacidade cardiorrespiratória</div><div class="gr">Coração/pulmão rendem um pouco menos.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Incluir <b>aeróbico 2–3x/semana</b> (caminhada rápida, corrida, bike, natação) — é o seu ponto a desenvolver.</li>
+        <li>Progressão gradual de intensidade melhora o VO₂ ao longo do tempo.</li>
+        <li>Importante porque protege coração (risco coronariano na média) e ajuda a glicada.</li>
+      </ul></div><div class="gene">ADRB2</div></div>
+    <div class="gcard w"><div class="gt">Recuperação cardíaca mais lenta</div><div class="gr">FC demora mais a normalizar após esforço.</div>
+      <div class="act"><b>O que fazer:</b> não pular o <b>desaquecimento</b> (5–10 min leves no fim do treino); condicionamento aeróbico regular acelera essa recuperação.</div><div class="gene">CHRM2</div></div>
+    <div class="gcard w"><div class="gt">Menor densidade óssea</div><div class="gr">Ossos geneticamente menos densos.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li><b>Musculação e impacto</b> (pular, correr) estimulam o osso a ficar mais forte.</li>
+        <li>Garantir <b>cálcio</b> (laticínios, que você tolera) e <b>vitamina D</b> adequados.</li>
+        <li>Não fumar, moderar álcool. A boa: você tem proteção contra osteoporose (gene VDR).</li>
+      </ul></div><div class="gene">WNT16</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Longevidade & Pele (Aging / Skin)</h2>
+  <div class="grid gene-grid">
+    <div class="gcard g"><div class="gt">🕰️ Predisposição a viver mais</div><div class="gr">Variante associada a maior expectativa de vida.</div>
+      <div class="act"><b>Aproveite:</b> boa base genética — o retorno de manter hábitos saudáveis (dieta, exercício, sono, não fumar) tende a ser ainda maior no seu caso.</div><div class="gene">TOMM40</div></div>
+    <div class="gcard g"><div class="gt">🦴 Proteção contra osteoporose</div><div class="gr">Protegido contra perda óssea na velhice.</div>
+      <div class="act"><b>Ainda assim:</b> combine com musculação + cálcio + vit. D para compensar a densidade óssea menor (gene WNT16).</div><div class="gene">VDR</div></div>
+    <div class="gcard w"><div class="gt">☀️ Pele sensível ao sol</div><div class="gr">Reage mais aos raios UV (queima fácil).</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li><b>Protetor solar FPS 50</b> diário no rosto, reaplicar se exposto.</li>
+        <li>Chapéu/óculos e evitar sol das 10h–16h.</li>
+        <li>Conciliar com os 15 min de sol da vit. D — fora do horário de pico.</li>
+      </ul></div><div class="gene">MC1R</div></div>
+    <div class="gcard w"><div class="gt">Fotoenvelhecimento</div><div class="gr">Pele envelhece mais com exposição solar.</div>
+      <div class="act"><b>O que fazer:</b> protetor solar + <b>antioxidantes tópicos</b> (vitamina C sérum) e hidratação. Prevenção agora evita rugas depois.</div><div class="gene">STXBP5L</div></div>
+    <div class="gcard w"><div class="gt">Vitamina C reduzida</div><div class="gr">Tende a níveis menores de vit. C.</div>
+      <div class="act"><b>O que fazer:</b> consumir <b>laranja, acerola, kiwi, morango, pimentão</b>. Importante também para colágeno e imunidade.</div><div class="gene">SLC23A1</div></div>
+    <div class="gcard w"><div class="gt">Predisposição a calvície</div><div class="gr">Maior chance de queda de cabelo androgenética.</div>
+      <div class="act"><b>O que fazer:</b> se notar afinamento, <b>agir cedo</b> aumenta muito o resultado — dermatologista pode indicar minoxidil/finasterida. Quanto antes, melhor.</div><div class="gene">HDAC4</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Comportamento & Sono (Genera You)</h2>
+  <div class="grid gene-grid">
+    <div class="gcard w"><div class="gt">🌙 Cronotipo noturno</div><div class="gr">Seu corpo tende a render mais à noite.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li>Se possível, encaixar tarefas exigentes e treino no fim da tarde/noite.</li>
+        <li>À noite, cortar <b>luz azul</b> (telas) 1h antes de deitar para não atrasar mais o sono.</li>
+        <li>Luz natural pela manhã ajuda a ancorar o relógio biológico.</li>
+      </ul></div><div class="gene">CLOCK</div></div>
+    <div class="gcard w"><div class="gt">😴 Tende a dormir menos</div><div class="gr">Predisposição a menor duração de sono.</div>
+      <div class="act"><b>O que fazer:</b><ul>
+        <li><b>Proteger 7–8h</b> com horário fixo de deitar/levantar.</li>
+        <li>Quarto escuro, frio e silencioso; sem cafeína após 16h.</li>
+        <li>Sono curto crônico piora fome (seus genes FTO), glicemia e testosterona — é peça-chave pra você.</li>
+      </ul></div><div class="gene">ABCC9</div></div>
+    <div class="gcard w"><div class="gt">Maior sensibilidade à dor</div><div class="gr">Percebe dor com mais intensidade.</div>
+      <div class="act"><b>O que fazer:</b> informe médicos/dentista dessa característica; boa recuperação, sono e controle de estresse reduzem a percepção de dor.</div><div class="gene">COMT</div></div>
+    <div class="gcard g"><div class="gt">✓ Sem predisposição a alcoolismo</div><div class="gr">Menor risco genético de dependência.</div>
+      <div class="act"><b>Ainda assim:</b> moderar álcool ajuda LDL, fígado (suas enzimas subiram) e sono.</div><div class="gene">FAAH</div></div>
+    <div class="gcard g"><div class="gt">✓ Sem predisposição a nicotina</div><div class="gr">Menor risco de dependência de cigarro.</div>
+      <div class="act"><b>Aproveite:</b> mais um motivo para manter distância do cigarro — protege pulmão, ossos e pele.</div><div class="gene">CHRNA5</div></div>
+    <div class="gcard i"><div class="gt">👓 Predisposição à miopia</div><div class="gr">Maior chance de miopia.</div>
+      <div class="act"><b>O que fazer:</b> consulta oftalmológica de rotina; pausas da tela (regra 20-20-20: a cada 20 min, olhar 20s a 6 m de distância).</div><div class="gene">GJD2</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Resposta a Medicamentos (Genera Farma)</h2>
+  <p style="color:var(--muted);font-size:13px;margin:-4px 0 14px">Informações para <b>compartilhar com seu médico</b> — nunca troque ou inicie remédio por conta própria.</p>
+  <div class="grid gene-grid">
+    <div class="gcard w"><div class="gt">Atorvastatina — resposta menor</div><div class="gr">Tende a responder menos a essa estatina.</div>
+      <div class="act"><b>Se precisar tratar colesterol:</b> mencione ao médico — ele pode preferir <b>outra estatina ou dose maior</b>. Relevante porque seu LDL anda oscilando alto.</div><div class="gene">APOE</div></div>
+    <div class="gcard g"><div class="gt">✓ Estatinas sem risco muscular</div><div class="gr">Sem predisposição a dor muscular (inclui sinvastatina).</div>
+      <div class="act"><b>Boa notícia:</b> se um dia precisar de estatina, baixo risco do efeito colateral muscular mais comum.</div><div class="gene">COQ2 · SLCO1B1</div></div>
+    <div class="gcard g"><div class="gt">Metformina — ótima resposta</div><div class="gr">Alta taxa de resposta ao tratamento.</div>
+      <div class="act"><b>Relevante:</b> caso a glicada evolua para pré-diabetes/diabetes, a metformina seria uma opção eficaz no seu caso — informação útil pro médico.</div><div class="gene">ATM</div></div>
+    <div class="gcard w"><div class="gt">AAS / Aspirina — risco de urticária</div><div class="gr">Predisposição a reação alérgica (urticária).</div>
+      <div class="act"><b>Atenção:</b> observar coceira/vermelhidão ao usar AAS; avisar médico dessa predisposição antes de uso contínuo.</div><div class="gene">LTC4S</div></div>
+    <div class="gcard g"><div class="gt">✓ Salbutamol — boa resposta</div><div class="gr">Broncodilatador eficaz se necessário.</div>
+      <div class="act"><b>Útil saber:</b> em caso de bronquite/asma, tende a responder bem ao Aerolin.</div><div class="gene">ADRB2</div></div>
+    <div class="gcard i"><div class="gt">Opioides — resposta menor</div><div class="gr">Pode ter menos analgesia com opioides.</div>
+      <div class="act"><b>Se preciso (pós-cirurgia/dor forte):</b> avise a equipe — some-se à sua maior sensibilidade à dor, o manejo pode exigir ajuste.</div><div class="gene">COMT</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Ancestralidade</h2>
+  <div class="anc">
+    <div class="ancbar">
+      <div class="ancrow"><span class="lbl">Europa</span><span class="bar"><span class="fill" style="width:78%"></span></span><span class="pc">78%</span></div>
+      <div class="ancrow"><span class="lbl">↳ Itália</span><span class="bar"><span class="fill" style="width:40%;opacity:.7"></span></span><span class="pc">40%</span></div>
+      <div class="ancrow"><span class="lbl">Américas</span><span class="bar"><span class="fill" style="width:12%"></span></span><span class="pc">12%</span></div>
+      <div class="ancrow"><span class="lbl">Oriente Médio</span><span class="bar"><span class="fill" style="width:7%"></span></span><span class="pc">7%</span></div>
+      <div class="ancrow"><span class="lbl">África</span><span class="bar"><span class="fill" style="width:3%"></span></span><span class="pc">3%</span></div>
+    </div>
+  </div>
+  <div class="haplo">
+    <div class="h">Linhagem paterna<b>R1b</b><span style="font-size:12px;color:var(--muted)">mais comum na Europa Ocidental</span></div>
+    <div class="h">Linhagem materna<b>A2</b><span style="font-size:12px;color:var(--muted)">origem nas Américas / ameríndia</span></div>
+  </div>
+
+  <div class="disc">
+    ⚠️ <b>Importante:</b> o teste genético é de <b>triagem, não de diagnóstico</b>. Predisposição não significa que você terá a condição — genes são só um dos fatores, junto com ambiente e estilo de vida. Use como guia de prevenção junto ao seu médico.
+  </div>
+</div>
+
+<footer>
+  Gerado a partir de 12 PDFs de sangue + 11 relatórios Genera · valores conforme laudos originais.<br>
+  Faixas de referência do laboratório (adulto masculino). Testes genéticos são de triagem, não diagnóstico.
+</footer>
+
+<script>
+// alternância de abas
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpane').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('tab-'+t.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+});
+
+const categories = [
+  {cat:'🩸 Hemograma', items:[
+    {name:'Hemoglobina', val:'15,4', unit:'g/dL', ref:'13 – 17', status:'good', key:'hb'},
+  ]},
+  {cat:'🍬 Glicemia & Metabolismo', items:[
+    {name:'Glicose (jejum)', val:'81', unit:'mg/dL', ref:'70 – 99', status:'good', key:'glic'},
+    {name:'Hemoglobina Glicada', val:'5,7', unit:'%', ref:'Normal < 5,7', status:'warn', key:'hba1c'},
+    {name:'HOMA-IR (res. insulina)', val:'1,10', unit:'', ref:'< 2,70', status:'good', key:'homa'},
+  ]},
+  {cat:'🫀 Perfil Lipídico', items:[
+    {name:'Colesterol Total', val:'201', unit:'mg/dL', ref:'Ideal < 190', status:'warn', key:'colT'},
+    {name:'LDL ("ruim")', val:'138', unit:'mg/dL', ref:'Ideal < 130', status:'warn', key:'ldl'},
+    {name:'HDL ("bom")', val:'54', unit:'mg/dL', ref:'Ideal > 40', status:'good', key:'hdl'},
+    {name:'Triglicérides', val:'31', unit:'mg/dL', ref:'Ideal < 150', status:'good', key:'trig'},
+  ]},
+  {cat:'🫘 Função Renal', items:[
+    {name:'Creatinina', val:'1,28', unit:'mg/dL', ref:'0,70 – 1,30', status:'good', key:'creat'},
+    {name:'Ácido Úrico', val:'4,9', unit:'mg/dL', ref:'3,8 – 8,6', status:'good', key:'urico'},
+  ]},
+  {cat:'🫁 Função Hepática', items:[
+    {name:'TGO (fígado)', val:'44', unit:'U/L', ref:'< 34', status:'bad', key:'tgo'},
+    {name:'TGP (fígado)', val:'47', unit:'U/L', ref:'10 – 49', status:'warn', key:'tgp'},
+  ]},
+  {cat:'⚗️ Hormônios', items:[
+    {name:'Testosterona Total', val:'406', unit:'ng/dL', ref:'165 – 753', status:'warn', key:'testT'},
+    {name:'Testosterona Livre', val:'8,16', unit:'ng/dL', ref:'3,4 – 24,6', status:'warn', key:'testL'},
+    {name:'TSH (tireoide)', val:'1,47*', unit:'µUI/mL', ref:'0,4 – 4,3', status:'good', key:'tsh'},
+  ]},
+  {cat:'💊 Vitaminas & Minerais', items:[
+    {name:'Vitamina D', val:'41,1', unit:'ng/mL', ref:'> 20', status:'good', key:'vitd'},
+    {name:'Vitamina B12', val:'626', unit:'pg/mL', ref:'223 – 672', status:'good', key:'b12'},
+    {name:'Ferro', val:'51', unit:'µg/dL', ref:'65 – 175', status:'warn', key:'ferro'},
+  ]},
+];
+
+const L = ['03/19','09/20','11/22','02/23','04/23','10/23','10/24','03/25','06/25','09/25','11/25'];
+const series = {
+  colT:[null,219,187,null,161,null,186,170,229,166,201],
+  ldl:[null,133,129,null,95,null,123,114,162,103,138],
+  hdl:[null,75,50,null,57,null,49,42,53,52,54],
+  trig:[null,35,28,null,30,null,null,57,45,37,31],
+  glic:[null,null,null,null,98,91,94,98,89,78,81],
+  hba1c:[null,null,null,null,null,5.5,5.7,null,5.8,5.5,5.7],
+  homa:[null,null,null,null,null,null,null,3.99,null,null,1.10],
+  creat:[null,1.30,null,null,1.32,null,1.21,1.12,1.18,1.26,1.28],
+  testT:[null,609,462,473,493,481,441,429,461,426,406],
+  testL:[null,11.94,11.37,10.44,null,11.73,null,null,null,null,8.16],
+  tgo:[null,64,null,null,24,27,30,null,31,33,44],
+  tgp:[null,59,null,null,16,28,34,null,25,31,47],
+  vitd:[null,null,null,null,34.95,null,22.06,40.98,70.82,52.76,41.1],
+  b12:[null,null,null,null,460,null,441,455,null,null,626],
+  ferro:[null,null,null,null,null,null,66,65,55,71,51],
+  urico:[null,5.8,null,null,5.7,null,null,null,6.3,null,4.9],
+  tsh:[null,2.44,null,null,1.68,1.65,null,null,1.67,1.47,null],
+  hb:[16.6,16.4,null,null,15.4,15.2,15.4,null,15.3,14.6,15.4],
+};
+const colors={good:'#22c55e',warn:'#f59e0b',bad:'#ef4444'};
+
+const cont=document.getElementById('cards');
+let idx=0;
+categories.forEach(group=>{
+  const h=document.createElement('h3');h.className='cat';h.textContent=group.cat;
+  cont.appendChild(h);
+  const grid=document.createElement('div');grid.className='grid';
+  cont.appendChild(grid);
+  group.items.forEach(c=>{
+  const i=idx++;
+  const el=document.createElement('div');el.className='card';
+  el.innerHTML=`<div class="top"><div><div class="name">${c.name}</div>
+    <div class="val">${c.val} <span class="unit">${c.unit}</span></div></div>
+    <span class="pill p-${c.status}">${c.status==='good'?'Normal':c.status==='warn'?'Observar':'Alterado'}</span></div>
+    <div class="ref">Referência: ${c.ref}</div>
+    <div class="chartbox"><canvas id="ch${i}"></canvas></div>`;
+  grid.appendChild(el);
+  const data=series[c.key]||[];
+  const pts=L.map((l,j)=>({x:l,y:data[j]})).filter(p=>p.y!=null);
+  new Chart(document.getElementById('ch'+i),{
+    type:'line',
+    data:{labels:pts.map(p=>p.x),datasets:[{data:pts.map(p=>p.y),
+      borderColor:colors[c.status],backgroundColor:colors[c.status]+'22',
+      fill:true,tension:.35,pointRadius:3,pointBackgroundColor:colors[c.status],borderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{enabled:true}},
+      scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},
+        y:{ticks:{color:'#64748b',font:{size:9}},grid:{color:'#1e293b'}}}}
+  });
+  });
+});
+
+const rows=[
+  ['Hemoglobina (g/dL)','hb','13–17',13,17],
+  ['Leucócitos (/µL)','leuc','4.000–10.000',4000,10000],
+  ['Plaquetas (mil)','plaq','150–450',150,450],
+  ['Glicose jejum (mg/dL)','glic','70–99',70,99],
+  ['Hemog. Glicada (%)','hba1c','<5,7',0,5.7],
+  ['Colesterol Total','colT','<190',0,190],
+  ['LDL','ldl','<130',0,130],
+  ['HDL','hdl','>40',40,999],
+  ['Triglicérides','trig','<150',0,150],
+  ['Creatinina','creat','0,70–1,30',0.7,1.3],
+  ['Ácido Úrico','urico','3,8–8,6',3.8,8.6],
+  ['TGO (U/L)','tgo','<34',0,34],
+  ['TGP (U/L)','tgp','10–49',10,49],
+  ['Testost. Total','testT','165–753',165,753],
+  ['Testost. Livre','testL','3,4–24,6',3.4,24.6],
+  ['TSH','tsh','0,4–4,3',0.4,4.3],
+  ['Vitamina D','vitd','>20',20,999],
+  ['Vitamina B12','b12','223–672',223,672],
+  ['Ferro','ferro','65–175',65,175],
+];
+const extra={ leuc:[5900,4990,null,null,5630,4770,5990,null,5590,4650,5310],
+  plaq:[null,297,null,null,307,297,null,null,310,297,287] };
+const tbl=document.getElementById('bigtable');
+let head='<tr><th>Marcador</th><th>Ref.</th>'+L.map(l=>`<th>${l}</th>`).join('')+'</tr>';
+let body='';
+rows.forEach(r=>{
+  const d=series[r[1]]||extra[r[1]]||[];
+  let cells=L.map((_,j)=>{
+    let v=d[j]; if(v==null)return '<td>·</td>';
+    let cls=''; if(v<r[3])cls='lo'; if(v>r[4])cls='hi';
+    let disp=String(v).replace('.',',');
+    return `<td class="${cls}">${disp}</td>`;
+  }).join('');
+  body+=`<tr><td>${r[0]}</td><td style="color:#64748b">${r[2]}</td>${cells}</tr>`;
+});
+tbl.innerHTML=head+body;
+</script>
+</body>
+</html>
