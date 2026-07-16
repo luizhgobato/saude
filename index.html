@@ -60,6 +60,17 @@
   footer{text-align:center;color:var(--muted);font-size:12.5px;margin-top:44px;padding:0 20px;line-height:1.7}
   .disc{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.3);border-radius:12px;
     padding:14px 18px;margin-top:30px;font-size:13px;color:#fcd9a4}
+  /* tooltip info */
+  .card{position:relative}
+  .info{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;
+    background:var(--card2);color:var(--accent);border:1px solid var(--line);font-size:10px;font-weight:700;
+    font-style:italic;cursor:help;margin-left:5px;vertical-align:middle;position:relative;font-family:Georgia,serif}
+  .info .tip{display:none;position:absolute;top:22px;left:-6px;width:250px;background:#0b1120;
+    border:1px solid var(--accent);border-radius:10px;padding:11px 13px;font-size:11.5px;line-height:1.55;
+    color:#e2e8f0;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.6);text-align:left;font-weight:400;font-style:normal}
+  .info:hover .tip,.info:focus .tip{display:block}
+  .info .tip b{color:var(--accent)}
+  @media(max-width:520px){.info .tip{width:200px;left:auto;right:-6px}}
   /* abas */
   .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px auto 0;max-width:1080px;padding:0 20px}
   .tab{background:var(--card);border:1px solid var(--line);color:var(--muted);
@@ -111,13 +122,35 @@
   .macrobar{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
   .macropill{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:8px 16px;font-size:13px}
   .macropill b{color:var(--accent);font-size:16px}
+  .kc{color:#7dd3fc;font-size:11px;font-weight:600;white-space:nowrap}
+  .meal .mtot{margin-top:10px;padding-top:8px;border-top:1px solid var(--line);font-size:13px;font-weight:700;color:var(--good);text-align:right}
+  .daytotal{background:linear-gradient(135deg,#134e4a,#0f766e);border:1px solid var(--good);border-radius:14px;padding:16px 20px;margin:6px 0 18px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .daytotal .dl{font-size:13px;color:#d1fae5}
+  .daytotal .dv{font-size:26px;font-weight:800;color:#fff}
+  .daytotal .dm{font-size:12px;color:#a7f3d0}
+  /* endoscopia */
+  .endo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
+  .endo .eh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px}
+  .endo .et{font-size:17px;font-weight:700}
+  .endo .edate{font-size:13px;color:var(--accent);font-weight:700}
+  .endo .edoc{font-size:11.5px;color:#64748b;width:100%}
+  .organ{margin:12px 0}
+  .organ .ol{font-weight:700;color:var(--accent);font-size:12.5px;text-transform:uppercase;letter-spacing:.5px}
+  .organ p{font-size:13.5px;color:#cbd5e1;margin-top:3px;line-height:1.6}
+  .concl{background:var(--card2);border-left:3px solid var(--warn);border-radius:8px;padding:11px 14px;margin-top:12px;font-size:13px;line-height:1.6}
+  .concl .ct{font-weight:700;color:var(--warn);display:block;margin-bottom:5px}
+  .dxlist{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .dxtag{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:4px 11px;font-size:12px}
+  .anatomo{background:rgba(56,189,248,.06);border:1px dashed var(--line);border-radius:8px;padding:11px 14px;margin-top:12px;font-size:13px;color:#cbd5e1;line-height:1.6}
+  .anatomo .at{font-weight:700;color:var(--accent);display:block;margin-bottom:4px}
+  .hp{display:inline-block;background:rgba(34,197,94,.15);color:var(--good);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700;margin-top:8px}
 </style>
 </head>
 <body>
 <header>
   <h1>🩸 Meus Exames de Sangue</h1>
-  <p>Luiz Henrique Gobato &nbsp;·&nbsp; 12 coletas de Mar/2019 a Nov/2025</p>
-  <div class="badge">Sangue: até 16/11/2025 (DASA) · Genético: Genera</div>
+  <p>Luiz Henrique Gobato &nbsp;·&nbsp; 13 coletas de Mar/2019 a Jul/2026</p>
+  <div class="badge">Sangue: até 15/07/2026 (DASA) · Genético: Genera</div>
 </header>
 
 <div class="tabs">
@@ -125,6 +158,7 @@
   <div class="tab" data-tab="gene">🧬 Exame Genético</div>
   <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
   <div class="tab" data-tab="dieta">🍽️ Dieta Ideal</div>
+  <div class="tab" data-tab="endo">🔬 Endoscopia</div>
 </div>
 
 <div class="wrap tabpane active" id="tab-sangue">
@@ -132,16 +166,16 @@
   <div class="lead">
     <h3>⚡ Resumo rápido — o que merece atenção</h3>
     <ul>
-      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Colesterol LDL oscilando alto.</b> Chegou a 162 em Jun/2025 e está em 138 agora — acima do ideal (&lt;130). Vale acompanhar dieta e reavaliar.</div></li>
-      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Testosterona total em queda gradual</b> (609 → 406 ng/dL em 5 anos). Ainda dentro da faixa, mas a testosterona livre caiu para 8,16 ng/dL (limite baixo).</div></li>
-      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Enzimas do fígado (TGO/TGP) subiram</b> no último exame (44/47 U/L). TGO ligeiramente acima do limite. Convém repetir e evitar álcool/suplementos hepatotóxicos antes.</div></li>
-      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Hemoglobina glicada 5,7%</b> — no limiar de pré-diabetes (5,7–6,4%). Sinal para cuidar de açúcar e carboidratos.</div></li>
-      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Sem proteção vacinal para Hepatite B</b> (Anti-HBs 8,8 — abaixo de 10). Considere reforço da vacina.</div></li>
-      <li><span class="tag t-good">OK</span><div><b>Função renal, tireoide, vitaminas D e B12 e sorologias</b> (HIV, Hepatites, Sífilis) todas normais/negativas. Ferro no limite inferior — vale observar.</div></li>
+      <li><span class="tag t-bad">PIOROU</span><div><b>Colesterol subiu bastante</b> no exame de Jul/2026: total <b>238</b> (era 201) e LDL <b>158</b> (era 138) — os mais altos da série. Prioridade para dieta e reavaliação médica.</div></li>
+      <li><span class="tag t-bad">ATENÇÃO</span><div><b>Hemoglobina glicada chegou a 6,0%</b> (era 5,7%) — dentro da faixa de pré-diabetes (5,7–6,4%) e subindo. Glicose de jejum em 98. Cuidar de açúcar e carboidratos.</div></li>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Testosterona total seguindo em queda</b> (609 → 384 ng/dL). Ainda na faixa; livre (8,97) e biodisponível (210) normais.</div></li>
+      <li><span class="tag t-good">MELHOROU</span><div><b>Fígado normalizou!</b> TGO/TGP voltaram ao normal (23/26, eram 44/47). Ótimo.</div></li>
+      <li><span class="tag t-warn">OBSERVAR</span><div><b>Eosinófilos (8,6%) e linfócitos (43,3%) levemente altos</b> — pode ser alergia/quadro viral recente. Vale acompanhar. eGFR em 80 (levemente reduzido).</div></li>
+      <li><span class="tag t-good">OK</span><div><b>Vitaminas D (45), B12, ácido fólico, tireoide, função renal e hepática</b> em ordem. Ferro e ferritina normais. Sorologias (HIV, hepatites, sífilis) negativas. Lembre do <b>reforço da vacina de Hepatite B</b> (Anti-HBs baixo).</div></li>
     </ul>
   </div>
 
-  <h2><span class="dot"></span>Panorama do último exame (Nov/2025)</h2>
+  <h2><span class="dot"></span>Panorama do último exame (Jul/2026)</h2>
   <div id="cards"></div>
 
   <h2><span class="dot"></span>Sorologias — tudo negativo ✓</h2>
@@ -407,82 +441,190 @@
 <!-- ===================== ABA DIETA IDEAL ===================== -->
 <div class="wrap tabpane" id="tab-dieta">
   <div class="lead">
-    <h3>🍽️ Sua dieta ideal — 5 refeições/dia</h3>
+    <h3>🍽️ Sua dieta — protocolo Nutri Felipe Cruz (TeamCruz)</h3>
     <ul>
-      <li><span class="tag t-good">BASE</span><div>Estruturada a partir do seu <b>protocolo atual (Nutri Bruno SM)</b>, que vem funcionando — você perdeu 4,8 kg de gordura mantendo músculo.</div></li>
-      <li><span class="tag t-good">AJUSTADA A VOCÊ</span><div>Proteína alta em todas as refeições (saciedade — genes FTO), <b>gordura moderada</b> (você responde melhor a low-fat e protege o LDL), <b>pouco açúcar</b> (glicada 5,7%) e salada colorida (folato/vitaminas).</div></li>
-      <li><span class="tag t-warn">REGRAS DE OURO</span><div>Não cozinhar com óleo (azeite cru), pesar alimentos cozidos, <b>4 L de água/dia</b>, salada em ≥2 refeições (3 cores).</div></li>
+      <li><span class="tag t-good">A QUE MAIS FUNCIONOU</span><div>Plano do <b>Dr. Felipe Cruz (CRN3 56303)</b> — o que você melhor se adaptou. Foco em <b>shape mais seco e com qualidade</b>, muita proteína e carboidrato concentrado nas refeições em torno do treino.</div></li>
+      <li><span class="tag t-warn">REGRAS DE OURO</span><div><b>2–3 L de água/dia</b> (500–1000 ml por hora de treino), comer devagar e mastigar bem, <b>manter os horários</b> das refeições. <b>Domingo é dia livre</b> (2 refeições livres).</div></li>
+      <li><span class="tag t-warn">ATENÇÃO AOS SEUS EXAMES</span><div>Como seu <b>LDL está alto (158)</b>, prefira as proteínas magras da lista e vá com calma no óleo de coco/MCT do pré-treino (gordura saturada) — vale confirmar com o nutri.</div></li>
     </ul>
   </div>
 
-  <h2><span class="dot"></span>Metas do dia (aproximado)</h2>
-  <div class="macrobar">
-    <div class="macropill"><b>~2.300</b> kcal</div>
-    <div class="macropill">Proteína <b>~200 g</b></div>
-    <div class="macropill">Carboidrato <b>~240 g</b></div>
-    <div class="macropill">Gordura <b>~55 g</b></div>
-    <div class="macropill">Água <b>4 L</b></div>
+  <h2><span class="dot"></span>Total do dia</h2>
+  <div class="daytotal">
+    <div><div class="dl">Calorias estimadas do dia</div><div class="dm">com as opções destacadas · ~154 g de proteína</div></div>
+    <div class="dv">≈ 2.080 kcal</div>
   </div>
-  <p style="color:var(--muted);font-size:12.5px;margin:-8px 0 16px">Estimado para fase de perda de gordura a ~87 kg. Ajuste com seu nutricionista conforme a evolução.</p>
+  <p style="color:var(--muted);font-size:12px;margin:-10px 0 16px">As calorias são <b>estimativas</b> por porção. Onde há opções, o total usa a 1ª opção. O carboidrato complexo foi calculado como <b>arroz cru (~3,6 kcal/g)</b> — se usar batata doce/mandioca, some bem menos. Valores podem variar ±10%.</p>
 
-  <div class="meal">
-    <div class="mh"><div class="mt">1 · Café da manhã / Pós-treino</div><div class="mtime">ao acordar / após treinar</div></div>
-    <ul>
-      <li>2 fatias de <b>pão integral</b> + 30 g de doce de leite <i>ou</i> goiabada</li>
-      <li>30 g de <b>whey protein</b> <i>ou</i> 5 claras <i>ou</i> 100 g de filezinho sassami</li>
-    </ul>
-    <div class="macros">≈ 330 kcal · P 30 g · C 45 g · G 4 g</div>
-  </div>
+  <h2><span class="dot"></span>Refeições do dia</h2>
 
   <div class="meal">
-    <div class="mh"><div class="mt">2 · Almoço</div><div class="mtime">refeição base</div></div>
+    <div class="mh"><div class="mt">Pré-treino</div><div class="mtime">antes de treinar</div></div>
     <ul>
-      <li>200 g de <b>arroz</b> <i>ou</i> batata doce <i>ou</i> mandioca <i>ou</i> macarrão (<i>ou</i> 100 g arroz + 120 g feijão)</li>
-      <li>150 g de <b>peito de frango</b> <i>ou</i> proteína da lista</li>
-      <li>1 colher de sopa de <b>azeite de oliva</b> (cru)</li>
-      <li><b>Salada 3 cores</b> à vontade (ex.: brócolis, cenoura, beterraba)</li>
+      <li>300 ml de <b>chá preto/matte</b> <i>ou</i> café <span class="kc">~5 kcal</span></li>
+      <li>1 comprimido de <b>MCT</b> <i>ou</i> 1000 mg de óleo de coco <span class="kc">~10 kcal</span></li>
+      <li><i>Quando não for treinar, pule direto para a Refeição 1.</i></li>
     </ul>
-    <div class="macros">≈ 560 kcal · P 42 g · C 65 g · G 14 g</div>
+    <div class="mtot">Subtotal ≈ 15 kcal</div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">3 · Lanche da tarde</div><div class="mtime">meio da tarde</div></div>
+    <div class="mh"><div class="mt">1 · Pós-treino</div><div class="mtime">~9:00</div></div>
     <ul>
-      <li>30 g de <b>aveia</b> <i>ou</i> 2 fatias de pão integral</li>
-      <li>2 <b>ovos</b> inteiros</li>
-      <li>150 g de <b>mamão</b> (ou fruta da lista) + 1 banana</li>
-      <li>160 g de <b>iogurte natural desnatado</b></li>
+      <li><b>Líquido:</b> 40 g de whey protein <span class="kc">~150 kcal</span> + 250 ml de leite desnatado <span class="kc">~85 kcal</span></li>
+      <li><b>30 min depois — sólido (escolha 1):</b></li>
+      <li>Opção 1: omelete 1 ovo + 2 claras <span class="kc">~105 kcal</span> + 100 g de fruta <span class="kc">~70 kcal</span></li>
+      <li>Opção 2: 1 rap10 integral + recheio (ricota/cottage/frango/carne/2 ovos) <span class="kc">~230 kcal</span></li>
+      <li>Opção 3: 1 fatia de pão integral + ricota/geleia diet + omelete 1 ovo + 3 claras <span class="kc">~245 kcal</span></li>
     </ul>
-    <div class="macros">≈ 450 kcal · P 25 g · C 55 g · G 12 g</div>
+    <div class="mtot">Subtotal ≈ 410 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span></div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">4 · Jantar</div><div class="mtime">refeição base</div></div>
+    <div class="mh"><div class="mt">2 · Lanche</div><div class="mtime">~11:00</div></div>
     <ul>
-      <li>200 g de <b>arroz</b> <i>ou</i> mandioca <i>ou</i> macarrão</li>
-      <li>150 g de <b>peito de frango</b> <i>ou</i> proteína da lista</li>
-      <li>1 colher de sopa de <b>azeite de oliva</b> (cru)</li>
-      <li><b>Salada 3 cores</b></li>
+      <li>Opção 1: 2 claras <span class="kc">~35 kcal</span></li>
+      <li>Opção 2: 1 iogurte natural desnatado <span class="kc">~70 kcal</span></li>
+      <li>Opção 3: 30 g de queijo branco <span class="kc">~80 kcal</span></li>
     </ul>
-    <div class="macros">≈ 560 kcal · P 42 g · C 65 g · G 14 g</div>
+    <div class="mtot">Subtotal ≈ 70 kcal <span style="color:var(--muted);font-weight:400">(média)</span></div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">5 · Ceia</div><div class="mtime">antes de dormir</div></div>
+    <div class="mh"><div class="mt">3 · Almoço</div><div class="mtime">~13:00</div></div>
     <ul>
-      <li>30 g de <b>aveia</b> <i>ou</i> 2 fatias de pão integral</li>
-      <li>30 g de <b>whey</b> <i>ou</i> 5 claras <i>ou</i> 100 g de filezinho sassami</li>
-      <li>2 <b>maçãs</b> <i>ou</i> 200 g de fruta da lista</li>
-      <li>20 g de <b>pasta de amendoim</b></li>
+      <li>70 g de <b>carboidrato complexo</b> cru (ex.: arroz) <span class="kc">~250 kcal</span></li>
+      <li>180 g de <b>frango/peixe/carne magra</b> (patinho, alcatra, filé mignon) <span class="kc">~300 kcal</span></li>
+      <li><b>Vegetais e folhas verdes</b> à vontade <span class="kc">~30 kcal</span></li>
     </ul>
-    <div class="macros">≈ 420 kcal · P 32 g · C 42 g · G 11 g</div>
+    <div class="mtot">Subtotal ≈ 580 kcal</div>
   </div>
 
-  <div class="swap"><b>Proteínas substitutas</b> (mesma quantidade): patinho, filé mignon, coxão, filé mignon suíno, tilápia, peito de frango. &nbsp;•&nbsp; <b>Frutas:</b> abacaxi, melão, morango, acerola, pêra, kiwi, melancia, uva.</div>
-  <div class="swap"><b>Suplementos (opcional):</b> creatina 5 g pós-treino · cafeína 420 mg pré-treino (só antes das 17h) · multivitamínico após o café · beta-alanina 6 g pré-treino. Multivitamínico vira <b>obrigatório</b> se não comer salada no almoço e no jantar.</div>
+  <div class="meal">
+    <div class="mh"><div class="mt">4 · Lanche da tarde</div><div class="mtime">~16:00</div></div>
+    <ul>
+      <li>Opção 1: tapioca (40 g) <span class="kc">~140 kcal</span> + cottage/ricota <span class="kc">~30 kcal</span></li>
+      <li>Opção 2: 6 bolachas de água e sal <span class="kc">~120 kcal</span> + ricota/cottage <span class="kc">~30 kcal</span></li>
+      <li>Opção 3: 1 fatia de pão integral + ricota/frango/carne <span class="kc">~160 kcal</span></li>
+    </ul>
+    <div class="mtot">Subtotal ≈ 170 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span></div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">5 · Lanche</div><div class="mtime">~18:00</div></div>
+    <ul>
+      <li>Opção 1: 120 g de fruta à escolha <span class="kc">~70 kcal</span></li>
+      <li>Opção 2: 40 g de frutas secas <span class="kc">~130 kcal</span></li>
+    </ul>
+    <div class="mtot">Subtotal ≈ 70 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span></div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">6 · Jantar</div><div class="mtime">~20:30</div></div>
+    <ul>
+      <li>70 g de <b>carboidrato complexo</b> cru (ex.: arroz) <span class="kc">~250 kcal</span></li>
+      <li>180 g de <b>frango/peixe/carne magra</b> <span class="kc">~300 kcal</span></li>
+      <li><b>Vegetais e folhas verdes</b> à vontade <span class="kc">~30 kcal</span></li>
+      <li><i>Se não fizer a caminhada, retire o carboidrato (−250 kcal).</i></li>
+    </ul>
+    <div class="mtot">Subtotal ≈ 580 kcal</div>
+  </div>
+
+  <div class="meal">
+    <div class="mh"><div class="mt">7 · Ceia</div><div class="mtime">~23:00 · antes de dormir</div></div>
+    <ul>
+      <li>Opção 1: 70 g de abacate/avocado <span class="kc">~110 kcal</span></li>
+      <li>Opção 2: 1 paçoca diet <span class="kc">~90 kcal</span></li>
+      <li>Opção 3: 5 amêndoas ou castanhas <span class="kc">~70 kcal</span></li>
+      <li><b>Obrigatório:</b> ½ scoop de whey protein <span class="kc">~75 kcal</span></li>
+    </ul>
+    <div class="mtot">Subtotal ≈ 185 kcal <span style="color:var(--muted);font-weight:400">(Opção 1 + whey)</span></div>
+  </div>
+
+  <div class="swap"><b>Carboidratos complexos:</b> batata doce, batata inglesa, mandioca, mandioquinha, inhame, cará, arroz integral ou branco.</div>
+  <div class="swap"><b>Folhas verdes / vegetais (à vontade):</b> alface, agrião, acelga, almeirão, aipo, brócolis, palmito, cebola, chicória, couve, escarola, espinafre, nabo, pimentão, pepino, rabanete, repolho, rúcula, salsão, tomate, champignon.</div>
+  <div class="swap"><b>Bateu fome?</b> Gelatina diet à vontade <i>ou</i> pipoca feita no micro-ondas com água. &nbsp;•&nbsp; <b>Domingo:</b> 2 refeições livres (o que quiser).</div>
+  <div class="swap"><b>Suplementos do protocolo:</b> Tribulus 700 mg + Maca 600 mg + Cafeína 200 mg + Ioimbina 3 mg + L-teanina 200 mg (1 ao acordar e 1 após o almoço, só nos dias de treino) · Condroitina 1,2 g + Glucosamina 1,5 g + UC-II 20 mg (1 dose/dia, todos os dias).</div>
 
   <div class="disc">
-    ⚠️ Este plano reproduz e organiza seu protocolo atual com ajustes gerais alinhados aos seus exames. <b>Não substitui o acompanhamento do seu nutricionista</b> — use como referência prática do dia a dia.
+    ⚠️ Reprodução organizada do seu protocolo do Nutri Felipe Cruz. <b>Não substitui o acompanhamento do nutricionista</b> — como seus exames mudaram desde então (LDL, glicada), vale revalidar as escolhas de gordura e carboidrato com ele.
+  </div>
+</div>
+
+<!-- ===================== ABA ENDOSCOPIA ===================== -->
+<div class="wrap tabpane" id="tab-endo">
+  <div class="lead">
+    <h3>🔬 Endoscopia Digestiva Alta — 3 exames (2023 · 2025 · 2026)</h3>
+    <ul>
+      <li><span class="tag t-warn">CRÔNICO</span><div><b>Refluxo com esofagite erosiva distal</b> presente nos 3 exames — foi <b>grau C</b> de Los Angeles (mais grave) em 2023 e melhorou para <b>grau B</b> em 2025 e 2026. Associada a <b>hérnia hiatal por deslizamento</b>.</div></li>
+      <li><span class="tag t-warn">ESTÔMAGO</span><div><b>Gastrite enantematosa</b> em todos — começou antral leve (2023), virou pangastrite leve (2025) e <b>moderada</b> (2026). <b>H. pylori sempre negativo.</b></div></li>
+      <li><span class="tag t-warn">NOVO EM 2026</span><div><b>Retração cicatricial no esôfago distal</b> (sinal de refluxo de longa data, cicatrização) — biópsia realizada. A epitelização colunar suspeita em 2023 <b>não confirmou Barrett</b> na biópsia (foi esofagite crônica).</div></li>
+      <li><span class="tag t-good">TRANQUILIZADOR</span><div>Nenhuma evidência de malignidade nas biópsias; sem metaplasia intestinal; H. pylori negativo. O foco é <b>controlar o refluxo</b> (medicação + hábitos) para proteger o esôfago.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Exames detalhados</h2>
+
+  <div class="endo">
+    <div class="eh"><div class="et">Endoscopia Digestiva Alta</div><div class="edate">07/07/2026</div>
+      <div class="edoc">Dra. Jocimone Maria de Abreu Rocha (CRM 107093) · Unidade Ricardo Jafet · sob sedação</div></div>
+    <div class="organ"><div class="ol">Esôfago</div><p>Forma, calibre e distensibilidade preservados. Mucosa normal até o terço distal, onde se torna nacarada e espessada, com <b>erosões maiores que 5mm e não confluentes</b> junto à transição esofagogástrica (TEG). Notada <b>pequena área de retração cicatricial</b> em esôfago distal junto à TEG. Às manobras de esforço, transição esofagogástrica cerca de <b>3,0 a 3,5 cm acima</b> do pinçamento diafragmático.</p></div>
+    <div class="organ"><div class="ol">Estômago</div><p>Forma, volume e distensibilidade preservados. Lago mucoso claro. Pregueado uniforme. Fundo e corpo com <b>áreas de enantema moderado e difuso</b>. Incisura sem deformidades. À retrovisão, cárdia normal e hiato alargado. Antro com <b>moderado enantema</b>, sem erosões ou exsudato. Piloro regular, centrado e facilmente transposto.</p></div>
+    <div class="organ"><div class="ol">Duodeno</div><p>Bulbo com distensibilidade e forma preservadas. Mucosa bulbar <b>edemaciada com focos de enantema leve</b>. Segunda porção sem alterações.</p></div>
+    <div class="concl"><span class="ct">Impressão diagnóstica</span>
+      <div class="dxlist">
+        <span class="dxtag">Esofagite erosiva moderada distal — LA grau B</span>
+        <span class="dxtag">Retração cicatricial em esôfago distal (biópsia)</span>
+        <span class="dxtag">Hérnia hiatal por deslizamento</span>
+        <span class="dxtag">Pangastrite enantemática moderada</span>
+        <span class="dxtag">Bulboduodenite enantemática e erosiva leve</span>
+      </div>
+    </div>
+    <div class="anatomo"><span class="at">Anatomopatológico / H. pylori</span>Realizadas biópsias de esôfago, gástricas e duodenais. <span class="hp">✓ H. pylori NEGATIVO</span></div>
+  </div>
+
+  <div class="endo">
+    <div class="eh"><div class="et">Endoscopia Digestiva Alta</div><div class="edate">27/01/2025</div>
+      <div class="edoc">Dra. Cristina Novaes Montevecchi (CRM 56623) · Unidade Ricardo Jafet · solicitante Dr. Fabio Gianoni</div></div>
+    <div class="organ"><div class="ol">Esôfago</div><p>Forma, calibre e distensibilidade preservados. Mucosa normal até o terço distal, onde se torna <b>nacarada e espessada, com leves erosões longitudinais estriadas</b> sugestivas de <b>esofagite eosinofílica</b>. Apresenta ainda erosões maiores que 5mm não confluentes junto à TEG. Transição esofagogástrica <b>2 cm acima</b> do pinçamento diafragmático.</p></div>
+    <div class="organ"><div class="ol">Estômago</div><p>Forma, volume e distensibilidade preservados. Lago mucoso claro. Pregueado uniforme. Incisura sem deformidades. À retrovisão, cárdia normal e hiato alargado. Fundo, corpo e antro com <b>leve enantema da mucosa, mais intenso no antro</b>, sem erosões ou exsudato. Piloro regular, centrado e facilmente transposto.</p></div>
+    <div class="organ"><div class="ol">Duodeno</div><p>Bulbo com distensibilidade e forma preservadas. Mucosa bulbar com <b>focos de enantema de leve intensidade</b>, sem erosões. Segunda porção sem alterações.</p></div>
+    <div class="concl"><span class="ct">Impressão diagnóstica</span>
+      <div class="dxlist">
+        <span class="dxtag">Esofagite eosinofílica (?) — biópsias efetuadas</span>
+        <span class="dxtag">Esofagite erosiva moderada distal — LA grau B</span>
+        <span class="dxtag">Hérnia hiatal por deslizamento</span>
+        <span class="dxtag">Pangastrite enantemática leve</span>
+        <span class="dxtag">Bulboduodenite enantemática leve</span>
+      </div>
+    </div>
+    <div class="anatomo"><span class="at">Anatomopatológico</span>Realizadas biópsias gástricas (pesquisa de H. pylori) e duodenais. O laudo anatomopatológico detalhado deste exame não está disponível nesta pasta.</div>
+  </div>
+
+  <div class="endo">
+    <div class="eh"><div class="et">Endoscopia Digestiva Alta</div><div class="edate">05/10/2023</div>
+      <div class="edoc">Dr. Ricardo Anuar Dib (CRM 50725) · Unidade Ricardo Jafet · solicitante Dr. Claudio Capuano</div></div>
+    <div class="organ"><div class="ol">Esôfago</div><p>Forma, calibre e distensibilidade preservadas. Mucosa do esôfago distal com <b>erosões hiperêmicas e planas maiores que 5mm, envolvendo mais de 75% da circunferência, confluentes</b>, junto à linha Z. Áreas de <b>projeções da mucosa de coloração salmonada (&lt;10mm), sugestivas de epitelização colunar</b> — biópsia realizada. Hérnia hiatal com segmento de mucosa gástrica <b>3 cm acima</b> do pinçamento diafragmático.</p></div>
+    <div class="organ"><div class="ol">Estômago</div><p>Forma, volume e distensibilidade preservadas. Líquido gástrico claro. Pregueado sem anormalidades. Hiato diafragmático alargado; fundo e cárdia sem alterações. Incisura sem deformidades. Mucosa com <b>hiperemia difusa no antro gástrico</b> — biópsia realizada (inclui pesquisa de H. pylori). Piloro centrado, facilmente transposto.</p></div>
+    <div class="organ"><div class="ol">Duodeno</div><p>Forma e distensibilidade preservadas. Mucosa <b>difusamente edemaciada com áreas hiperêmicas na porção médio-bulbar</b>. Segunda porção sem alterações.</p></div>
+    <div class="concl"><span class="ct">Conclusão</span>
+      <div class="dxlist">
+        <span class="dxtag">Esofagite distal erosiva — LA grau C</span>
+        <span class="dxtag">Epitelização colunar do esôfago distal (biópsia)</span>
+        <span class="dxtag">Hérnia hiatal por deslizamento</span>
+        <span class="dxtag">Gastrite antral enantematosa (biópsia)</span>
+        <span class="dxtag">Bulboduodenite enantematosa</span>
+      </div>
+    </div>
+    <div class="anatomo"><span class="at">Anatomopatológico (13/10/2023 · Dr. Marco Antônio Soufen)</span>
+      <b>Estômago (incisura):</b> gastrite crônica leve e inativa; sem atrofia; <b>sem metaplasia intestinal</b>; sem malignidade.<br>
+      <b>Esôfago distal:</b> esofagite crônica moderada, difusa, ativa, parcialmente erosiva.<br>
+      A suspeita de epitelização colunar (Barrett) <b>não se confirmou</b> — a biópsia mostrou esofagite crônica, não metaplasia intestinal.
+      <span class="hp">✓ H. pylori NEGATIVO (Giemsa)</span></div>
+  </div>
+
+  <div class="disc">
+    ⚠️ Reprodução organizada dos seus laudos de endoscopia e biópsia. <b>Não substitui avaliação do gastroenterologista</b> — a conduta (medicação para refluxo, controle de hábitos, seguimento das biópsias) deve ser definida com seu médico.
   </div>
 </div>
 
@@ -512,61 +654,139 @@ document.querySelectorAll('.tab').forEach(t=>{
 
 const categories = [
   {cat:'🩸 Hemograma', items:[
-    {name:'Hemoglobina', val:'15,4', unit:'g/dL', ref:'13 – 17', status:'good', key:'hb'},
+    {name:'Hemoglobina', val:'15,6', unit:'g/dL', ref:'13 – 17', status:'good', key:'hb'},
+    {name:'Eosinófilos', val:'8,6', unit:'%', ref:'1,0 – 6,0', status:'warn', key:'eos'},
+    {name:'Linfócitos', val:'43,3', unit:'%', ref:'20 – 40', status:'warn', key:'linf'},
   ]},
   {cat:'🍬 Glicemia & Metabolismo', items:[
-    {name:'Glicose (jejum)', val:'81', unit:'mg/dL', ref:'70 – 99', status:'good', key:'glic'},
-    {name:'Hemoglobina Glicada', val:'5,7', unit:'%', ref:'Normal < 5,7', status:'warn', key:'hba1c'},
-    {name:'HOMA-IR (res. insulina)', val:'1,10', unit:'', ref:'< 2,70', status:'good', key:'homa'},
+    {name:'Glicose (jejum)', val:'98', unit:'mg/dL', ref:'70 – 99', status:'warn', key:'glic'},
+    {name:'Hemoglobina Glicada', val:'6,0', unit:'%', ref:'Normal < 5,7', status:'bad', key:'hba1c'},
+    {name:'Glic. Média Estimada', val:'125', unit:'mg/dL', ref:'—', status:'warn', key:'gme'},
   ]},
   {cat:'🫀 Perfil Lipídico', items:[
-    {name:'Colesterol Total', val:'201', unit:'mg/dL', ref:'Ideal < 190', status:'warn', key:'colT'},
-    {name:'LDL ("ruim")', val:'138', unit:'mg/dL', ref:'Ideal < 130', status:'warn', key:'ldl'},
-    {name:'HDL ("bom")', val:'54', unit:'mg/dL', ref:'Ideal > 40', status:'good', key:'hdl'},
-    {name:'Triglicérides', val:'31', unit:'mg/dL', ref:'Ideal < 150', status:'good', key:'trig'},
+    {name:'Colesterol Total', val:'238', unit:'mg/dL', ref:'Ideal < 190', status:'bad', key:'colT'},
+    {name:'LDL ("ruim")', val:'158', unit:'mg/dL', ref:'Ideal < 130', status:'bad', key:'ldl'},
+    {name:'HDL ("bom")', val:'65', unit:'mg/dL', ref:'Ideal > 40', status:'good', key:'hdl'},
+    {name:'Não-HDL', val:'173', unit:'mg/dL', ref:'Ideal < 130', status:'bad', key:'nhdl'},
+    {name:'Triglicérides', val:'54', unit:'mg/dL', ref:'Ideal < 150', status:'good', key:'trig'},
   ]},
   {cat:'🫘 Função Renal', items:[
-    {name:'Creatinina', val:'1,28', unit:'mg/dL', ref:'0,70 – 1,30', status:'good', key:'creat'},
-    {name:'Ácido Úrico', val:'4,9', unit:'mg/dL', ref:'3,8 – 8,6', status:'good', key:'urico'},
+    {name:'Creatinina', val:'1,20', unit:'mg/dL', ref:'0,70 – 1,30', status:'good', key:'creat'},
+    {name:'eGFR (filtração)', val:'80', unit:'mL/min', ref:'> 90', status:'warn', key:'egfr'},
+    {name:'Ureia', val:'43', unit:'mg/dL', ref:'17 – 48', status:'good', key:'ureia'},
+    {name:'Ácido Úrico', val:'5,8', unit:'mg/dL', ref:'3,4 – 7,0', status:'good', key:'urico'},
   ]},
   {cat:'🫁 Função Hepática', items:[
-    {name:'TGO (fígado)', val:'44', unit:'U/L', ref:'< 34', status:'bad', key:'tgo'},
-    {name:'TGP (fígado)', val:'47', unit:'U/L', ref:'10 – 49', status:'warn', key:'tgp'},
+    {name:'TGO', val:'23', unit:'U/L', ref:'≤ 40', status:'good', key:'tgo'},
+    {name:'TGP', val:'26', unit:'U/L', ref:'≤ 41', status:'good', key:'tgp'},
+    {name:'Gama-GT', val:'29', unit:'U/L', ref:'< 60', status:'good', key:'ggt'},
+    {name:'Fosfatase Alcalina', val:'60', unit:'U/L', ref:'40 – 129', status:'good', key:'fosf'},
+    {name:'Bilirrubina Total', val:'0,36', unit:'mg/dL', ref:'≤ 1,20', status:'good', key:'bili'},
+    {name:'Amilase', val:'79', unit:'U/L', ref:'28 – 100', status:'good', key:'amilase'},
+    {name:'Lipase', val:'49', unit:'U/L', ref:'13 – 60', status:'good', key:'lipase'},
+    {name:'Proteínas Totais', val:'7,3', unit:'g/dL', ref:'6,4 – 8,3', status:'good', key:'prot'},
+    {name:'Albumina', val:'4,7', unit:'g/dL', ref:'3,5 – 5,2', status:'good', key:'alb'},
   ]},
   {cat:'⚗️ Hormônios', items:[
-    {name:'Testosterona Total', val:'406', unit:'ng/dL', ref:'165 – 753', status:'warn', key:'testT'},
-    {name:'Testosterona Livre', val:'8,16', unit:'ng/dL', ref:'3,4 – 24,6', status:'warn', key:'testL'},
-    {name:'TSH (tireoide)', val:'1,47*', unit:'µUI/mL', ref:'0,4 – 4,3', status:'good', key:'tsh'},
+    {name:'Testosterona Total', val:'384', unit:'ng/dL', ref:'165 – 753', status:'warn', key:'testT'},
+    {name:'Testosterona Livre', val:'8,97', unit:'ng/dL', ref:'3,4 – 24,6', status:'good', key:'testL'},
+    {name:'Testost. Biodisponível', val:'210', unit:'ng/dL', ref:'82 – 626', status:'good', key:'testBio'},
+    {name:'SHBG', val:'25,5', unit:'nmol/L', ref:'10 – 57', status:'good', key:'shbg'},
+    {name:'TSH (tireoide)', val:'2,59', unit:'µUI/mL', ref:'0,4 – 4,3', status:'good', key:'tsh'},
+    {name:'T3 Total', val:'95', unit:'ng/dL', ref:'60 – 181', status:'good', key:'t3'},
+    {name:'T4 (Tiroxina)', val:'7,0', unit:'µg/dL', ref:'4,5 – 10,9', status:'good', key:'t4'},
   ]},
   {cat:'💊 Vitaminas & Minerais', items:[
-    {name:'Vitamina D', val:'41,1', unit:'ng/mL', ref:'> 20', status:'good', key:'vitd'},
-    {name:'Vitamina B12', val:'626', unit:'pg/mL', ref:'223 – 672', status:'good', key:'b12'},
-    {name:'Ferro', val:'51', unit:'µg/dL', ref:'65 – 175', status:'warn', key:'ferro'},
+    {name:'Vitamina D', val:'45', unit:'ng/mL', ref:'> 20', status:'good', key:'vitd'},
+    {name:'Vitamina B12', val:'421', unit:'pg/mL', ref:'223 – 672', status:'good', key:'b12'},
+    {name:'Ácido Fólico', val:'9,81', unit:'ng/mL', ref:'> 5,38', status:'good', key:'folato'},
+    {name:'Ferro', val:'62', unit:'µg/dL', ref:'33 – 193', status:'good', key:'ferro'},
+    {name:'Ferritina', val:'32,3', unit:'ng/mL', ref:'22 – 322', status:'good', key:'ferrit'},
   ]},
 ];
 
-const L = ['03/19','09/20','11/22','02/23','04/23','10/23','10/24','03/25','06/25','09/25','11/25'];
+const L = ['03/19','09/20','11/22','02/23','04/23','10/23','10/24','03/25','06/25','09/25','11/25','07/26'];
 const series = {
-  colT:[null,219,187,null,161,null,186,170,229,166,201],
-  ldl:[null,133,129,null,95,null,123,114,162,103,138],
-  hdl:[null,75,50,null,57,null,49,42,53,52,54],
-  trig:[null,35,28,null,30,null,null,57,45,37,31],
-  glic:[null,null,null,null,98,91,94,98,89,78,81],
-  hba1c:[null,null,null,null,null,5.5,5.7,null,5.8,5.5,5.7],
-  homa:[null,null,null,null,null,null,null,3.99,null,null,1.10],
-  creat:[null,1.30,null,null,1.32,null,1.21,1.12,1.18,1.26,1.28],
-  testT:[null,609,462,473,493,481,441,429,461,426,406],
-  testL:[null,11.94,11.37,10.44,null,11.73,null,null,null,null,8.16],
-  tgo:[null,64,null,null,24,27,30,null,31,33,44],
-  tgp:[null,59,null,null,16,28,34,null,25,31,47],
-  vitd:[null,null,null,null,34.95,null,22.06,40.98,70.82,52.76,41.1],
-  b12:[null,null,null,null,460,null,441,455,null,null,626],
-  ferro:[null,null,null,null,null,null,66,65,55,71,51],
-  urico:[null,5.8,null,null,5.7,null,null,null,6.3,null,4.9],
-  tsh:[null,2.44,null,null,1.68,1.65,null,null,1.67,1.47,null],
-  hb:[16.6,16.4,null,null,15.4,15.2,15.4,null,15.3,14.6,15.4],
+  colT:[null,219,187,null,161,null,186,170,229,166,201,238],
+  ldl:[null,133,129,null,95,null,123,114,162,103,138,158],
+  hdl:[null,75,50,null,57,null,49,42,53,52,54,65],
+  trig:[null,35,28,null,30,null,null,57,45,37,31,54],
+  glic:[null,null,null,null,98,91,94,98,89,78,81,98],
+  hba1c:[null,null,null,null,null,5.5,5.7,null,5.8,5.5,5.7,6.0],
+  homa:[null,null,null,null,null,null,null,3.99,null,null,1.10,null],
+  creat:[null,1.30,null,null,1.32,null,1.21,1.12,1.18,1.26,1.28,1.20],
+  ureia:[null,44,null,null,43,null,null,null,51,null,46,43],
+  egfr:[null,null,null,null,null,null,null,null,null,null,75,80],
+  testT:[null,609,462,473,493,481,441,429,461,426,406,384],
+  testL:[null,11.94,11.37,10.44,null,11.73,null,null,null,null,8.16,8.97],
+  testBio:[null,null,null,null,null,null,null,null,null,null,191.15,210.10],
+  shbg:[36.6,39,24,29.8,26,24.7,26.3,25.3,30.7,32.2,33.8,25.5],
+  tgo:[null,64,null,null,24,27,30,null,31,33,44,23],
+  tgp:[null,59,null,null,16,28,34,null,25,31,47,26],
+  ggt:[null,null,null,null,null,11,null,null,22,18,19,29],
+  fosf:[null,60,null,null,65,null,null,null,65,null,71,60],
+  bili:[0.48,null,null,null,null,0.50,null,null,0.26,null,0.65,0.36],
+  amilase:[null,null,null,null,null,76,null,null,null,null,null,79],
+  lipase:[null,null,null,null,null,null,null,null,null,null,null,49],
+  prot:[null,null,null,null,null,null,null,null,null,null,null,7.3],
+  alb:[null,null,null,null,null,null,null,null,null,null,null,4.7],
+  glob:[null,null,null,null,null,null,null,null,null,null,null,2.7],
+  gme:[null,null,null,null,null,112,117,null,120,110,117,125],
+  nhdl:[null,144,137,null,104,null,null,128,176,114,147,173],
+  vldl:[null,11,8,null,9,null,14,14,14,11,9,15],
+  vitd:[null,null,null,null,34.95,null,22.06,40.98,70.82,52.76,41.1,45],
+  b12:[null,null,null,null,460,null,441,455,null,null,626,421],
+  ferro:[null,null,null,null,null,null,66,65,55,71,51,62],
+  ferrit:[null,null,null,null,38.5,null,41.3,null,null,null,33.1,32.3],
+  folato:[null,null,null,null,null,null,null,null,null,null,null,9.81],
+  urico:[null,5.8,null,null,5.7,null,null,null,6.3,null,4.9,5.8],
+  tsh:[null,2.44,null,null,1.68,1.65,2.25,null,1.67,1.47,null,2.59],
+  t3:[null,null,96,null,null,null,null,null,75,79,80,95],
+  t4:[null,7.8,8.0,null,null,null,null,null,8.5,null,7.5,7.0],
+  hb:[16.6,16.4,null,null,15.4,15.2,15.4,null,15.3,14.6,15.4,15.6],
+  eos:[null,null,null,null,null,null,null,null,null,null,6.0,8.6],
+  linf:[null,null,null,null,null,null,null,null,null,null,37.8,43.3],
 };
 const colors={good:'#22c55e',warn:'#f59e0b',bad:'#ef4444'};
+
+const tips={
+  hb:`<b>O que é:</b> proteína que leva oxigênio no sangue. <b>Ideal:</b> dentro da faixa. <b>Baixa:</b> anemia (cansaço, falta de ar); <b>alta:</b> desidratação ou tabagismo. <b>Melhorar:</b> ferro, B12, folato e boa hidratação.`,
+  eos:`<b>O que é:</b> glóbulo branco ligado a alergias e parasitas. <b>Ideal:</b> baixo (até 6%). <b>Alto:</b> alergia, asma, rinite ou verminose. <b>O que fazer:</b> se persistir, investigar alergia/parasitas.`,
+  linf:`<b>O que é:</b> glóbulo branco de defesa (principalmente contra vírus). <b>Ideal:</b> dentro da faixa. <b>Alto:</b> geralmente infecção viral recente. Costuma ser transitório — reavaliar depois.`,
+  glic:`<b>O que é:</b> açúcar no sangue em jejum. <b>Ideal:</b> 70–99 (quanto mais baixo dentro da faixa, melhor). <b>Alto:</b> risco de pré-diabetes/diabetes. <b>Melhorar:</b> menos açúcar e carbo refinado, exercício, perder gordura.`,
+  hba1c:`<b>O que é:</b> média do açúcar dos últimos ~3 meses. <b>Ideal:</b> abaixo de 5,7%. <b>5,7–6,4%:</b> pré-diabetes. <b>Melhorar:</b> reduzir carboidrato/açúcar, atividade física, emagrecer.`,
+  gme:`<b>O que é:</b> glicose média estimada, calculada a partir da glicada. <b>Ideal:</b> baixa. Reflete o controle do açúcar no período. <b>Melhorar:</b> mesmas ações da glicada.`,
+  colT:`<b>O que é:</b> soma de todo o colesterol. <b>Ideal:</b> abaixo de 190. <b>Alto:</b> maior risco cardiovascular. <b>Melhorar:</b> menos gordura saturada, mais fibras, azeite, exercício.`,
+  ldl:`<b>O que é:</b> colesterol "ruim", que se deposita nas artérias. <b>Ideal:</b> quanto mais baixo melhor (&lt;130). <b>Alto:</b> aterosclerose, risco de infarto/AVC. <b>Melhorar:</b> dieta, exercício e, se indicado, estatina.`,
+  hdl:`<b>O que é:</b> colesterol "bom", que limpa as artérias. <b>Ideal:</b> alto (&gt;40, melhor &gt;60). <b>Baixo:</b> mais risco cardiovascular. <b>Melhorar:</b> exercício aeróbico, gorduras boas, não fumar.`,
+  nhdl:`<b>O que é:</b> todo o colesterol "ruim" junto (total menos HDL). <b>Ideal:</b> abaixo de 130. É um dos melhores preditores de risco. <b>Melhorar:</b> igual ao LDL.`,
+  trig:`<b>O que é:</b> gordura circulante no sangue. <b>Ideal:</b> abaixo de 150. <b>Alto:</b> excesso de açúcar, álcool e calorias. <b>Melhorar:</b> menos açúcar e álcool, ômega-3, exercício.`,
+  creat:`<b>O que é:</b> resíduo muscular filtrado pelos rins. <b>Ideal:</b> dentro da faixa. <b>Alta:</b> pode indicar rim sobrecarregado ou muita massa muscular. <b>O que fazer:</b> hidratar e avaliar junto do eGFR.`,
+  egfr:`<b>O que é:</b> estimativa da capacidade de filtração dos rins. <b>Ideal:</b> alto (&gt;90). <b>Baixo:</b> função renal reduzida. <b>Melhorar:</b> hidratação, controlar pressão e glicose, evitar excesso de anti-inflamatórios.`,
+  ureia:`<b>O que é:</b> resíduo da quebra de proteína, eliminado pelos rins. <b>Ideal:</b> dentro da faixa. <b>Alta:</b> muita proteína, desidratação ou rim. <b>O que fazer:</b> hidratar bem.`,
+  urico:`<b>O que é:</b> ácido úrico, resíduo das purinas. <b>Ideal:</b> abaixo de ~6–7. <b>Alto:</b> gota e cálculo renal. <b>Melhorar:</b> menos carne vermelha, álcool e frutose; hidratar.`,
+  tgo:`<b>O que é:</b> enzima presente no fígado e músculos. <b>Ideal:</b> baixa. <b>Alta:</b> fígado sobrecarregado, álcool ou exercício muito intenso. <b>O que fazer:</b> evitar álcool e hepatotóxicos; repetir.`,
+  tgp:`<b>O que é:</b> enzima mais específica do fígado. <b>Ideal:</b> baixa. <b>Alta:</b> gordura no fígado ou álcool. <b>Melhorar:</b> perder gordura corporal, reduzir álcool.`,
+  ggt:`<b>O que é:</b> enzima do fígado sensível a álcool e gordura hepática. <b>Ideal:</b> baixa. <b>Alta:</b> álcool, esteatose, alguns remédios. <b>Melhorar:</b> reduzir álcool.`,
+  fosf:`<b>O que é:</b> enzima do fígado/vias biliares e dos ossos. <b>Ideal:</b> dentro da faixa. <b>Alta:</b> questão hepática/biliar ou óssea — interpretar no contexto clínico.`,
+  bili:`<b>O que é:</b> pigmento da quebra das hemácias, processado pelo fígado. <b>Ideal:</b> baixa. <b>Alta:</b> fígado/vesícula ou Síndrome de Gilbert (benigna e comum).`,
+  amilase:`<b>O que é:</b> enzima do pâncreas e glândulas salivares. <b>Ideal:</b> dentro da faixa. <b>Alta:</b> pode indicar pâncreas. Avaliar junto da lipase.`,
+  lipase:`<b>O que é:</b> enzima do pâncreas que digere gordura. <b>Ideal:</b> dentro da faixa. <b>Alta:</b> sugere pancreatite. Mais específica que a amilase.`,
+  prot:`<b>O que é:</b> total de proteínas no sangue (nutrição, fígado, imunidade). <b>Ideal:</b> dentro da faixa. Alterações refletem nutrição, hidratação ou inflamação.`,
+  alb:`<b>O que é:</b> principal proteína do sangue, marcador de nutrição e fígado. <b>Ideal:</b> dentro da faixa. <b>Baixa:</b> desnutrição ou inflamação crônica.`,
+  testT:`<b>O que é:</b> testosterona total (hormônio masculino). <b>Ideal:</b> na metade alta da faixa. <b>Baixa:</b> menos libido, energia, massa muscular e disposição. <b>Melhorar:</b> sono, treino de força, perder gordura, vitamina D.`,
+  testL:`<b>O que é:</b> testosterona livre — a fração realmente ativa. <b>Ideal:</b> meio da faixa. <b>Baixa:</b> sintomas de baixa testosterona. <b>Melhorar:</b> sono, treino, controle de gordura e insulina.`,
+  testBio:`<b>O que é:</b> testosterona biodisponível (livre + fracamente ligada), a que o corpo usa. <b>Ideal:</b> meio da faixa. Reflete a testosterona utilizável.`,
+  shbg:`<b>O que é:</b> proteína que "prende" a testosterona. <b>Ideal:</b> meio da faixa. <b>Alta:</b> reduz testo livre; <b>baixa:</b> aumenta. Muito ligada à insulina e à tireoide.`,
+  tsh:`<b>O que é:</b> hormônio que comanda a tireoide. <b>Ideal:</b> 0,4–4,3. <b>Alto:</b> tireoide lenta (hipotireoidismo); <b>baixo:</b> acelerada (hipertireoidismo).`,
+  t3:`<b>O que é:</b> hormônio tireoidiano ativo, regula o metabolismo. <b>Ideal:</b> dentro da faixa. Avaliado junto de TSH e T4.`,
+  t4:`<b>O que é:</b> principal hormônio produzido pela tireoide (reserva). <b>Ideal:</b> dentro da faixa. Interpretado junto do TSH.`,
+  vitd:`<b>O que é:</b> vitamina D (ossos, imunidade, testosterona, humor). <b>Ideal:</b> acima de 30–40. <b>Baixa:</b> muito comum; afeta ossos e imunidade. <b>Melhorar:</b> sol diário e suplemento.`,
+  b12:`<b>O que é:</b> vitamina essencial para nervos e produção de sangue. <b>Ideal:</b> na parte média/alta da faixa. <b>Baixa:</b> anemia e formigamentos. <b>Fontes:</b> carnes, ovos, laticínios ou suplemento.`,
+  folato:`<b>O que é:</b> ácido fólico (B9), importante para DNA, sangue e coração. <b>Ideal:</b> acima de 5,38. <b>Baixo:</b> anemia. <b>Melhorar:</b> folhas verdes; metilfolato se tiver MTHFR.`,
+  ferro:`<b>O que é:</b> ferro circulante, usado para transportar oxigênio. <b>Ideal:</b> dentro da faixa. <b>Baixo:</b> anemia e cansaço. <b>Melhorar:</b> carnes e feijão junto com vitamina C.`,
+  ferrit:`<b>O que é:</b> ferritina, o estoque de ferro do corpo. <b>Ideal:</b> meio da faixa. <b>Baixa:</b> reservas de ferro esgotando; <b>alta:</b> inflamação ou excesso de ferro.`,
+};
 
 const cont=document.getElementById('cards');
 let idx=0;
@@ -578,7 +798,7 @@ categories.forEach(group=>{
   group.items.forEach(c=>{
   const i=idx++;
   const el=document.createElement('div');el.className='card';
-  el.innerHTML=`<div class="top"><div><div class="name">${c.name}</div>
+  el.innerHTML=`<div class="top"><div><div class="name">${c.name}<span class="info" tabindex="0">i<span class="tip">${tips[c.key]||'Marcador do exame de sangue.'}</span></span></div>
     <div class="val">${c.val} <span class="unit">${c.unit}</span></div></div>
     <span class="pill p-${c.status}">${c.status==='good'?'Normal':c.status==='warn'?'Observar':'Alterado'}</span></div>
     <div class="ref">Referência: ${c.ref}</div>
@@ -605,23 +825,41 @@ const rows=[
   ['Plaquetas (mil)','plaq','150–450',150,450],
   ['Glicose jejum (mg/dL)','glic','70–99',70,99],
   ['Hemog. Glicada (%)','hba1c','<5,7',0,5.7],
+  ['Glic. Média Est. (mg/dL)','gme','—',0,999],
   ['Colesterol Total','colT','<190',0,190],
   ['LDL','ldl','<130',0,130],
   ['HDL','hdl','>40',40,999],
+  ['Não-HDL','nhdl','<130',0,130],
   ['Triglicérides','trig','<150',0,150],
+  ['VLDL','vldl','—',0,999],
   ['Creatinina','creat','0,70–1,30',0.7,1.3],
-  ['Ácido Úrico','urico','3,8–8,6',3.8,8.6],
-  ['TGO (U/L)','tgo','<34',0,34],
-  ['TGP (U/L)','tgp','10–49',10,49],
+  ['eGFR','egfr','>90',90,999],
+  ['Ureia (mg/dL)','ureia','17–48',17,48],
+  ['Ácido Úrico','urico','3,4–7,0',3.4,7.0],
+  ['TGO (U/L)','tgo','≤40',0,40],
+  ['TGP (U/L)','tgp','≤41',0,41],
+  ['GGT (U/L)','ggt','<60',0,60],
+  ['Fosf. Alcalina (U/L)','fosf','40–129',40,129],
+  ['Amilase (U/L)','amilase','28–100',28,100],
+  ['Lipase (U/L)','lipase','13–60',13,60],
+  ['Bilirrubina T. (mg/dL)','bili','≤1,20',0,1.2],
+  ['Proteínas Totais (g/dL)','prot','6,4–8,3',6.4,8.3],
+  ['Albumina (g/dL)','alb','3,5–5,2',3.5,5.2],
   ['Testost. Total','testT','165–753',165,753],
   ['Testost. Livre','testL','3,4–24,6',3.4,24.6],
+  ['Testost. Biodisp.','testBio','82–626',82,626],
+  ['SHBG (nmol/L)','shbg','10–57',10,57],
   ['TSH','tsh','0,4–4,3',0.4,4.3],
+  ['T3 Total (ng/dL)','t3','60–181',60,181],
+  ['T4 (µg/dL)','t4','4,5–10,9',4.5,10.9],
   ['Vitamina D','vitd','>20',20,999],
   ['Vitamina B12','b12','223–672',223,672],
-  ['Ferro','ferro','65–175',65,175],
+  ['Ácido Fólico (ng/mL)','folato','>5,38',5.38,999],
+  ['Ferro','ferro','33–193',33,193],
+  ['Ferritina (ng/mL)','ferrit','22–322',22,322],
 ];
-const extra={ leuc:[5900,4990,null,null,5630,4770,5990,null,5590,4650,5310],
-  plaq:[null,297,null,null,307,297,null,null,310,297,287] };
+const extra={ leuc:[5900,4990,null,null,5630,4770,5990,null,5590,4650,5310,5350],
+  plaq:[null,297,null,null,307,297,null,null,310,297,287,296] };
 const tbl=document.getElementById('bigtable');
 let head='<tr><th>Marcador</th><th>Ref.</th>'+L.map(l=>`<th>${l}</th>`).join('')+'</tr>';
 let body='';
