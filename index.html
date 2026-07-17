@@ -235,6 +235,9 @@
     .concl{background:#fffbeb !important;border-color:rgba(180,83,9,.5) !important}
     .concl .ct{color:#b45309 !important}
     .dxtag{color:#111 !important}
+    /* gráficos: corta overflow e clip */
+    .chartbox{overflow:hidden !important;position:relative}
+    .chartbox canvas{display:block !important;max-width:100% !important;max-height:100% !important}
     /* quebra de página */
     .card,.gcard,.meal,.endo,.lead{break-inside:avoid}
     h2{break-after:avoid}
@@ -1006,6 +1009,31 @@ const segT=document.getElementById('segtable');
 if(segT){let hh='<tr><th>Região</th>'+bL.map(l=>`<th>${l}</th>`).join('')+'<th>Meta</th></tr>';let bb='';
   seg.forEach(r=>{const cells=r[1].map(v=>`<td>${String(v).replace('.',',')}</td>`).join('');bb+=`<tr><td>${r[0]}</td>${cells}<td style="color:#64748b">${String(r[2]).replace('.',',')}</td></tr>`;});
   segT.innerHTML=hh+bb;}
+
+// ===== Ajuste de gráficos para impressão =====
+function setPrintCharts(print){
+  document.querySelectorAll('canvas').forEach(function(canvas){
+    var chart=Chart.getChart(canvas);
+    if(!chart)return;
+    var sy=chart.options.scales&&chart.options.scales.y;
+    var sx=chart.options.scales&&chart.options.scales.x;
+    var dl=chart.options.plugins&&chart.options.plugins.datalabels;
+    if(print){
+      if(sy){sy.grid={display:false};sy.grace=0;}
+      if(sx){sx.ticks.color='#444';}
+      if(chart.options.layout)chart.options.layout.padding={top:10};
+      if(dl)dl.color='#222';
+    }else{
+      if(sy){sy.grid={color:'#1e293b'};sy.grace='25%';}
+      if(sx){sx.ticks.color='#64748b';}
+      if(chart.options.layout)chart.options.layout.padding={top:20};
+      if(dl)dl.color='#e2e8f0';
+    }
+    chart.update('none');
+  });
+}
+window.addEventListener('beforeprint',function(){setPrintCharts(true);});
+window.addEventListener('afterprint',function(){setPrintCharts(false);});
 
 </script>
 </body>
