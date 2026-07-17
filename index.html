@@ -1028,12 +1028,12 @@ function setPrintCharts(print){
     var dl=chart.options.plugins&&chart.options.plugins.datalabels;
     if(print){
       if(sy)sy.grace='12%';
-      if(sx)sx.ticks.color='#444';
+      if(sx){sx.ticks.color='#444';sx.ticks.font={size:11};}
       if(chart.options.layout)chart.options.layout.padding={top:22};
       if(dl){dl.color='#222';dl.font={size:11,weight:'500'};}
     }else{
       if(sy)sy.grace='25%';
-      if(sx)sx.ticks.color='#64748b';
+      if(sx){sx.ticks.color='#64748b';sx.ticks.font={size:9};}
       if(chart.options.layout)chart.options.layout.padding={top:20};
       if(dl){dl.color='#e2e8f0';dl.font={size:10,weight:'700'};}
     }
