@@ -238,8 +238,8 @@
     /* gráficos: corta overflow e clip */
     .chartbox{overflow:hidden !important;position:relative}
     .chartbox canvas{display:block !important;max-width:100% !important;max-height:100% !important}
-    /* oculta resumos e avisos da IA */
-    .disc,.lead{display:none !important}
+    /* oculta resumos, avisos da IA e sorologias */
+    .disc,.lead,.serology,h2:has(+ .serology){display:none !important}
     /* tabela de evolução em página landscape isolada */
     .tablewrap{break-before:page;page:tabpage;overflow:visible !important}
     #bigtable th,#bigtable td{font-size:7.5px !important;padding:3px 4px !important;white-space:nowrap}
