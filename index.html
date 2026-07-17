@@ -238,10 +238,17 @@
     /* gráficos: corta overflow e clip */
     .chartbox{overflow:hidden !important;position:relative}
     .chartbox canvas{display:block !important;max-width:100% !important;max-height:100% !important}
+    /* oculta avisos/comentários da IA */
+    .disc{display:none !important}
+    /* tabela de evolução em página landscape isolada */
+    .tablewrap{break-before:page;page:tabpage;overflow:visible !important}
+    #bigtable th,#bigtable td{font-size:7.5px !important;padding:3px 4px !important;white-space:nowrap}
+    #bigtable td:first-child,#bigtable th:first-child{font-size:7.5px !important}
     /* quebra de página */
     .card,.gcard,.meal,.endo,.lead{break-inside:avoid}
     h2{break-after:avoid}
   }
+  @page tabpage{size:A4 landscape;margin:8mm 10mm}
   /* endoscopia */
   .endo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
   .endo .eh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px}
@@ -933,7 +940,7 @@ categories.forEach(group=>{
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20}},
       plugins:{legend:{display:false},tooltip:{enabled:true}},
       scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},
-        y:{ticks:{display:false},grid:{color:'#1e293b'},grace:'25%'}}}
+        y:{ticks:{display:false},grid:{display:false},grace:'25%'}}}
   });
   });
 });
@@ -1000,7 +1007,7 @@ function bchart(id,arr,color){
   new Chart(document.getElementById(id),{type:'line',
     data:{labels:bL,datasets:[{data:arr,borderColor:color,backgroundColor:color+'22',fill:true,tension:.35,pointRadius:3,pointBackgroundColor:color,borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20}},plugins:{legend:{display:false}},
-      scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},y:{ticks:{display:false},grid:{color:'#1e293b'},grace:'25%'}}}});
+      scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},y:{ticks:{display:false},grid:{display:false},grace:'25%'}}}});
 }
 bchart('bch0',bio.peso,'#22c55e');bchart('bch1',bio.gc,'#22c55e');bchart('bch2',bio.mm,'#38bdf8');
 bchart('bch3',bio.visc,'#22c55e');bchart('bch4',bio.agua,'#38bdf8');bchart('bch5',bio.idade,'#22c55e');
@@ -1019,13 +1026,13 @@ function setPrintCharts(print){
     var sx=chart.options.scales&&chart.options.scales.x;
     var dl=chart.options.plugins&&chart.options.plugins.datalabels;
     if(print){
-      if(sy){sy.grid={display:false};sy.grace=0;}
-      if(sx){sx.ticks.color='#444';}
+      if(sy)sy.grace=0;
+      if(sx)sx.ticks.color='#444';
       if(chart.options.layout)chart.options.layout.padding={top:10};
       if(dl)dl.color='#222';
     }else{
-      if(sy){sy.grid={color:'#1e293b'};sy.grace='25%';}
-      if(sx){sx.ticks.color='#64748b';}
+      if(sy)sy.grace='25%';
+      if(sx)sx.ticks.color='#64748b';
       if(chart.options.layout)chart.options.layout.padding={top:20};
       if(dl)dl.color='#e2e8f0';
     }
