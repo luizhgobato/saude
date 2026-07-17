@@ -264,14 +264,14 @@
     .disc,.lead,.serology,h2:has(+ .serology){display:none !important}
     /* tabela de evolução em página landscape isolada */
     .tablewrap{break-before:page;page:tabpage;overflow:visible !important}
-    #bigtable th,#bigtable td{font-size:7.5px !important;padding:3px 4px !important;white-space:nowrap}
-    #bigtable td:first-child,#bigtable th:first-child{font-size:7.5px !important}
+    #bigtable th,#bigtable td{font-size:10px !important;padding:2px 3px !important;white-space:nowrap}
+    #bigtable td:first-child,#bigtable th:first-child{font-size:10px !important}
     /* quebra de página */
     .card,.gcard,.meal,.endo,.lead{break-inside:avoid}
     h2,h3.cat{break-after:avoid}
     .grid,.serology,.kpi{break-before:avoid}
   }
-  @page tabpage{size:A4 landscape;margin:8mm 10mm}
+  @page tabpage{size:A4 portrait;margin:5mm 8mm}
   /* endoscopia */
   .endo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
   .endo .eh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px}
