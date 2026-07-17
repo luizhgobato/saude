@@ -128,6 +128,53 @@
   .daytotal .dl{font-size:13px;color:#d1fae5}
   .daytotal .dv{font-size:26px;font-weight:800;color:#fff}
   .daytotal .dm{font-size:12px;color:#a7f3d0}
+  /* botão imprimir */
+  .print-btn {
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--card);border:1px solid var(--line);
+    color:var(--ink);padding:9px 20px;border-radius:10px;
+    font-size:14px;font-weight:600;cursor:pointer;
+    margin:20px 0 8px;transition:.15s;
+  }
+  .print-btn:hover{border-color:var(--accent);color:var(--accent)}
+  @media print {
+    :root{
+      --bg:#fff;--card:#fff;--card2:#f5f5f5;--ink:#111;--muted:#555;
+      --line:#ccc;--good:#16a34a;--warn:#b45309;--bad:#dc2626;--accent:#0369a1;
+    }
+    body{background:white !important;padding-bottom:0}
+    header{background:none !important;padding:20px}
+    .tabs,.print-btn,.info .tip,footer{display:none !important}
+    .tabpane{display:none !important}
+    .tabpane.active{display:block !important}
+    .wrap{max-width:none}
+    .p-good,.t-good{background:rgba(34,197,94,.2) !important;color:#166534 !important}
+    .p-warn,.t-warn{background:rgba(245,158,11,.2) !important;color:#92400e !important}
+    .p-bad,.t-bad{background:rgba(239,68,68,.2) !important;color:#b91c1c !important}
+    .hi{color:#dc2626 !important}.lo{color:#0369a1 !important}
+    .disc{color:#78350f !important;background:rgba(245,158,11,.1) !important;border-color:rgba(180,83,9,.4) !important}
+    .disc[style*="34,197,94"]{color:#14532d !important;background:rgba(34,197,94,.1) !important;border-color:rgba(22,163,74,.4) !important}
+    .daytotal{background:#f0fdf4 !important;border-color:#16a34a !important}
+    .daytotal .dl,.daytotal .dm{color:#166534 !important}
+    .daytotal .dv{color:#111 !important}
+    .anatomo{background:#f0f9ff !important;color:#0c4a6e !important;border-color:#bae6fd !important}
+    .anatomo .at{color:#0369a1 !important}
+    .hp{background:rgba(34,197,94,.2) !important;color:#166534 !important}
+    .ancrow .bar{background:#e5e5e5 !important}
+    .haplo .h{background:#f5f5f5 !important}
+    .sero{background:#f8f8f8 !important}
+    .sero b{color:#166534 !important}
+    .kd.down,.kd.up{color:#166534 !important}
+    .gcard.a{border-left-color:#dc2626 !important}
+    .gcard.w{border-left-color:#d97706 !important}
+    .gcard.g{border-left-color:#16a34a !important}
+    .gcard.i{border-left-color:#0369a1 !important}
+    .concl{background:#fffbeb !important;border-color:rgba(180,83,9,.5) !important}
+    .concl .ct{color:#b45309 !important}
+    .dxtag{color:#111 !important}
+    .card,.gcard,.meal,.endo,.lead{break-inside:avoid}
+    h2{break-after:avoid}
+  }
   /* endoscopia */
   .endo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
   .endo .eh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px}
@@ -162,6 +209,7 @@
 </div>
 
 <div class="wrap tabpane active" id="tab-sangue">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>⚡ Resumo rápido — o que merece atenção</h3>
@@ -200,6 +248,7 @@
 
 <!-- ===================== ABA GENÉTICA ===================== -->
 <div class="wrap tabpane" id="tab-gene">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>🧬 O que seu DNA diz — e como usar a favor da sua qualidade de vida</h3>
@@ -396,6 +445,7 @@
 
 <!-- ===================== ABA BIOIMPEDÂNCIA ===================== -->
 <div class="wrap tabpane" id="tab-bio">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
     <h3>⚖️ Evolução corporal — set/2025 a dez/2025 (5 medições)</h3>
     <ul>
@@ -440,6 +490,7 @@
 
 <!-- ===================== ABA DIETA IDEAL ===================== -->
 <div class="wrap tabpane" id="tab-dieta">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
     <h3>🍽️ Sua dieta — protocolo Nutri Felipe Cruz (TeamCruz)</h3>
     <ul>
@@ -553,6 +604,7 @@
 
 <!-- ===================== ABA ENDOSCOPIA ===================== -->
 <div class="wrap tabpane" id="tab-endo">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
     <h3>🔬 Endoscopia Digestiva Alta — 3 exames (2023 · 2025 · 2026)</h3>
     <ul>
