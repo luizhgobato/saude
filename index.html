@@ -93,6 +93,11 @@
   .gcard.w{border-left:4px solid var(--warn)}
   .gcard.g{border-left:4px solid var(--good)}
   .gcard.i{border-left:4px solid var(--accent)}
+  .gpct{font-size:26px;font-weight:800;margin:5px 0 4px;letter-spacing:-.5px;line-height:1}
+  .gcard.a .gpct{color:var(--bad)}
+  .gcard.w .gpct{color:var(--warn)}
+  .gcard.g .gpct{color:var(--good)}
+  .gcard.i .gpct{color:var(--accent)}
   .anc{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:center}
   .ancbar{flex:1;min-width:280px}
   .ancrow{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:13.5px}
@@ -233,6 +238,7 @@
     .gcard.w{border-left-color:#d97706 !important}
     .gcard.g{border-left-color:#16a34a !important}
     .gcard.i{border-left-color:#0369a1 !important}
+    .gpct{font-size:18px !important}
     .concl{background:#fffbeb !important;border-color:rgba(180,83,9,.5) !important}
     .concl .ct{color:#b45309 !important}
     .dxtag{color:#111 !important}
@@ -1018,6 +1024,20 @@ const segT=document.getElementById('segtable');
 if(segT){let hh='<tr><th>Região</th>'+bL.map(l=>`<th>${l}</th>`).join('')+'<th>Meta</th></tr>';let bb='';
   seg.forEach(r=>{const cells=r[1].map(v=>`<td>${String(v).replace('.',',')}</td>`).join('');bb+=`<tr><td>${r[0]}</td>${cells}<td style="color:#64748b">${String(r[2]).replace('.',',')}</td></tr>`;});
   segT.innerHTML=hh+bb;}
+
+// ===== Percentuais em destaque nos cards de genética =====
+document.querySelectorAll('.gcard').forEach(function(card){
+  var gr=card.querySelector('.gr');
+  if(!gr)return;
+  var m=gr.textContent.match(/~?([\d,]+)%/);
+  if(!m)return;
+  var pct='~'+m[1]+'%';
+  gr.innerHTML=gr.innerHTML.replace(/\s*\(~?[\d,]+%[^)]*\)/,'');
+  var el=document.createElement('div');
+  el.className='gpct';
+  el.textContent=pct;
+  card.querySelector('.gt').after(el);
+});
 
 // ===== Ajuste de gráficos para impressão =====
 function setPrintCharts(print){
