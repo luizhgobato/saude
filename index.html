@@ -288,6 +288,57 @@
   .anatomo{background:rgba(56,189,248,.06);border:1px dashed var(--line);border-radius:8px;padding:11px 14px;margin-top:12px;font-size:13px;color:#cbd5e1;line-height:1.6}
   .anatomo .at{font-weight:700;color:var(--accent);display:block;margin-bottom:4px}
   .hp{display:inline-block;background:rgba(34,197,94,.15);color:var(--good);border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700;margin-top:8px}
+  /* qualidade de vida */
+  .qcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+  .qcard .qh{font-size:16px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;gap:9px}
+  .qcard .qbody{font-size:13.5px;color:var(--muted);line-height:1.65}
+  .qcard .qbody ul{padding-left:18px;margin-top:6px}
+  .qcard .qbody li{margin:4px 0}
+  .qcard .qbody b{color:var(--ink)}
+  .prio{display:flex;align-items:flex-start;gap:14px;padding:13px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:9px}
+  .prio-l{border-left:3px solid var(--bad)}
+  .prio-w{border-left:3px solid var(--warn)}
+  .prio-num{font-size:26px;font-weight:800;flex:none;width:34px;text-align:center;line-height:1.1}
+  .prio-body .pt{font-size:14.5px;font-weight:700}
+  .prio-body .pd{font-size:12.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+  .week{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:12px;margin-bottom:16px}
+  .wday{background:var(--card2);border:1px solid var(--line);border-radius:9px;padding:9px 6px;text-align:center}
+  .wday .wn{font-weight:700;font-size:10.5px;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.4px}
+  .wday .wact{font-size:11.5px;line-height:1.4;color:var(--ink)}
+  .wday.won{background:rgba(56,189,248,.1);border-color:var(--accent)}
+  .wday.wstr{background:rgba(34,197,94,.1);border-color:var(--good)}
+  .wday.wmix{background:rgba(245,158,11,.08);border-color:var(--warn)}
+  .wday.wrest{opacity:.7}
+  .supl-list{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+  .supl{display:flex;align-items:center;gap:12px;padding:11px 15px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+  .supl .sico{font-size:20px;flex:none}
+  .supl .stx .sn{font-size:13.5px;font-weight:700}
+  .supl .stx .sd{font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .supl .sdose{margin-left:auto;text-align:right;font-size:11.5px;font-weight:700;color:var(--accent);flex:none;padding-left:10px;white-space:nowrap}
+  .rastreio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;margin-top:4px}
+  .rcard{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 16px}
+  .rcard .rh{font-size:13.5px;font-weight:700;margin-bottom:4px}
+  .rcard .rb{font-size:12.5px;color:var(--muted);line-height:1.5}
+  .rcard .rtag{font-size:10.5px;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;margin-top:7px}
+  .rtag-u{background:rgba(239,68,68,.15);color:var(--bad)}
+  .rtag-p{background:rgba(245,158,11,.15);color:var(--warn)}
+  .rtag-r{background:rgba(34,197,94,.15);color:var(--good)}
+  .vid-tl{position:relative;padding-left:30px;margin-top:6px}
+  .vid-tl::before{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .vid-ti{position:relative;margin-bottom:16px}
+  .vid-ti::before{content:'';position:absolute;left:-24px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+  .vid-tm{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+  .vid-ta{font-size:13.5px;line-height:1.55;color:var(--muted)}
+  .vid-ta b{color:var(--ink)}
+  @media print{
+    .prio,.qcard,.supl,.rcard,.vid-ti{break-inside:avoid}
+    .supl-list,.rastreio-grid,.vid-tl,.week{break-before:avoid}
+    #tab-vida .qcard .qbody{font-size:12px}
+    #tab-vida .supl .stx .sd{font-size:11px}
+    #tab-vida .supl .sdose{font-size:11px;white-space:normal}
+    #tab-vida .rcard .rb{font-size:11.5px}
+    #tab-vida .prio-body .pd{font-size:12px}
+  }
 </style>
 </head>
 <body>
@@ -303,6 +354,7 @@
   <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
   <div class="tab" data-tab="dieta">🍽️ Dieta Ideal</div>
   <div class="tab" data-tab="endo">🔬 Endoscopia</div>
+  <div class="tab" data-tab="vida">🌿 Qualidade de Vida</div>
 </div>
 
 <div class="wrap tabpane active" id="tab-sangue">
@@ -775,6 +827,314 @@
   <div class="disc">
     ⚠️ Reprodução organizada dos seus laudos de endoscopia e biópsia. <b>Não substitui avaliação do gastroenterologista</b> — a conduta (medicação para refluxo, controle de hábitos, seguimento das biópsias) deve ser definida com seu médico.
   </div>
+</div>
+
+<!-- ===================== ABA QUALIDADE DE VIDA ===================== -->
+<div class="wrap tabpane" id="tab-vida">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+
+  <h2><span class="dot"></span>Suas 5 prioridades de saúde agora</h2>
+
+  <div class="prio prio-l">
+    <div class="prio-num" style="color:var(--bad)">①</div>
+    <div class="prio-body">
+      <div class="pt">Controlar a pré-diabetes</div>
+      <div class="pd">HbA1c chegou a 6,0% — limite do pré-diabetes — e está subindo desde 2020. Ainda reversível com hábitos, mas a janela de intervenção é agora. Cada mês importa.</div>
+    </div>
+  </div>
+
+  <div class="prio prio-l">
+    <div class="prio-num" style="color:var(--bad)">②</div>
+    <div class="prio-body">
+      <div class="pt">Reduzir o LDL (colesterol ruim)</div>
+      <div class="pd">LDL em 158 mg/dL, maior valor histórico. Com HbA1c elevada, o risco cardiovascular é multiplicado. Dieta low-fat mediterrânea + aeróbico são o tratamento principal.</div>
+    </div>
+  </div>
+
+  <div class="prio prio-w">
+    <div class="prio-num" style="color:var(--warn)">③</div>
+    <div class="prio-body">
+      <div class="pt">Reverter a queda de testosterona</div>
+      <div class="pd">Caiu de 609 para 384 ng/dL desde 2020 — queda de 37%. Sono, treino de força, gordura corporal e vitamina D são os 4 pilares para recuperar naturalmente.</div>
+    </div>
+  </div>
+
+  <div class="prio prio-w">
+    <div class="prio-num" style="color:var(--warn)">④</div>
+    <div class="prio-body">
+      <div class="pt">Iniciar rastreio de próstata</div>
+      <div class="pd">Risco genético aumentado (~31,6%). Com 36 anos, é a hora de consultar o urologista e estabelecer a linha de base do PSA antes dos 40 anos.</div>
+    </div>
+  </div>
+
+  <div class="prio prio-w">
+    <div class="prio-num" style="color:var(--warn)">⑤</div>
+    <div class="prio-body">
+      <div class="pt">Proteger o esôfago do refluxo</div>
+      <div class="pd">Esofagite erosiva grau B em 3 endoscopias consecutivas + retração cicatricial em 2026. Hábitos alimentares e medicação contínua são essenciais para evitar progressão.</div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Exercício — plano semanal personalizado</h2>
+
+  <div class="qcard">
+    <div class="qh">💪 Estratégia baseada no seu DNA e composição corporal</div>
+    <div class="qbody">
+      Seus genes <b>ACTN3 e PPARD</b> te dão excelente resposta ao treino de força e ganho de massa muscular. O ponto fraco genético é a <b>capacidade cardiorrespiratória (ADRB2)</b> — justamente o que mais ajuda a controlar glicose, LDL e testosterona. O equilíbrio entre força e aeróbico é a sua chave.
+    </div>
+  </div>
+
+  <div class="week">
+    <div class="wday wstr"><div class="wn">Seg</div><div class="wact">💪 Força<br>Peito + Tríceps</div></div>
+    <div class="wday won"><div class="wn">Ter</div><div class="wact">🏃 Cardio<br>30–40 min moderado</div></div>
+    <div class="wday wstr"><div class="wn">Qua</div><div class="wact">💪 Força<br>Costas + Bíceps</div></div>
+    <div class="wday wrest"><div class="wn">Qui</div><div class="wact">😴 Descanso<br>ou caminhada leve</div></div>
+    <div class="wday wstr"><div class="wn">Sex</div><div class="wact">💪 Força<br>Pernas + Glúteos</div></div>
+    <div class="wday won"><div class="wn">Sáb</div><div class="wact">🏃 Cardio<br>HIIT 20 min</div></div>
+    <div class="wday wmix"><div class="wn">Dom</div><div class="wact">💪 Força<br>Ombro + Core</div></div>
+  </div>
+
+  <div class="grid">
+    <div class="qcard">
+      <div class="qh">🏋️ Força — 4×/semana</div>
+      <div class="qbody">
+        <ul>
+          <li>Progressão de carga obrigatória — seu diferencial genético (ACTN3 + PPARD)</li>
+          <li>Foco em compostos: agachamento, terra, supino, remada, barra fixa</li>
+          <li>Proteína <b>1,6–2,2 g/kg/dia</b> para garantir ganho muscular efetivo</li>
+          <li>Meta: 85 kg / 18% BF / 44 kg de músculo (atual: 41,9 kg)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">🏃 Cardio — 2–3×/semana</div>
+      <div class="qbody">
+        <ul>
+          <li>Compensa o <b>ADRB2</b> — capacidade cardiorrespiratória geneticamente menor</li>
+          <li>Reduz LDL, melhora glicemia e eleva testosterona livre naturalmente</li>
+          <li>Opções: corrida, ciclismo, elíptico em <b>zona 2</b> (consegue conversar sem parar)</li>
+          <li>HIIT 20 min equivale a ~40 min de cardio moderado contínuo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">⚠️ Pontos críticos no treino</div>
+      <div class="qbody">
+        <ul>
+          <li><b>Desaquecimento obrigatório 5–10 min</b> — gene CHRM2: recuperação cardíaca mais lenta</li>
+          <li><b>Nunca pare abruptamente</b> o cardio — reduza a intensidade gradualmente</li>
+          <li>Inclua <b>saltos ou corrida 2×/semana</b> — estimula densidade óssea (WNT16)</li>
+          <li><b>Caminhada 10–15 min após refeições</b> principais — reduz glicemia pós-prandial</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Alimentação — estratégia personalizada</h2>
+
+  <div class="grid">
+    <div class="qcard">
+      <div class="qh">🫀 Anti-LDL (158 mg/dL → meta &lt;130)</div>
+      <div class="qbody">
+        <ul>
+          <li>Reduzir <b>gordura saturada</b>: menos carne gorda, queijo amarelo, manteiga, óleo de coco</li>
+          <li>Aumentar <b>fibras solúveis</b>: aveia, feijão, lentilha, maçã — capturam LDL no intestino</li>
+          <li><b>Azeite de oliva</b> como gordura principal (PPARG — você responde muito bem)</li>
+          <li><b>Sardinha ou salmão 3×/semana</b> + ômega-3 — reduz triglicérides e inflamação</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">🍬 Anti-diabetes (HbA1c 6,0% — pré-diabetes)</div>
+      <div class="qbody">
+        <ul>
+          <li>Eliminar <b>açúcar refinado e ultraprocessados</b> — prioridade absoluta</li>
+          <li>Gene SLC2A2 aumenta a busca por doce — substituir por fruta + proteína</li>
+          <li>Carboidratos apenas <b>integrais e ao redor do treino</b></li>
+          <li><b>Começar refeições por proteína + salada</b> — reduz pico de glicose pós-prandial</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">🔥 Anti-refluxo (esofagite grau B)</div>
+      <div class="qbody">
+        <ul>
+          <li>Última refeição <b>3 horas antes de dormir</b> — hérnia hiatal piora em decúbito</li>
+          <li>Reduzir: <b>café em excesso, álcool, frituras, tomate, chocolate, menta</b></li>
+          <li>Porções menores, comer devagar — distensão gástrica agrava o refluxo</li>
+          <li>Não deitar após comer — ficar sentado ou caminhar por pelo menos 30–60 min</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">🧬 O que seu DNA pede</div>
+      <div class="qbody">
+        <ul>
+          <li>Dieta <b>LOW FAT mediterrânea</b> funciona melhor para você que low-carb (TCF7L2 + PPARG)</li>
+          <li>Gene FTO: menos saciedade e fome emocional — sempre começar por <b>proteína + salada</b></li>
+          <li>Gene MTHFR: preferir fontes de <b>metilfolato</b> (espinafre, couve, brócolis, fígado)</li>
+          <li>Sem restrição de lactose — laticínios são boa fonte de proteína e cálcio</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Sono — seu maior aliado (e ponto vulnerável)</h2>
+
+  <div class="qcard">
+    <div class="qh">😴 Por que o sono é crítico especificamente para você</div>
+    <div class="qbody">
+      Dois genes te predispõem a dormir tarde e menos horas: <b>CLOCK</b> (cronotipo noturno) e <b>ABCC9</b> (tendência a dormir menos). Sono ruim <b>reduz testosterona</b> (pico ocorre no sono profundo), piora a <b>resistência à insulina</b> (HbA1c), eleva cortisol crônico e amplifica a fome emocional (FTO). Seus 4 problemas prioritários se agravam com sono insuficiente.
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="qcard">
+      <div class="qh">⏰ Estrutura ideal do sono</div>
+      <div class="qbody">
+        <ul>
+          <li>Meta: <b>7h30 a 8h por noite</b> — sem negociação</li>
+          <li>Horário fixo de dormir e acordar, mesmo no fim de semana</li>
+          <li>Cronotipo noturno (CLOCK): dormir entre <b>23h30–00h</b>, acordar ~<b>8h</b></li>
+          <li>Quarto: <b>escuro, fresco (18–21°C) e silencioso</b></li>
+          <li>Soneca máxima de 20 min — evita prejudicar o sono noturno</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">📵 Higiene do sono</div>
+      <div class="qbody">
+        <ul>
+          <li><b>Sem telas 1h antes de dormir</b> — luz azul atrasa a melatonina (já produz menos)</li>
+          <li>Sem cafeína após <b>16h</b> — mesmo tolerando café (ADORA2A), à noite prejudica</li>
+          <li><b>Luz natural logo de manhã</b> (10 min ao ar livre) — âncora o relógio biológico</li>
+          <li>Magnésio Glicina 200–400 mg antes de dormir — melhora qualidade do sono profundo</li>
+          <li>Sem álcool à noite — fragmenta o sono profundo mesmo em pequenas doses</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Suplementação recomendada</h2>
+  <p style="color:var(--muted);font-size:13px;margin:-4px 0 14px">Baseada nos exames de sangue e perfil genético. <b style="color:var(--ink)">Confirme doses com seu médico.</b></p>
+
+  <div class="supl-list">
+    <div class="supl">
+      <div class="sico">☀️</div>
+      <div class="stx"><div class="sn">Vitamina D3 + K2</div><div class="sd">Gene GC predispõe a níveis baixos. Nível atual 45 ng/mL está ótimo — manter com suplementação contínua.</div></div>
+      <div class="sdose">2.000–4.000 UI/dia<br>com refeição gordurosa</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🧬</div>
+      <div class="stx"><div class="sn">Metilfolato (B9 ativa)</div><div class="sd">Gene MTHFR reduz conversão do ácido fólico comum. A forma metilada é mais biodisponível para você.</div></div>
+      <div class="sdose">400–800 mcg/dia</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🐟</div>
+      <div class="stx"><div class="sn">Ômega-3 (EPA + DHA)</div><div class="sd">LDL alto + risco genético de colite inflamatória. Reduz triglicérides, inflamação e apoia barreira intestinal.</div></div>
+      <div class="sdose">2–3 g EPA+DHA/dia<br>com almoço ou jantar</div>
+    </div>
+    <div class="supl">
+      <div class="sico">⚡</div>
+      <div class="stx"><div class="sn">Magnésio Glicina</div><div class="sd">Melhora qualidade do sono (ABCC9), sensibilidade à insulina (HbA1c 6,0%) e recuperação muscular.</div></div>
+      <div class="sdose">200–400 mg/dia<br>antes de dormir</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🦠</div>
+      <div class="stx"><div class="sn">Probiótico (Lactobacillus + Bifidobacterium)</div><div class="sd">Risco genético de colite ulcerativa + gastrite moderada + uso de IBP (omeprazol). Apoia barreira intestinal.</div></div>
+      <div class="sdose">10–50 bi UFC/dia<br>em jejum ou com refeição</div>
+    </div>
+    <div class="supl">
+      <div class="sico">💪</div>
+      <div class="stx"><div class="sn">Zinco quelado</div><div class="sd">Cofator essencial para produção de testosterona (queda de 609→384 ng/dL). Déficit comum em quem treina intenso.</div></div>
+      <div class="sdose">15–30 mg/dia<br>com refeição</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🦴</div>
+      <div class="stx"><div class="sn">Cálcio</div><div class="sd">Gene WNT16 = menor densidade óssea geneticamente. Laticínios são boas fontes — suplementar só se ingestão diária for insuficiente.</div></div>
+      <div class="sdose">500 mg/dia se necessário<br>(separar da vitamina D3)</div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Rastreios e vacinas — o que não pode adiar</h2>
+
+  <div class="rastreio-grid">
+    <div class="rcard">
+      <div class="rh">💉 Vacina Hepatite B — reforço</div>
+      <div class="rb">Anti-HBs em 8,8 mUI/mL — abaixo de 10 significa sem proteção efetiva. Reforço obrigatório e retest 30–60 dias depois.</div>
+      <span class="rtag rtag-u">Urgente — agendar já</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">🔬 PSA + consulta urológica</div>
+      <div class="rb">Risco genético de câncer de próstata elevado (~31,6%). Consultar urologista para linha de base do PSA antes dos 40 anos.</div>
+      <span class="rtag rtag-u">Urgente — 36 anos</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">🍬 HbA1c + glicemia de jejum</div>
+      <div class="rb">HbA1c em 6,0% e subindo há anos. Repetir a cada 3–4 meses para medir o impacto das mudanças de hábito na glicemia.</div>
+      <span class="rtag rtag-u">A cada 3–4 meses</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">🫀 Perfil lipídico completo</div>
+      <div class="rb">LDL em 158 mg/dL. Repetir a cada 3–4 meses enquanto acima de 130. Meta: abaixo de 130, idealmente abaixo de 100.</div>
+      <span class="rtag rtag-p">A cada 3–4 meses</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">⚗️ Testosterona total + SHBG + free T</div>
+      <div class="rb">Queda de 609→384 ng/dL desde 2020. Repetir a cada 6 meses e avaliar com endocrinologista se continuar caindo.</div>
+      <span class="rtag rtag-p">A cada 6 meses</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">🔭 Endoscopia digestiva alta</div>
+      <div class="rb">Esofagite grau B + retração cicatricial em 2026. Acompanhamento anual para monitorar progressão e resposta ao tratamento do refluxo.</div>
+      <span class="rtag rtag-p">Anual</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">☀️ Dermatologista</div>
+      <div class="rb">Gene MC1R = pele sensível ao sol + fotoenvelhecimento precoce. Mapeamento de pintas anual + FPS 50 diário obrigatório.</div>
+      <span class="rtag rtag-r">Anual</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">👁️ Oftalmologista</div>
+      <div class="rb">Gene GJD2 = predisposição à miopia progressiva. Consulta anual para monitorar acuidade visual e saúde ocular geral.</div>
+      <span class="rtag rtag-r">Anual</span>
+    </div>
+    <div class="rcard">
+      <div class="rh">🔵 Colonoscopia</div>
+      <div class="rb">Risco de colite ulcerativa (~4,8%) e doença inflamatória intestinal (~26%). Iniciar rastreio aos 45 anos, ou antes se surgirem sintomas.</div>
+      <span class="rtag rtag-r">Aos 45 anos</span>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Rotina diária ideal</h2>
+
+  <div class="vid-tl">
+    <div class="vid-ti">
+      <div class="vid-tm">Manhã — ao acordar (~7h30–8h)</div>
+      <div class="vid-ta"><b>10 min de luz natural</b> (janela ou varanda) — âncora o CLOCK gene e eleva o cortisol matinal saudável. <b>Suplementos da manhã:</b> Vitamina D3+K2, Metilfolato, Zinco (com o café da manhã proteico).</div>
+    </div>
+    <div class="vid-ti">
+      <div class="vid-tm">Pré-treino — hidratação e ativação</div>
+      <div class="vid-ta">Refeição leve 60–90 min antes do treino intenso. Hidratação: <b>500 ml antes</b>, 500–1.000 ml durante. Creatina 3–5 g com refeição pré-treino se desejar suplementar para força.</div>
+    </div>
+    <div class="vid-ti">
+      <div class="vid-tm">Almoço (~13h)</div>
+      <div class="vid-ta">Começar sempre por <b>salada + proteína</b> (FTO — menos saciedade natural). Carboidrato integral em porção controlada. <b>Caminhada de 10–15 min após comer</b> — reduz a glicemia pós-prandial.</div>
+    </div>
+    <div class="vid-ti">
+      <div class="vid-tm">Tarde (~16h)</div>
+      <div class="vid-ta"><b>Último café do dia</b> — sem cafeína após 16h. Lanche proteico leve (iogurte grego, ovo cozido, castanhas). Janela de alta produtividade cognitiva — cronotipo noturno rende mais à tarde e noite.</div>
+    </div>
+    <div class="vid-ti">
+      <div class="vid-tm">Jantar (~20h–20h30)</div>
+      <div class="vid-ta">Refeição <b>completa mas não pesada</b> — terminar até 3h antes de dormir (refluxo + hérnia hiatal). Sem álcool. <b>Ômega-3</b> e <b>Probiótico</b> com a refeição. Não deitar por pelo menos 30–60 min após.</div>
+    </div>
+    <div class="vid-ti">
+      <div class="vid-tm">Noite (~22h30)</div>
+      <div class="vid-ta"><b>Desligar telas</b> ou usar modo noturno/óculos anti-luz azul. Quarto escuro e fresco (18–21°C). <b>Magnésio Glicina</b> 200–400 mg. Meta: dormir entre 23h30–00h para garantir as 7h30–8h de sono profundo.</div>
+    </div>
+  </div>
+
 </div>
 
 <footer>
