@@ -134,6 +134,15 @@
   .daytotal .dl{font-size:13px;color:#d1fae5}
   .daytotal .dv{font-size:26px;font-weight:800;color:#fff}
   .daytotal .dm{font-size:12px;color:#a7f3d0}
+  /* botão exportar contexto */
+  .export-btn{
+    display:inline-flex;align-items:center;gap:7px;
+    background:rgba(56,189,248,.1);border:1px solid var(--accent);
+    color:var(--accent);padding:8px 20px;border-radius:10px;
+    font-size:13px;font-weight:600;cursor:pointer;
+    margin-top:14px;transition:.15s;
+  }
+  .export-btn:hover{background:rgba(56,189,248,.25)}
   /* botão imprimir */
   .print-btn {
     display:inline-flex;align-items:center;gap:7px;
@@ -155,7 +164,7 @@
     header h1{font-size:19px}
     header p{font-size:11.5px;margin-top:4px}
     .badge{font-size:11px;margin-top:6px;padding:3px 10px}
-    .tabs,.print-btn,.info,.info .tip,footer{display:none !important}
+    .tabs,.print-btn,.export-btn,.info,.info .tip,footer{display:none !important}
     .tabpane{display:none !important}
     .tabpane.active{display:block !important}
     .wrap{max-width:none;padding:0 8px}
@@ -370,6 +379,7 @@
   <h1>🩸 Meus Exames de Sangue</h1>
   <p>Luiz Henrique Gobato &nbsp;·&nbsp; 13 coletas de Mar/2019 a Jul/2026</p>
   <div class="badge">Sangue: até 15/07/2026 (DASA) · Genético: Genera</div>
+  <button class="export-btn" onclick="exportarContexto()">⬇️ Exportar contexto para Claude</button>
 </header>
 
 <div class="tabs">
@@ -756,103 +766,104 @@
   <div class="lead">
     <h3>🍽️ Dieta — protocolo recomposição corporal (jul/2026)</h3>
     <ul>
-      <li><span class="tag t-warn">CÁLCULO</span><div>TMB InBody: <b>1.909 kcal</b> · Musculação 45 min: <b>+350 kcal</b> · Caminhada inclinada 1h: <b>+510 kcal</b> · NEAT: <b>+380 kcal</b> → TDEE: <b>~3.150 kcal</b>. Meta: <b>~2.550 kcal/dia</b> (déficit de ~600 kcal → perda estimada de ~0,5 kg/semana).</div></li>
-      <li><span class="tag t-good">MACROS</span><div>Proteína alta (~220 g) para preservar a massa muscular intacta durante o déficit. Carboidrato concentrado pré e pós-treino. Gordura controlada (~60 g) — LDL 158 e genética TCF7L2 favorecem perfil mediterrâneo (azeite sim, saturada não).</div></li>
+      <li><span class="tag t-warn">CÁLCULO</span><div>TMB InBody: <b>1.909 kcal</b> · Musculação 45 min: <b>+350 kcal</b> · Caminhada inclinada 1h: <b>+510 kcal</b> · NEAT: <b>+380 kcal</b> → TDEE: <b>~3.150 kcal</b>. Meta: <b>~2.550 kcal/dia</b>; pela TACO o cardápio entrega <b>~2.500 kcal</b> (déficit real ~650 kcal → ~0,5 kg/semana).</div></li>
+      <li><span class="tag t-good">MACROS (TACO)</span><div>Recalculado pela <b>Tabela TACO/UNICAMP</b>: Proteína <b>~235 g</b> (2,5 g/kg) para preservar músculo no déficit · Carboidrato <b>~290 g</b> concentrado pré/pós-treino · Gordura <b>~40 g</b> (real, pela TACO — <i>menor que a estimativa anterior</i>).</div></li>
+      <li><span class="tag t-warn">AJUSTE DE GORDURA</span><div>Com frango magro + grego 0% + pouco azeite, a gordura cai para <b>~40 g</b> — <b>baixo para a sua testosterona (384, em queda)</b>. Sugestão: subir para ~55–60 g trocando parte do carboidrato por <b>ovo inteiro, salmão, azeite ou castanhas</b>, sem passar em saturada (LDL 158).</div></li>
       <li><span class="tag t-bad">REFLUXO</span><div>Última refeição sólida com pelo menos <b>2h antes de deitar</b>. A ceia (22:00) é leve e semilíquida propositalmente — sem sólidos pesados à noite.</div></li>
       <li><span class="tag t-bad">PRÉ-DIABETES</span><div>HbA1c 6,0%: prefira carboidratos complexos, evite açúcar livre. Uma caminhada de 20–30 min após almoço ou jantar melhora a glicemia pós-prandial mesmo nos dias em que já treinou.</div></li>
     </ul>
   </div>
 
-  <h2><span class="dot"></span>Total do dia</h2>
+  <h2><span class="dot"></span>Total do dia <span style="font-size:12px;color:var(--muted);font-weight:400">(calculado pela TACO)</span></h2>
   <div class="daytotal">
-    <div><div class="dl">Meta calórica diária</div><div class="dm">déficit ~600 kcal sobre TDEE de ~3.150 kcal</div></div>
-    <div class="dv">≈ 2.550 kcal</div>
+    <div><div class="dl">Total pela TACO — opções 1/A</div><div class="dm">déficit real ~650 kcal sobre TDEE de ~3.150 kcal</div></div>
+    <div class="dv">≈ 2.500 kcal</div>
   </div>
 
   <div style="display:flex;gap:12px;margin:10px 0 22px;flex-wrap:wrap;">
     <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
-      <div style="font-size:22px;font-weight:700;color:#60a5fa;">~220 g</div>
+      <div style="font-size:22px;font-weight:700;color:#60a5fa;">~235 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">PROTEÍNA</div>
     </div>
     <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
-      <div style="font-size:22px;font-weight:700;color:#34d399;">~265 g</div>
+      <div style="font-size:22px;font-weight:700;color:#34d399;">~290 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">CARBOIDRATO</div>
     </div>
     <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
-      <div style="font-size:22px;font-weight:700;color:#fbbf24;">~60 g</div>
+      <div style="font-size:22px;font-weight:700;color:#fbbf24;">~40 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">GORDURA</div>
     </div>
   </div>
 
-  <p style="color:var(--muted);font-size:12px;margin:-10px 0 18px">Onde há opções, o total usa a 1ª opção. Arroz calculado cru (~3,6 kcal/g). Valores podem variar ±10%.</p>
+  <p style="color:var(--muted);font-size:12px;margin:-10px 0 18px">Calorias por porção pela <b>TACO (UNICAMP)</b>; onde há opções, o total usa a 1ª. Arroz calculado <b>cru</b> (TACO 358 kcal/100 g). Itens sem TACO (whey, iogurte grego/light, cottage) usam <b>rótulo médio</b>, marcados com <b>*</b>. Valores podem variar ±10%.</p>
 
   <h2><span class="dot"></span>Refeições do dia</h2>
 
   <div class="meal">
     <div class="mh"><div class="mt">Pré-treino</div><div class="mtime">~7:00 · antes da musculação</div></div>
     <ul>
-      <li>1 café sem açúcar <span class="kc">~5 kcal</span></li>
-      <li>1 <b>banana média (120 g)</b> <span class="kc">~105 kcal</span></li>
-      <li>1 fatia de <b>pão integral (30 g)</b> <span class="kc">~75 kcal</span></li>
+      <li>1 café sem açúcar <span class="kc">0 kcal</span></li>
+      <li>1 <b>banana média (120 g)</b> <span class="kc">110 kcal</span></li>
+      <li>1 fatia de <b>pão integral (30 g)</b> <span class="kc">76 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 185 kcal &nbsp;·&nbsp; P 4 g · C 42 g · G 1 g</div>
+    <div class="mtot">Subtotal ≈ 191 kcal &nbsp;·&nbsp; P 4 g · C 44 g · G 1 g</div>
   </div>
 
   <div class="meal">
     <div class="mh"><div class="mt">1 · Pós-treino</div><div class="mtime">~9:00 · logo após musculação</div></div>
     <ul>
-      <li><b>Fixo (líquido):</b> 40 g de <b>whey protein</b> <span class="kc">~150 kcal</span> + 250 ml de <b>leite desnatado</b> <span class="kc">~85 kcal</span></li>
+      <li><b>Fixo (líquido):</b> 40 g de <b>whey protein*</b> <span class="kc">152 kcal</span> + 250 ml de <b>leite desnatado</b> <span class="kc">88 kcal</span></li>
       <li><b>30 min depois — sólido (mesmas opções do lanche da tarde):</b></li>
-      <li>Opção 1: <b>tapioca 40 g</b> + <b>iogurte grego 0% (170 g)</b> <span class="kc">~240 kcal</span></li>
-      <li>Opção 2: 1 fatia de <b>pão integral</b> + <b>cottage 100 g</b> + fruta 80 g <span class="kc">~215 kcal</span></li>
-      <li>Opção 3: 6 <b>bolachas de água e sal</b> + ricota 60 g + <b>iogurte grego 100 g</b> <span class="kc">~235 kcal</span></li>
-      <li>Opção 4: <b>40 g de aveia em flocos</b> + <b>iogurte grego 0% (170 g)</b> <span class="kc">~248 kcal</span></li>
+      <li>Opção 1: <b>tapioca 40 g</b> + <b>iogurte grego 0%* (170 g)</b> <span class="kc">242 kcal</span></li>
+      <li>Opção 2: 1 fatia de <b>pão integral</b> + <b>cottage* 100 g</b> + fruta 80 g <span class="kc">219 kcal</span></li>
+      <li>Opção 3: 6 <b>bolachas de água e sal</b> + ricota 60 g + <b>iogurte grego* 100 g</b> <span class="kc">274 kcal</span></li>
+      <li>Opção 4: <b>40 g de aveia em flocos</b> + <b>iogurte grego 0%* (170 g)</b> <span class="kc">260 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 475 kcal <span style="color:var(--muted);font-weight:400">(whey+leite + Opção 1)</span> &nbsp;·&nbsp; P 55 g · C 48 g · G 8 g</div>
+    <div class="mtot">Subtotal ≈ 482 kcal <span style="color:var(--muted);font-weight:400">(whey+leite + Opção 1)</span> &nbsp;·&nbsp; P 56 g · C 57 g · G 3 g</div>
   </div>
 
   <div class="meal">
     <div class="mh"><div class="mt">2 · Almoço</div><div class="mtime">~13:00</div></div>
     <ul>
-      <li><b>70 g de arroz</b> branco ou integral (cru) + <b>1 concha de feijão cozido (~80 g)</b> <span class="kc">~314 kcal</span></li>
-      <li>180 g de <b>frango / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">~270 kcal</span></li>
-      <li><b>Salada e vegetais</b> à vontade <span class="kc">~30 kcal</span></li>
-      <li>10 ml de <b>azeite extra-virgem</b> (tempero) <span class="kc">~88 kcal</span></li>
+      <li><b>70 g de arroz</b> branco ou integral (cru) + <b>1 concha de feijão cozido (~80 g)</b> <span class="kc">311 kcal</span></li>
+      <li>180 g de <b>frango / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">286 kcal</span></li>
+      <li><b>Salada e vegetais</b> à vontade <span class="kc">30 kcal</span></li>
+      <li>10 ml de <b>azeite extra-virgem</b> (tempero) <span class="kc">81 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 702 kcal &nbsp;·&nbsp; P 54 g · C 73 g · G 21 g</div>
+    <div class="mtot">Subtotal ≈ 708 kcal &nbsp;·&nbsp; P 68 g · C 71 g · G 15 g</div>
   </div>
 
   <div class="meal">
     <div class="mh"><div class="mt">3 · Lanche da tarde</div><div class="mtime">~16:00 · pode ser pré-caminhada se fizer à tarde</div></div>
     <ul>
-      <li>Opção 1: <b>tapioca 40 g</b> + <b>iogurte grego 0% (170 g)</b> <span class="kc">~240 kcal</span></li>
-      <li>Opção 2: 1 fatia de <b>pão integral</b> + <b>cottage 100 g</b> + fruta 80 g <span class="kc">~215 kcal</span></li>
-      <li>Opção 3: 6 <b>bolachas de água e sal</b> + ricota 60 g + <b>iogurte grego 100 g</b> <span class="kc">~235 kcal</span></li>
-      <li>Opção 4: <b>40 g de aveia em flocos</b> + <b>iogurte grego 0% (170 g)</b> (misturado ou separado) <span class="kc">~248 kcal</span></li>
+      <li>Opção 1: <b>tapioca 40 g</b> + <b>iogurte grego 0%* (170 g)</b> <span class="kc">242 kcal</span></li>
+      <li>Opção 2: 1 fatia de <b>pão integral</b> + <b>cottage* 100 g</b> + fruta 80 g <span class="kc">219 kcal</span></li>
+      <li>Opção 3: 6 <b>bolachas de água e sal</b> + ricota 60 g + <b>iogurte grego* 100 g</b> <span class="kc">274 kcal</span></li>
+      <li>Opção 4: <b>40 g de aveia em flocos</b> + <b>iogurte grego 0%* (170 g)</b> (misturado ou separado) <span class="kc">260 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 240 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span> &nbsp;·&nbsp; P 22 g · C 40 g · G 3 g</div>
+    <div class="mtot">Subtotal ≈ 242 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span> &nbsp;·&nbsp; P 15 g · C 42 g · G 0 g</div>
   </div>
 
   <div class="meal">
     <div class="mh"><div class="mt">4 · Jantar</div><div class="mtime">~19:30 · mínimo 2h antes de deitar</div></div>
     <ul>
-      <li><b>70 g de arroz</b> branco ou integral (cru) + <b>1 concha de feijão cozido (~80 g)</b> <span class="kc">~314 kcal</span></li>
-      <li>180 g de <b>frango / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">~270 kcal</span></li>
-      <li><b>Salada e vegetais</b> à vontade <span class="kc">~30 kcal</span></li>
-      <li>10 ml de <b>azeite extra-virgem</b> <span class="kc">~88 kcal</span></li>
+      <li><b>70 g de arroz</b> branco ou integral (cru) + <b>1 concha de feijão cozido (~80 g)</b> <span class="kc">311 kcal</span></li>
+      <li>180 g de <b>frango / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">286 kcal</span></li>
+      <li><b>Salada e vegetais</b> à vontade <span class="kc">30 kcal</span></li>
+      <li>10 ml de <b>azeite extra-virgem</b> <span class="kc">81 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 702 kcal &nbsp;·&nbsp; P 54 g · C 73 g · G 21 g</div>
+    <div class="mtot">Subtotal ≈ 708 kcal &nbsp;·&nbsp; P 68 g · C 71 g · G 15 g</div>
   </div>
 
   <div class="meal">
     <div class="mh"><div class="mt">5 · Ceia</div><div class="mtime">~22:00 · leve, sem sólidos pesados (refluxo)</div></div>
     <ul>
-      <li><b>30 g de whey protein</b> (shake em água) <span class="kc">~113 kcal</span></li>
-      <li>Opção A: + 60 g de <b>abacate</b> <span class="kc">~96 kcal</span></li>
-      <li>Opção B: + 10 <b>amêndoas (14 g)</b> <span class="kc">~82 kcal</span></li>
-      <li>Opção C: + 1 <b>iogurte grego 0% (100 g)</b> <span class="kc">~58 kcal</span></li>
+      <li><b>30 g de whey protein*</b> (shake em água) <span class="kc">114 kcal</span></li>
+      <li>Opção A: + 60 g de <b>abacate</b> <span class="kc">58 kcal</span></li>
+      <li>Opção B: + 10 <b>amêndoas (14 g)</b> <span class="kc">81 kcal</span></li>
+      <li>Opção C: + 1 <b>iogurte grego 0%* (100 g)</b> <span class="kc">60 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 209 kcal <span style="color:var(--muted);font-weight:400">(com Opção A)</span> &nbsp;·&nbsp; P 25 g · C 8 g · G 10 g</div>
+    <div class="mtot">Subtotal ≈ 172 kcal <span style="color:var(--muted);font-weight:400">(com Opção A)</span> &nbsp;·&nbsp; P 25 g · C 6 g · G 7 g</div>
   </div>
 
   <div class="swap"><b>Carboidratos intercambiáveis pelo arroz (mesmo peso cru):</b> batata doce, mandioca, mandioquinha, inhame, cará, arroz integral. Pão integral: 1 fatia = 25–30 g. Tapioca: 40 g.</div>
@@ -862,7 +873,7 @@
   <div class="swap"><b>Suplementos recomendados:</b> Whey 40 g pós-treino + 30 g na ceia · Creatina 5 g/dia (pós-treino, no whey) · Ômega-3 2 g/dia com almoço ou jantar (auxilia LDL e inflamação) · Vitamina D + Magnésio conforme exames.</div>
 
   <div class="disc">
-    ⚠️ Plano calculado em jul/2026 com base na bioimpedância InBody (TMB 1.909 kcal) e protocolo de treinos de 45 min musculação + 1h caminhada inclinada diários. Déficit de ~600 kcal/dia (~2.550 kcal sobre TDEE ~3.150 kcal). As calorias são estimativas — pesagens reais podem variar ±10%. <b>Não substitui acompanhamento nutricional.</b> Revisar a cada nova bioimpedância ou mudança de rotina de treinos.
+    ⚠️ Calorias recalculadas pela <b>Tabela TACO (UNICAMP)</b> por porção pesada; itens com <b>*</b> (whey, iogurte grego/light, cottage) usam rótulo médio de mercado. Total do dia ≈ <b>2.500 kcal</b> (opções 1/A) sobre TDEE ~3.150 kcal → déficit real ~650 kcal/dia. <b>Ponto de atenção:</b> pela TACO a gordura fica em <b>~40 g</b> (baixo para a testosterona 384) — considere subir para ~55–60 g. <b>Não substitui acompanhamento nutricional.</b> Revisar a cada nova bioimpedância.
   </div>
 </div>
 
@@ -1553,6 +1564,131 @@ function setPrintCharts(print){
 }
 window.addEventListener('beforeprint',function(){setPrintCharts(true);});
 window.addEventListener('afterprint',function(){setPrintCharts(false);});
+
+// ===== Exportar contexto para Claude =====
+function exportarContexto(){
+  const now=new Date();
+  const dateFmt=now.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+  let md='# Contexto de Saúde — Luiz Henrique Gobato\n';
+  md+=`**Exportado em:** ${dateFmt}\n\n`;
+  md+='> Arquivo gerado pelo dashboard de saúde para uso como contexto no Claude.\n\n---\n\n';
+
+  // === BIOIMPEDÂNCIA ===
+  md+='## Bioimpedância\n\n### Série histórica\n\n';
+  md+='| Data | Peso (kg) | Gordura % | Massa Musc. (kg) | Visceral | Água % |\n';
+  md+='|------|-----------|-----------|------------------|----------|--------|\n';
+  bL.forEach((d,i)=>{
+    const ano=i<5?'2025':'2026';
+    md+=`| ${d}/${ano} | ${bio.peso[i]} | ${bio.gc[i]}% | ${bio.mm[i]} | ${bio.visc[i]} | ${bio.agua[i]}% |\n`;
+  });
+  md+='\n### Massa muscular segmental (kg)\n\n';
+  md+='| Segmento | '+bL.join(' | ')+' | Meta |\n';
+  md+='|----------'+bL.map(()=>'|---').join('')+'|------|\n';
+  seg.forEach(s=>{
+    md+=`| ${s[0]} | `+s[1].map(v=>String(v).replace('.',',')).join(' | ')+` | ${String(s[2]).replace('.',',')} |\n`;
+  });
+  md+='\n### KPIs atuais (26/07/2026 vs dez/2025)\n\n';
+  document.querySelectorAll('#tab-bio .kbox').forEach(k=>{
+    const label=k.querySelector('.kl')?.textContent?.trim();
+    const value=k.querySelector('.kv')?.textContent?.trim();
+    const delta=k.querySelector('.kd')?.textContent?.trim();
+    const goal=k.querySelector('.goal')?.textContent?.trim();
+    if(label&&value) md+=`- **${label}:** ${value} (${delta}) — ${goal}\n`;
+  });
+  md+='\n**TMB InBody:** 1.909 kcal · **IMC:** 30,4\n\n---\n\n';
+
+  // === DIETA ===
+  md+='## Dieta — Protocolo Recomposição Corporal (jul/2026)\n\n';
+  const dt=document.querySelector('#tab-dieta .daytotal');
+  if(dt) md+=`**Meta calórica:** ${dt.querySelector('.dv')?.textContent?.trim()} (${dt.querySelector('.dm')?.textContent?.trim()})\n`;
+  md+='**Macros:** ~220g proteína · ~265g carboidrato · ~60g gordura\n';
+  md+='**TDEE:** TMB 1.909 + Musculação 45min (+350 kcal) + Caminhada inclinada 1h (+510 kcal) + NEAT (+380 kcal) = 3.150 kcal\n\n';
+  document.querySelectorAll('#tab-dieta .meal').forEach(meal=>{
+    const title=meal.querySelector('.mt')?.textContent?.trim();
+    const time=meal.querySelector('.mtime')?.textContent?.trim();
+    const items=[...meal.querySelectorAll('li')].map(li=>li.textContent?.trim()).filter(Boolean);
+    const total=meal.querySelector('.mtot')?.textContent?.trim();
+    if(title){
+      md+=`### ${title}${time?' ('+time+')':''}\n`;
+      items.forEach(item=>md+=`- ${item}\n`);
+      if(total) md+=`> ${total}\n`;
+      md+='\n';
+    }
+  });
+  md+='### Restrições alimentares\n';
+  md+='- Refluxo/esofagite grau B: última refeição sólida 2h antes de deitar\n';
+  md+='- LDL 158 mg/dL: evitar gordura saturada, priorizar azeite e ômega-3\n';
+  md+='- HbA1c 6,0% (pré-diabetes): carboidratos complexos, sem açúcar livre\n';
+  md+='- Genética TCF7L2: dieta mediterrânea favorável\n\n---\n\n';
+
+  // === EXAMES DE SANGUE ===
+  md+='## Exames de Sangue (última coleta: Jul/2026 — DASA)\n\n';
+  document.querySelectorAll('#tab-sangue .card').forEach(card=>{
+    const name=card.querySelector('.name')?.textContent?.trim();
+    const val=card.querySelector('.val')?.textContent?.trim();
+    const unit=card.querySelector('.unit')?.textContent?.trim();
+    const pill=card.querySelector('.pill')?.textContent?.trim();
+    const ref=card.querySelector('.ref')?.textContent?.trim();
+    if(name&&val) md+=`- **${name}:** ${val}${unit?' '+unit:''} [${pill||''}]${ref?' — ref: '+ref:''}\n`;
+  });
+  md+='\n---\n\n';
+
+  // === GENÉTICA ===
+  md+='## Exame Genético (Genera)\n\n';
+  document.querySelectorAll('#tab-gene .gcard').forEach(g=>{
+    const title=g.querySelector('.gt')?.textContent?.trim();
+    const pct=g.querySelector('.gpct')?.textContent?.trim();
+    const risk=g.querySelector('.gr')?.textContent?.trim();
+    const gene=g.querySelector('.gene')?.textContent?.trim();
+    const actions=[...(g.querySelectorAll('.act li')||[])].map(li=>li.textContent?.trim()).filter(Boolean);
+    if(title){
+      md+=`### ${title}${pct?' — '+pct:''}\n`;
+      if(risk) md+=`- Risco: ${risk}\n`;
+      if(gene) md+=`- Genes: ${gene}\n`;
+      actions.forEach(a=>md+=`- ${a}\n`);
+      md+='\n';
+    }
+  });
+  md+='---\n\n';
+
+  // === ENDOSCOPIA ===
+  md+='## Endoscopia Digestiva Alta (2023 · 2025 · 2026)\n\n';
+  const endoLead=document.querySelector('#tab-endo .lead');
+  if(endoLead){
+    [...endoLead.querySelectorAll('li')].forEach(li=>{
+      const tag=li.querySelector('.tag')?.textContent?.trim();
+      const text=li.querySelector('div')?.textContent?.trim();
+      if(text) md+=`- **[${tag||''}]** ${text}\n`;
+    });
+  }
+  document.querySelectorAll('#tab-endo .endo').forEach(endo=>{
+    const title=endo.querySelector('.et')?.textContent?.trim();
+    const date=endo.querySelector('.edate')?.textContent?.trim();
+    const concl=endo.querySelector('.concl')?.textContent?.trim();
+    if(title){ md+=`\n### ${title} — ${date}\n`; if(concl) md+=`> ${concl}\n`; }
+  });
+  md+='\n---\n\n';
+
+  // === QUALIDADE DE VIDA ===
+  md+='## Qualidade de Vida / Prioridades\n\n';
+  document.querySelectorAll('#tab-vida .prio').forEach(p=>{
+    const num=p.querySelector('.prio-num')?.textContent?.trim();
+    const title=p.querySelector('.pt')?.textContent?.trim();
+    const desc=p.querySelector('.pd')?.textContent?.trim();
+    if(title) md+=`${num}. **${title}** — ${desc}\n`;
+  });
+  md+='\n---\n\n*Gerado automaticamente pelo Dashboard de Saúde em '+dateFmt+'.*\n';
+
+  const blob=new Blob([md],{type:'text/markdown;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=`saude_contexto_${now.toISOString().slice(0,10)}.md`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 </script>
 </body>
