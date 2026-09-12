@@ -377,8 +377,8 @@
 <body>
 <header>
   <h1>🩸 Meus Exames de Sangue</h1>
-  <p>Luiz Henrique Gobato &nbsp;·&nbsp; 13 coletas de Mar/2019 a Jul/2026</p>
-  <div class="badge">Sangue: até 15/07/2026 (DASA) · Genético: Genera</div>
+  <p>Luiz Henrique Gobato &nbsp;·&nbsp; 14 coletas de Mar/2019 a Set/2026</p>
+  <div class="badge">Sangue: até 10/09/2026 (DASA) · Genético: Genera</div>
   <button class="export-btn" onclick="exportarContexto()">⬇️ Exportar contexto para Claude</button>
 </header>
 
@@ -387,8 +387,12 @@
   <div class="tab" data-tab="gene">🧬 Exame Genético</div>
   <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
   <div class="tab" data-tab="dieta">🍽️ Dieta Ideal</div>
+  <div class="tab" data-tab="treino">🏋️ Treinos</div>
+  <div class="tab" data-tab="diario">📔 Diário de Treino</div>
   <div class="tab" data-tab="endo">🔬 Endoscopia</div>
+  <div class="tab" data-tab="sono">😴 Sono (PSG)</div>
   <div class="tab" data-tab="vida">🌿 Qualidade de Vida</div>
+  <div class="tab" data-tab="meds">💊 Remédios & Suplementos</div>
 </div>
 
 <div class="wrap tabpane active" id="tab-sangue">
@@ -397,16 +401,20 @@
   <div class="lead">
     <h3>⚡ Resumo rápido — o que merece atenção</h3>
     <ul>
-      <li><span class="tag t-bad">PIOROU</span><div><b>Colesterol subiu bastante</b> no exame de Jul/2026: total <b>238</b> (era 201) e LDL <b>158</b> (era 138) — os mais altos da série. Prioridade para dieta e reavaliação médica.</div></li>
-      <li><span class="tag t-bad">ATENÇÃO</span><div><b>Hemoglobina glicada chegou a 6,0%</b> (era 5,7%) — dentro da faixa de pré-diabetes (5,7–6,4%) e subindo. Glicose de jejum em 98. Cuidar de açúcar e carboidratos.</div></li>
-      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Testosterona total seguindo em queda</b> (609 → 384 ng/dL). Ainda na faixa; livre (8,97) e biodisponível (210) normais.</div></li>
-      <li><span class="tag t-good">MELHOROU</span><div><b>Fígado normalizou!</b> TGO/TGP voltaram ao normal (23/26, eram 44/47). Ótimo.</div></li>
-      <li><span class="tag t-warn">OBSERVAR</span><div><b>Eosinófilos (8,6%) e linfócitos (43,3%) levemente altos</b> — pode ser alergia/quadro viral recente. Vale acompanhar. eGFR em 80 (levemente reduzido).</div></li>
-      <li><span class="tag t-good">OK</span><div><b>Vitaminas D (45), B12, ácido fólico, tireoide, função renal e hepática</b> em ordem. Ferro e ferritina normais. Sorologias (HIV, hepatites, sífilis) negativas. Lembre do <b>reforço da vacina de Hepatite B</b> (Anti-HBs baixo).</div></li>
+      <li><span class="tag t-bad">NOVO — 10/09/2026</span><div><b>Testosterona total disparou para 1.070,93 ng/dL</b> (era 384,47 em Jul/2026) — quase 3x maior, e agora <b>acima</b> do intervalo de referência (165–753). Livre (26,54) também ficou acima da faixa (até 24,6) e a biodisponível (621,92) foi para bem perto do teto (até 626). Efeito esperado do <b>clomifeno</b> (estimula LH → produção testicular de T), mas o salto é grande — vale confirmar com o médico que prescreveu se a dose está adequada.</div></li>
+      <li><span class="tag t-bad">NOVO — 10/09/2026</span><div><b>Estradiol mais que triplicou: 89,2 pg/mL</b> (era 15,9), bem acima do valor de referência para homens (até 39,8). É comum acompanhar um salto grande de testosterona (mais substrato para aromatização), mas nesse nível pode causar retenção de líquido, sensibilidade/aumento do tecido mamário e alterações de humor — sintomas a observar e relatar ao médico.</div></li>
+      <li><span class="tag t-warn">NOVO — 10/09/2026</span><div><b>Vitamina D caiu de 45 para 29 ng/mL</b> — ainda acima do mínimo de 20, mas bem abaixo da faixa ideal (30–60) e da sua predisposição genética a níveis baixos (GC). Retomar sol regular e conversar sobre suplementação.</div></li>
+      <li><span class="tag t-warn">NOVO — 10/09/2026</span><div><b>RDW discretamente alto (14,5%, ref. até 14,0%)</b> com anisocitose leve anotada no laudo — achado isolado e leve (ferro, ferritina, B12 e demais índices de hemácias normais). Linfócitos ainda um pouco altos (40,7%, ref. até 40%), mas eosinófilos normalizaram (5,9%, era 8,6%).</div></li>
+      <li><span class="tag t-good">NOVO — 10/09/2026</span><div><b>Coagulação (TP, RNI, TTPA), hemograma geral, TSH/T4 livre, prolactina, LH e metabolismo do ferro</b> todos normais neste exame.</div></li>
+      <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Colesterol total caiu para 191</b> (era 238) e <b>LDL caiu para 129</b> (era 158) — ainda na borda do ideal (colesterol total ligeiramente acima de 190, LDL já dentro da meta de &lt;130), mas melhora real frente ao pico de julho. HDL caiu de 65 para 47 (ainda acima do mínimo de 40, mas vale observar). Triglicérides seguem ótimos (56). Não-HDL em 144, ainda um pouco acima do ideal (&lt;130).</div></li>
+      <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Glicemia de jejum caiu para 80 mg/dL</b> (era 98) — dentro da faixa ótima. A hemoglobina glicada (6,0%, pré-diabetes) não foi reavaliada nesta coleta, então esse ponto ainda precisa de acompanhamento — glicemia de jejum isolada não substitui a HbA1c para essa avaliação.</div></li>
+      <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Função renal e hepática seguem normais</b>: creatinina 1,17, eGFR 83, ureia 43, TGO 29, TGP 27 — fígado mantém a melhora do exame de julho.</div></li>
+      <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Magnésio normal (2,1 mg/dL)</b> — primeiro resultado desse marcador no seu histórico, coerente com a suplementação que você já faz.</div></li>
+      <li><span class="tag t-good">OK</span><div>Ácido fólico e sorologias (HIV, hepatites, sífilis) negativas. Lembre do <b>reforço da vacina de Hepatite B</b> (Anti-HBs baixo).</div></li>
     </ul>
   </div>
 
-  <h2><span class="dot"></span>Panorama do último exame (Jul/2026)</h2>
+  <h2><span class="dot"></span>Panorama do exame mais recente (Set/2026, com itens de Jul/2026 ainda sem retestagem)</h2>
   <div id="cards"></div>
 
   <h2><span class="dot"></span>Sorologias — tudo negativo ✓</h2>
@@ -422,6 +430,10 @@
   <h2><span class="dot"></span>Evolução ao longo do tempo</h2>
   <div class="tablewrap">
     <table id="bigtable"></table>
+  </div>
+
+  <div class="disc" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.3);color:#bae6fd">
+    ⏳ <b>Único resultado ainda pendente da coleta de 10/09/2026</b> (segundo o próprio laudo): Zinco Sérico. Todos os demais itens (Ureia, Creatinina, Magnésio, Glicose, Perfil Lipídico, TGO, TGP) já saíram e foram atualizados. Assim que o Zinco sair, é só mandar que eu atualizo.
   </div>
 
   <div class="disc">
@@ -719,27 +731,27 @@
 <div class="wrap tabpane" id="tab-bio">
   <button class="print-btn" onclick="document.body.classList.add('printing-bio');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-bio')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
-    <h3>⚖️ Evolução corporal — set/2025 a jul/2026 (6 medições)</h3>
+    <h3>⚖️ Evolução corporal — set/2025 a ago/2026 (7 medições)</h3>
     <ul>
-      <li><span class="tag t-good">2025</span><div>De set a dez/2025: <b>-6,0 kg</b> (87,8 → 81,8 kg), gordura de 18,8% para 12,9% (−5,9 pts), visceral de 7 para 4. Evolução excelente em 4 meses.</div></li>
-      <li><span class="tag t-bad">REVERSÃO</span><div>De dez/25 a jul/26: <b>+11,4 kg</b> (81,8 → 93,2 kg), gordura de 12,9% para 23,5% (+10,6 pts), visceral de 4 para 10. Quase todo o ganho foi gordura em 7 meses.</div></li>
-      <li><span class="tag t-good">MÚSCULO</span><div><b>Massa muscular preservada em toda a série</b> (41,3–41,5 kg durante 2025, 41,4 kg agora). O ganho de peso em 2026 foi praticamente 100% gordura.</div></li>
-      <li><span class="tag t-bad">PRIORIDADE</span><div>Retomar protocolo com urgência. Dez/25 provou que é possível — <b>meta imediata: voltar a 82 kg</b> e gordura abaixo de 15%.</div></li>
+      <li><span class="tag t-good">RECUPERAÇÃO</span><div>De 26/07 a <b>13/08/2026</b> (18 dias): <b>-3,0 kg</b> (93,2 → 90,2 kg), sendo <b>-2,5 kg de gordura</b> (23,5% → 21,5%), visceral de 10 → 8, <b>músculo preservado</b> (41,4 kg). O protocolo voltou a funcionar.</div></li>
+      <li><span class="tag t-bad">REVERSÃO (contexto)</span><div>De dez/25 a jul/26 houve <b>+11,4 kg</b> (81,8 → 93,2 kg), quase tudo gordura — pico em 26/07. A partir daí a curva se inverteu (ver acima).</div></li>
+      <li><span class="tag t-good">MÚSCULO</span><div><b>Massa muscular preservada em toda a série</b> (41,3–41,5 kg). Tanto o ganho de 2026 quanto a perda atual pouparam a massa magra — ótimo sinal.</div></li>
+      <li><span class="tag t-good">RUMO À META</span><div>Continuar o protocolo. Ritmo saudável (~0,6 kg de gordura/semana) rumo a <b>~83 kg e gordura abaixo de 18%</b>.</div></li>
     </ul>
   </div>
 
-  <h2><span class="dot"></span>Onde você está hoje (26/07/2026)</h2>
+  <h2><span class="dot"></span>Onde você está hoje (13/08/2026)</h2>
   <div class="kpi">
-    <div class="kbox"><div class="kl">Peso</div><div class="kv">93,2 kg</div><div class="kd up">▲ 11,4 kg vs dez/25</div><div class="goal">Meta: 85 kg</div></div>
-    <div class="kbox"><div class="kl">Gordura corporal</div><div class="kv">23,5%</div><div class="kd up">▲ 10,6 pts vs dez/25</div><div class="goal">Meta: 18%</div></div>
-    <div class="kbox"><div class="kl">Massa de gordura</div><div class="kv">21,9 kg</div><div class="kd up">▲ 11,3 kg vs dez/25</div><div class="goal">Meta: 15 kg</div></div>
-    <div class="kbox"><div class="kl">Massa muscular</div><div class="kv">41,4 kg</div><div class="kd flat">▬ estável vs dez/25</div><div class="goal">Meta: 44 kg</div></div>
-    <div class="kbox"><div class="kl">Massa magra</div><div class="kv">71,3 kg</div><div class="kd flat">▬ estável vs dez/25</div><div class="goal">Meta: 70 kg</div></div>
-    <div class="kbox"><div class="kl">Água corporal</div><div class="kv">56,0%</div><div class="kd down">▼ 7,8 pts vs dez/25</div><div class="goal">Meta: 60%</div></div>
-    <div class="kbox"><div class="kl">Gordura visceral</div><div class="kv">10</div><div class="kd up">▲ 6 vs dez/25</div><div class="goal">Meta: 8</div></div>
-    <div class="kbox"><div class="kl">IMC</div><div class="kv">30,4</div><div class="kd up">▲ 3,7 vs dez/25</div><div class="goal">Meta: 25</div></div>
-    <div class="kbox"><div class="kl">Idade metabólica</div><div class="kv">N/D</div><div class="kd flat">▬ não medido</div><div class="goal">Meta: 30</div></div>
-    <div class="kbox"><div class="kl">TMB</div><div class="kv">1.909</div><div class="kd flat">▬ estável vs dez/25</div><div class="goal">Meta: 1.900</div></div>
+    <div class="kbox"><div class="kl">Peso</div><div class="kv">90,2 kg</div><div class="kd down">▼ 3,0 kg vs 26/07</div><div class="goal">Meta: 85 kg</div></div>
+    <div class="kbox"><div class="kl">Gordura corporal</div><div class="kv">21,5%</div><div class="kd down">▼ 2,0 pts vs 26/07</div><div class="goal">Meta: 18%</div></div>
+    <div class="kbox"><div class="kl">Massa de gordura</div><div class="kv">19,4 kg</div><div class="kd down">▼ 2,5 kg vs 26/07</div><div class="goal">Meta: 15 kg</div></div>
+    <div class="kbox"><div class="kl">Massa muscular</div><div class="kv">41,4 kg</div><div class="kd flat">▬ estável vs 26/07</div><div class="goal">Meta: 44 kg</div></div>
+    <div class="kbox"><div class="kl">Massa magra</div><div class="kv">70,8 kg</div><div class="kd flat">▬ estável vs 26/07</div><div class="goal">Meta: 70 kg</div></div>
+    <div class="kbox"><div class="kl">Água corporal</div><div class="kv">57,4%</div><div class="kd up">▲ 1,4 pts vs 26/07</div><div class="goal">Meta: 60%</div></div>
+    <div class="kbox"><div class="kl">Gordura visceral</div><div class="kv">8</div><div class="kd down">▼ 2 vs 26/07</div><div class="goal">Meta: 8 ✓</div></div>
+    <div class="kbox"><div class="kl">IMC</div><div class="kv">29,5</div><div class="kd down">▼ 0,9 vs 26/07</div><div class="goal">Meta: 25</div></div>
+    <div class="kbox"><div class="kl">Pontuação InBody</div><div class="kv">86</div><div class="kd flat">▬ /100</div><div class="goal">Meta: 90+</div></div>
+    <div class="kbox"><div class="kl">TMB</div><div class="kv">1.900</div><div class="kd flat">▬ estável</div><div class="goal">Meta: 1.900 ✓</div></div>
   </div>
 
   <h2><span class="dot"></span>Evolução no tempo</h2>
@@ -755,8 +767,8 @@
   <h2><span class="dot"></span>Massa muscular segmentar (kg)</h2>
   <div class="tablewrap"><table id="segtable"></table></div>
 
-  <div class="disc" style="background:rgba(245,158,11,.08);border-color:rgba(245,158,11,.3);color:#fcd9a4">
-    ⚠️ <b>Atenção:</b> em dez/2025 você estava em 81,8 kg e 12,9% de gordura — composição corporal de atleta. Nos 7 meses seguintes houve reversão expressiva (+11,4 kg, quase tudo gordura). Ponto positivo: <b>massa muscular intacta</b>. Prioridade: retomar o protocolo nutricional e voltar às marcas de dez/2025.
+  <div class="disc" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);color:#bbf7d0">
+    ✅ <b>Protocolo re-engajado e funcionando:</b> de 26/07 a 13/08/2026 (18 dias) você perdeu <b>3,0 kg</b> (93,2 → 90,2 kg), sendo <b>2,5 kg de gordura</b>, com <b>massa muscular preservada</b> (41,4 kg) e visceral de 10 → 8. Ritmo saudável (~0,6 kg de gordura/semana). Seguir o plano rumo à meta de ~83 kg e gordura abaixo de 18%.
   </div>
 </div>
 
@@ -766,9 +778,9 @@
   <div class="lead">
     <h3>🍽️ Dieta — protocolo recomposição corporal (jul/2026)</h3>
     <ul>
-      <li><span class="tag t-warn">CÁLCULO</span><div>TMB InBody: <b>1.909 kcal</b> · Musculação 45 min: <b>+350 kcal</b> · Caminhada inclinada 1h: <b>+510 kcal</b> · NEAT: <b>+380 kcal</b> → TDEE: <b>~3.150 kcal</b>. Pela TACO o cardápio entrega <b>~2.050 kcal</b> (déficit real ~1.100 kcal → ~1 kg/semana — muito agressivo, monitorar energia e desempenho no treino).</div></li>
-      <li><span class="tag t-good">MACROS (TACO)</span><div>Recalculado pela <b>Tabela TACO/UNICAMP</b>: Proteína <b>~210 g</b> (2,3 g/kg) para preservar músculo no déficit · Carboidrato <b>~192 g</b> concentrado pré/pós-treino · Gordura <b>~38 g</b>.</div></li>
-      <li><span class="tag t-warn">AJUSTE DE GORDURA</span><div>Com os ovos no café, a gordura está em <b>~48 g</b> — ainda abaixo do ideal para testosterona (384, em queda). Sugestão: subir para ~60 g trocando parte do carboidrato por <b>salmão, azeite extra ou castanhas</b>, sem exceder em saturada (LDL 158).</div></li>
+      <li><span class="tag t-warn">CÁLCULO (recalibrado)</span><div>TMB InBody: <b>1.900 kcal</b> (medido, peso 90,2) + NEAT <b>~290 kcal</b> + musculação 5x/semana (média diária <b>~260 kcal</b>) + cardio — 2x corrida 30min + 3x caminhada 45min/semana (média diária <b>~275 kcal</b>) → método semanal dá <b>~2.725 kcal</b>. Mas a perda de gordura já observada (2,5 kg em 18 dias a ~2.050 kcal) aponta um TDEE mais alto, <b>~3.120 kcal</b>. Usando a <b>média dos dois: ~2.920 kcal</b> até a próxima bioimpedância recalibrar. Cardápio ajustado para <b>~2.180 kcal</b> — déficit real <b>~740 kcal/dia (~0,67 kg gordura/semana)</b>, dentro da faixa recomendada de ~0,5-1%/semana para preservar massa magra em atletas treinados (Helms et al., 2014).</div></li>
+      <li><span class="tag t-good">MACROS (TACO)</span><div>Recalculado pela <b>Tabela TACO/UNICAMP</b>: Proteína <b>~235 g</b> (2,6 g/kg) para maximizar preservação de músculo em déficit · Carboidrato <b>~160 g</b> (caiu com a retirada do leite/banana do pós-treino) · Gordura <b>~62 g</b>.</div></li>
+      <li><span class="tag t-good">SEM PRÉ-TREINO</span><div>Treino em jejum, sem refeição antes da musculação. Pós-treino agora é só <b>whey + água + creatina</b> — mais simples, mas com bem menos carboidrato imediato pós-treino do que antes (sem leite/banana); se notar recuperação pior entre treinos, vale reavaliar.</div></li>
       <li><span class="tag t-bad">REFLUXO</span><div>Última refeição sólida com pelo menos <b>2h antes de deitar</b>. A ceia (22:00) é leve e semilíquida propositalmente — sem sólidos pesados à noite.</div></li>
       <li><span class="tag t-bad">PRÉ-DIABETES</span><div>HbA1c 6,0%: prefira carboidratos complexos, evite açúcar livre. Uma caminhada de 20–30 min após almoço ou jantar melhora a glicemia pós-prandial mesmo nos dias em que já treinou.</div></li>
     </ul>
@@ -776,21 +788,21 @@
 
   <h2><span class="dot"></span>Total do dia <span style="font-size:12px;color:var(--muted);font-weight:400">(calculado pela TACO)</span></h2>
   <div class="daytotal">
-    <div><div class="dl">Total pela TACO — opções A/1</div><div class="dm">déficit real ~1.100 kcal sobre TDEE de ~3.150 kcal</div></div>
-    <div class="dv">≈ 2.050 kcal</div>
+    <div><div class="dl">Total pela TACO — opções A/1</div><div class="dm">déficit real ~740 kcal sobre TDEE recalibrado de ~2.920 kcal — ritmo moderado</div></div>
+    <div class="dv">≈ 2.180 kcal</div>
   </div>
 
   <div style="display:flex;gap:12px;margin:10px 0 22px;flex-wrap:wrap;">
     <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
-      <div style="font-size:22px;font-weight:700;color:#60a5fa;">~215 g</div>
+      <div style="font-size:22px;font-weight:700;color:#60a5fa;">~235 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">PROTEÍNA</div>
     </div>
     <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
-      <div style="font-size:22px;font-weight:700;color:#34d399;">~250 g</div>
+      <div style="font-size:22px;font-weight:700;color:#34d399;">~160 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">CARBOIDRATO</div>
     </div>
     <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
-      <div style="font-size:22px;font-weight:700;color:#fbbf24;">~50 g</div>
+      <div style="font-size:22px;font-weight:700;color:#fbbf24;">~62 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">GORDURA</div>
     </div>
   </div>
@@ -800,20 +812,11 @@
   <h2><span class="dot"></span>Refeições do dia</h2>
 
   <div class="meal">
-    <div class="mh"><div class="mt">Pré-treino</div><div class="mtime">~7:00 · antes da musculação</div></div>
+    <div class="mh"><div class="mt">1 · Pós-treino</div><div class="mtime">~9:00 · imediatamente após musculação (treino em jejum, sem nada antes)</div></div>
     <ul>
-      <li>Opção A: 1 <b>banana média (120 g)</b> <span class="kc">110 kcal</span></li>
-      <li>Opção B: 30 g de <b>whey protein* com água</b> <span class="kc">114 kcal</span></li>
+      <li>30 g de <b>whey protein* com água</b> + <b>creatina 5 g</b> <span class="kc">114 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 110 kcal <span style="color:var(--muted);font-weight:400">(com Opção A)</span> &nbsp;·&nbsp; P 1 g · C 28 g · G 0 g</div>
-  </div>
-
-  <div class="meal">
-    <div class="mh"><div class="mt">1 · Pós-treino</div><div class="mtime">~9:00 · imediatamente após musculação</div></div>
-    <ul>
-      <li>30 g de <b>whey protein* com água</b> <span class="kc">114 kcal</span></li>
-    </ul>
-    <div class="mtot">Subtotal ≈ 114 kcal &nbsp;·&nbsp; P 24 g · C 3 g · G 2 g</div>
+    <div class="mtot">Subtotal ≈ 114 kcal &nbsp;·&nbsp; P 23 g · C 2 g · G 1 g</div>
   </div>
 
   <div class="meal">
@@ -821,7 +824,8 @@
     <ul>
       <li>Opção 1: <b>tapioca 40 g</b> + 2 <b>ovos mexidos</b> <span class="kc">285 kcal</span> <small style="color:var(--muted)">(tapioca 139 + ovos 146)</small></li>
       <li>Opção 2: 2 fatias de <b>pão integral (~50 g)</b> + 2 <b>ovos</b> (mexidos ou cozidos) <span class="kc">273 kcal</span> <small style="color:var(--muted)">(pão 127 + ovos 146)</small></li>
-      <li>Opção 3: <b>iogurte grego 0%* (170 g)</b> + <b>40 g de aveia em flocos</b> + 8 amêndoas <span class="kc">323 kcal</span> <small style="color:var(--muted)">(iogurte 100* + aveia 158 + amêndoas 65)</small></li>
+      <li>Opção 3: <b>iogurte grego 0%* (170 g)</b> + <b>40 g de aveia em flocos</b> + 8 amêndoas <span class="kc">314 kcal</span> <small style="color:var(--muted)">(iogurte 100* + aveia 158 + amêndoas 56)</small></li>
+      <li>Opção 4: <b>25 g de aveia em flocos</b> + <b>150 ml de leite desnatado</b> + <b>15 g de whey protein*</b> + <b>70 g de banana</b> <span class="kc">277 kcal</span> <small style="color:var(--muted)">(aveia 98 + leite 53* + whey 57* + banana 69 — TACO/rótulo médio)</small></li>
     </ul>
     <div class="mtot">Subtotal ≈ 285 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span> &nbsp;·&nbsp; P 14 g · C 35 g · G 10 g</div>
   </div>
@@ -829,13 +833,20 @@
   <div class="meal">
     <div class="mh"><div class="mt">3 · Almoço</div><div class="mtime">~13:00</div></div>
     <ul>
-      <li><b>70 g de arroz</b> branco ou integral (cozido) <span class="kc">90 kcal</span></li>
+      <li><b>90 g de arroz</b> branco ou integral (cozido) <span class="kc">115 kcal</span></li>
+      <li>Ou troque por: <b>220 g de batata inglesa cozida</b> <span class="kc">114 kcal</span> <small style="color:var(--muted)">(52 kcal/100g — TACO; porção maior em volume, mesma caloria)</small></li>
       <li><b>1 concha de feijão cozido (~80 g)</b> <span class="kc">62 kcal</span></li>
-      <li>180 g de <b>frango grelhado / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">286 kcal</span></li>
+      <li>Opção 1: 220 g de <b>frango grelhado / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">350 kcal</span></li>
+      <li>Opção 2: 160 g de <b>filé mignon grelhado</b> <span class="kc">352 kcal</span> <small style="color:var(--muted)">(220 kcal/100g — TACO)</small></li>
+      <li>Opção 3: 150 g de <b>sobrecoxa de frango sem pele</b>, grelhada ou assada <span class="kc">350 kcal</span> <small style="color:var(--muted)">(233 kcal/100g — TACO)</small></li>
+      <li>Opção 4: 145 g de <b>salmão grelhado</b> <span class="kc">352 kcal</span> <small style="color:var(--muted)">(243 kcal/100g — TACO)</small></li>
+      <li>Opção 5: 165 g de <b>lombo suíno grelhado</b> <span class="kc">347 kcal</span> <small style="color:var(--muted)">(210 kcal/100g — TACO)</small></li>
+      <li>Opção 6: 390 g de <b>camarão cozido</b> <span class="kc">351 kcal</span> <small style="color:var(--muted)">(90 kcal/100g — TACO; porção grande em volume, e colesterol dietético mais alto — não usar como opção principal todos os dias)</small></li>
+      <li>Opção 7: 4 <b>ovos inteiros cozidos</b> (200 g) + 4 <b>claras cozidas</b> (130 g) <span class="kc">360 kcal</span> <small style="color:var(--muted)">(ovos 292 + claras 68) — prática, mas melhor 1-2x/semana como variação, não como base diária</small></li>
       <li><b>Salada e vegetais</b> à vontade <span class="kc">20 kcal</span></li>
       <li>10 ml de <b>azeite extra-virgem</b> (tempero) <span class="kc">80 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 538 kcal &nbsp;·&nbsp; P 62 g · C 37 g · G 15 g</div>
+    <div class="mtot">Subtotal ≈ 629 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1 — demais opções mantêm calorias próximas, dentro de ±15 kcal)</span> &nbsp;·&nbsp; P 77 g · C 39 g · G 16 g</div>
   </div>
 
   <div class="meal">
@@ -843,7 +854,8 @@
     <ul>
       <li>Opção 1: <b>tapioca 40 g</b> + 2 <b>ovos mexidos</b> <span class="kc">285 kcal</span> <small style="color:var(--muted)">(tapioca 139 + ovos 146)</small></li>
       <li>Opção 2: 2 fatias de <b>pão integral (~50 g)</b> + 2 <b>ovos</b> (mexidos ou cozidos) <span class="kc">273 kcal</span> <small style="color:var(--muted)">(pão 127 + ovos 146)</small></li>
-      <li>Opção 3: <b>iogurte grego 0%* (170 g)</b> + <b>40 g de aveia em flocos</b> + 8 amêndoas <span class="kc">323 kcal</span> <small style="color:var(--muted)">(iogurte 100* + aveia 158 + amêndoas 65)</small></li>
+      <li>Opção 3: <b>iogurte grego 0%* (170 g)</b> + <b>40 g de aveia em flocos</b> + 8 amêndoas <span class="kc">314 kcal</span> <small style="color:var(--muted)">(iogurte 100* + aveia 158 + amêndoas 56)</small></li>
+      <li>Opção 4: <b>25 g de aveia em flocos</b> + <b>150 ml de leite desnatado</b> + <b>15 g de whey protein*</b> + <b>70 g de banana</b> <span class="kc">277 kcal</span> <small style="color:var(--muted)">(aveia 98 + leite 53* + whey 57* + banana 69 — TACO/rótulo médio)</small></li>
     </ul>
     <div class="mtot">Subtotal ≈ 285 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span> &nbsp;·&nbsp; P 14 g · C 35 g · G 10 g</div>
   </div>
@@ -851,32 +863,246 @@
   <div class="meal">
     <div class="mh"><div class="mt">5 · Jantar</div><div class="mtime">~19:30 · mínimo 2h antes de deitar</div></div>
     <ul>
-      <li><b>70 g de arroz</b> branco ou integral (cozido) <span class="kc">90 kcal</span></li>
+      <li><b>90 g de arroz</b> branco ou integral (cozido) <span class="kc">115 kcal</span></li>
+      <li>Ou troque por: <b>220 g de batata inglesa cozida</b> <span class="kc">114 kcal</span> <small style="color:var(--muted)">(52 kcal/100g — TACO; porção maior em volume, mesma caloria)</small></li>
       <li><b>1 concha de feijão cozido (~80 g)</b> <span class="kc">62 kcal</span></li>
-      <li>180 g de <b>frango grelhado / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">286 kcal</span></li>
+      <li>Opção 1: 220 g de <b>frango grelhado / peixe / carne magra</b> (patinho, alcatra, tilápia, atum) <span class="kc">350 kcal</span></li>
+      <li>Opção 2: 160 g de <b>filé mignon grelhado</b> <span class="kc">352 kcal</span> <small style="color:var(--muted)">(220 kcal/100g — TACO)</small></li>
+      <li>Opção 3: 150 g de <b>sobrecoxa de frango sem pele</b>, grelhada ou assada <span class="kc">350 kcal</span> <small style="color:var(--muted)">(233 kcal/100g — TACO)</small></li>
+      <li>Opção 4: 145 g de <b>salmão grelhado</b> <span class="kc">352 kcal</span> <small style="color:var(--muted)">(243 kcal/100g — TACO)</small></li>
+      <li>Opção 5: 165 g de <b>lombo suíno grelhado</b> <span class="kc">347 kcal</span> <small style="color:var(--muted)">(210 kcal/100g — TACO)</small></li>
+      <li>Opção 6: 390 g de <b>camarão cozido</b> <span class="kc">351 kcal</span> <small style="color:var(--muted)">(90 kcal/100g — TACO; porção grande em volume, e colesterol dietético mais alto — não usar como opção principal todos os dias)</small></li>
+      <li>Opção 7: 4 <b>ovos inteiros cozidos</b> (200 g) + 4 <b>claras cozidas</b> (130 g) <span class="kc">360 kcal</span> <small style="color:var(--muted)">(ovos 292 + claras 68) — prática, mas melhor 1-2x/semana como variação, não como base diária</small></li>
       <li><b>Salada e vegetais</b> à vontade <span class="kc">20 kcal</span></li>
       <li>10 ml de <b>azeite extra-virgem</b> <span class="kc">80 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 538 kcal &nbsp;·&nbsp; P 62 g · C 37 g · G 15 g</div>
+    <div class="mtot">Subtotal ≈ 629 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1 — demais opções mantêm calorias próximas, dentro de ±15 kcal)</span> &nbsp;·&nbsp; P 77 g · C 39 g · G 16 g</div>
   </div>
 
   <div class="meal">
     <div class="mh"><div class="mt">6 · Ceia</div><div class="mtime">~22:00 · leve, sem sólidos pesados (refluxo)</div></div>
     <ul>
-      <li>Opção 1: <b>15 g whey*</b> + <b>iogurte grego 0%* (100 g)</b> + 8 amêndoas <span class="kc">181 kcal</span> <small style="color:var(--muted)">(whey 57* + iogurte 59* + amêndoas 65)</small></li>
-      <li>Opção 2: <b>30 g whey*</b> em <b>200 ml leite desnatado</b> + 8 amêndoas <span class="kc">249 kcal</span> <small style="color:var(--muted)">(whey 114* + leite 70 + amêndoas 65)</small></li>
+      <li>Opção 1: <b>25 g whey*</b> (resto do pós-treino) + <b>iogurte grego 0%* (100 g)</b> + 12 amêndoas <span class="kc">238 kcal</span> <small style="color:var(--muted)">(whey 95* + iogurte 59* + amêndoas 84)</small></li>
+      <li>Opção 2: <b>40 g whey*</b> em <b>200 ml leite desnatado*</b> + 12 amêndoas <span class="kc">306 kcal</span> <small style="color:var(--muted)">(whey 152* + leite 70* + amêndoas 84)</small></li>
+      <li>Opção 3: <b>25 g whey*</b> (resto do pós-treino) + <b>iogurte grego 0%* (100 g)</b> + 9 castanhas de caju (~17 g) <span class="kc">251 kcal</span> <small style="color:var(--muted)">(whey 95* + iogurte 59* + castanhas 97)</small></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 181 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span> &nbsp;·&nbsp; P 26 g · C 7 g · G 7 g</div>
+    <div class="mtot">Subtotal ≈ 238 kcal <span style="color:var(--muted);font-weight:400">(com Opção 1)</span> &nbsp;·&nbsp; P 31 g · C 9 g · G 9 g</div>
   </div>
 
-  <div class="swap"><b>Carboidratos intercambiáveis pelo arroz (mesma porção cozida ~70 g):</b> batata doce, mandioca, mandioquinha, inhame, cará, arroz integral. Pão integral: 1 fatia = 25–30 g. Tapioca: 40 g.</div>
+  <div class="swap"><b>Carboidratos intercambiáveis pelo arroz (mesma porção cozida ~90 g):</b> batata doce, mandioca, mandioquinha, inhame, cará, arroz integral. Pão integral: 1 fatia = 25–30 g. Tapioca: 40 g.</div>
   <div class="swap"><b>Vegetais e folhas (à vontade, sem azeite extra):</b> alface, rúcula, agrião, brócolis, abobrinha, pepino, tomate, pimentão, cebola, couve, espinafre, champignon, palmito.</div>
-  <div class="swap"><b>Caminhada inclinada (1h/dia):</b> pode ser imediatamente após a musculação (sessão única de ~1h45) <i>ou</i> separada à tarde (~16:00–17:00, usando a Ref 4 como pré-caminhada). O total calórico do dia é o mesmo nos dois casos.</div>
+  <div class="swap"><b>Cardio (corrida ~30min 2x/semana + caminhada Z2 ~45min 3x/semana):</b> pode ser imediatamente após a musculação <i>ou</i> separada à tarde (~16:00–17:00, usando a Ref 4 como pré-cardio). Ver cardápio completo de cardio na aba 🏋️ Treinos.</div>
   <div class="swap"><b>Bateu fome?</b> Gelatina diet à vontade · Chá sem açúcar à vontade · Café sem açúcar até 14h.</div>
-  <div class="swap"><b>Suplementos recomendados:</b> Whey 40 g pós-treino + 30 g na ceia · Creatina 5 g/dia (pós-treino, no whey) · Ômega-3 2 g/dia com almoço ou jantar (auxilia LDL e inflamação) · Vitamina D + Magnésio conforme exames.</div>
+  <div class="swap"><b>Vontade de doce depois da refeição?</b> 1-2 quadrados (~10 g) de <b>chocolate amargo ≥70% cacau</b> · <b>Frutas vermelhas</b> (morango, framboesa, mirtilo) — baixo índice glicêmico, boas com sua HbA1c 6,0% · <b>Iogurte grego 0%* + canela + adoçante</b> (stevia/eritritol) · 1 fruta pequena inteira (maçã, pera, kiwi) — evite suco. Evitar doce industrializado e açúcar refinado — é justamente o ponto que sua genética (FTO/SLC2A2) exige mais atenção.</div>
+  <div class="swap"><b>Suplementos recomendados:</b> Whey 30 g pós-treino + 25 g na ceia · Creatina 5 g/dia (pós-treino, no whey) · Ômega-3 2 g/dia com almoço ou jantar (auxilia LDL e inflamação) · Vitamina D + Magnésio conforme exames.</div>
 
   <div class="disc">
-    ⚠️ Calorias pela <b>Tabela TACO (UNICAMP)</b>; itens com <b>*</b> (whey, iogurte grego, cottage) usam rótulo médio de mercado. Total do dia ≈ <b>2.050 kcal</b> (opções A/1) → déficit real <b>~1.100 kcal/dia</b> sobre TDEE ~3.150 kcal — déficit muito agressivo (~1 kg/semana), monitore de perto energia e desempenho no treino; se sentir fraqueza, aumente o arroz ou adicione um lanche. Gordura: <b>~46 g</b>. <b>Não substitui acompanhamento nutricional.</b> Revisar a cada nova bioimpedância.
+    ⚠️ Calorias pela <b>Tabela TACO (UNICAMP)</b>; itens com <b>*</b> (whey, iogurte grego, leite desnatado líquido) usam rótulo médio de mercado — TACO só lista leite em pó. Total do dia ≈ <b>2.180 kcal</b> (opções A/1) → déficit real <b>~740 kcal/dia</b> sobre TDEE recalibrado ~2.920 kcal — ritmo moderado (~0,67 kg de gordura/semana), dentro da faixa considerada segura para preservar massa magra e testosterona em déficit. TDEE é média entre o cálculo pela frequência real de treino (~2.725 kcal, 2x corrida 30min + 3x caminhada 45min/semana) e o que a perda de gordura observada sugere (~3.120 kcal) — ainda uma estimativa, recalibrar na próxima bioimpedância. Sem refeição pré-treino (treino em jejum) e pós-treino agora só com whey+água+creatina, sem carboidrato junto. Gordura: <b>~62 g</b>. <b>Não substitui acompanhamento nutricional.</b> Revisar a cada nova bioimpedância — se sentir fraqueza no treino em jejum ou recuperação pior, considere voltar a incluir leite/banana no pós-treino.
+  </div>
+</div>
+
+<!-- ===================== ABA TREINOS ===================== -->
+<div class="wrap tabpane" id="tab-treino">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+
+  <div class="lead">
+    <h3>🏋️ Treino — periodização de 12 semanas, foco em pernas</h3>
+    <ul>
+      <li><span class="tag t-warn">ESTRUTURA</span><div><b>3 blocos de 4 semanas</b> (Base → Intensidade → Pico), com <b>deload nas semanas 4, 8 e 12</b> (2 séries de trabalho, ~70% da carga) — periodização padrão para evitar estagnação e acúmulo de fadiga em treino avançado.</div></li>
+      <li><span class="tag t-good">FOCO</span><div>3 dos 5 dias de força são de <b>pernas</b> (superior já bem desenvolvido, conforme você avaliou) — alinhado com seu perfil genético favorável para força e massa muscular (ACTN3, PPARD, CNTF).</div></li>
+      <li><span class="tag t-bad">PRÉ-REQUISITO</span><div><b>HIIT (a partir da semana 5) só após check-up cardiológico</b> — pré-diabetes (HbA1c 6,0%) + LDL alto (158) justificam estratificação de risco antes de exercício vigoroso, conforme diretrizes do ACSM.</div></li>
+      <li><span class="tag t-warn">REFLUXO</span><div>Sem abdominal tradicional deitado (piora pressão intra-abdominal com hérnia de hiato) — <b>Pallof press, prancha, hiperextensão e bird-dog</b> nos dias de perna, no lugar.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Estrutura da semana</h2>
+  <div class="week">
+    <div class="wday wstr"><div class="wn">Seg</div><div class="wact">🏋️ Pernas A<br>Quadríceps</div></div>
+    <div class="wday wstr"><div class="wn">Ter</div><div class="wact">💪 Superior A</div></div>
+    <div class="wday wrest"><div class="wn">Qua</div><div class="wact">😴 Descanso<br>(ou caminhada leve)</div></div>
+    <div class="wday wstr"><div class="wn">Qui</div><div class="wact">🏋️ Pernas B<br>Posterior</div></div>
+    <div class="wday wstr"><div class="wn">Sex</div><div class="wact">💪 Superior B</div></div>
+    <div class="wday won"><div class="wn">Sáb</div><div class="wact">🏋️ Pernas C<br>+ cardio forte</div></div>
+    <div class="wday wrest"><div class="wn">Dom</div><div class="wact">😴 Descanso<br>total</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Os 3 blocos</h2>
+  <div class="grid">
+    <div class="qcard">
+      <div class="qh">1️⃣ Base — semanas 1-4</div>
+      <div class="qbody">Volume moderado, foco em técnica e progressão de carga controlada nos compostos. Cardio: caminhada Z2 + corrida leve, sem HIIT. <b>Deload na semana 4.</b></div>
+    </div>
+    <div class="qcard">
+      <div class="qh">2️⃣ Intensidade — semanas 5-8</div>
+      <div class="qbody">Cargas mais altas nos compostos principais (dentro de 4-6 a 6-10 reps). <b>HIIT liberado só após check-up cardiológico</b> — 1x/semana, nunca em dias seguidos. <b>Deload na semana 8.</b></div>
+    </div>
+    <div class="qcard">
+      <div class="qh">3️⃣ Pico — semanas 9-12</div>
+      <div class="qbody">Maior intensidade relativa do bloco; volume de isolamento ajustado para gerenciar fadiga acumulada. Reavaliar bioimpedância e exames (HbA1c, lipídico, T) antes de decidir o próximo ciclo. <b>Deload na semana 12.</b></div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Séries, reps e descanso</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Categoria</th><th>Séries × reps</th><th>Descanso</th><th>Exemplo</th></tr>
+      <tr><td>Compostos principais</td><td>4×6-10</td><td>2-3 min</td><td>Agachamento, terra romeno, supino</td></tr>
+      <tr><td>Secundários</td><td>3×8-12</td><td>90s-2min</td><td>Leg press, remada, desenvolvimento</td></tr>
+      <tr><td>Isolamento</td><td>3×12-15</td><td>60-90s</td><td>Cadeira extensora, elevação lateral</td></tr>
+      <tr><td>Aquecimento (1º composto do dia)</td><td>2 séries: 40%×6-8, 80%×2-3</td><td>—</td><td>Antes da 1ª série de trabalho</td></tr>
+    </table>
+  </div>
+
+  <h2><span class="dot"></span>Treino detalhado por dia</h2>
+  <div class="grid">
+    <div class="qcard">
+      <div class="qh">Segunda — Pernas A (quadríceps)</div>
+      <div class="qbody">
+        <ul>
+          <li>Agachamento livre — 4×6-10</li>
+          <li>Leg press 45° — 3×8-12</li>
+          <li>Cadeira extensora — 3×12-15</li>
+          <li>Avanço/afundo — 3×8-12 por perna</li>
+          <li>Panturrilha em pé — 4×12-15</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">Terça — Superior A</div>
+      <div class="qbody">
+        <ul>
+          <li>Supino reto — 4×6-10</li>
+          <li>Puxada alta / barra fixa — 4×6-10</li>
+          <li>Desenvolvimento militar — 3×8-12</li>
+          <li>Remada baixa — 3×8-12</li>
+          <li>Rosca direta + tríceps corda — 3×12-15 cada</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">Quarta — Descanso (ou caminhada leve)</div>
+      <div class="qbody">Sem treino estruturado no meio da semana — quebra a sequência de dias seguidos para recuperação sistêmica (sono, cortisol, testosterona), não só muscular. Se quiser, uma caminhada leve/Z2 encaixa bem aqui como recuperação ativa.</div>
+    </div>
+    <div class="qcard">
+      <div class="qh">Quinta — Pernas B (posterior)</div>
+      <div class="qbody">
+        <ul>
+          <li>Terra romeno — 4×6-10</li>
+          <li>Mesa flexora — 3×8-12</li>
+          <li>Cadeira flexora unilateral — 3×10-12 por perna</li>
+          <li>Elevação pélvica (hip thrust) — 3×8-12</li>
+          <li><b>Core/lombar:</b> Pallof press 3×10-12/lado + prancha 3×30-45s</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">Sexta — Superior B</div>
+      <div class="qbody">
+        <ul>
+          <li>Supino inclinado (halteres) — 4×6-10</li>
+          <li>Remada curvada — 4×6-10</li>
+          <li>Elevação lateral — 3×12-15</li>
+          <li>Tríceps testa/puxada — 3×12-15</li>
+          <li>Rosca alternada — 3×12-15</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">Sábado — Pernas C (glúteo/unilateral) + cardio forte</div>
+      <div class="qbody">
+        <ul>
+          <li>Agachamento búlgaro — 4×8-10 por perna</li>
+          <li>Stiff unilateral — 3×8-10 por perna</li>
+          <li>Abdução de quadril — 3×12-15</li>
+          <li>Cadeira adutora — 3×12-15</li>
+          <li><b>Core/lombar:</b> Hiperextensão 3×12-15 + bird-dog 3×10/lado</li>
+          <li>Depois da musculação: a opção mais intensa do cardápio de cardio da semana (corrida mais longa ou, a partir da liberação médica, o HIIT)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="qcard">
+      <div class="qh">Domingo — Descanso total</div>
+      <div class="qbody">Nenhum treino estruturado — só atividade leve espontânea se quiser. Junto com a quarta, são os 2 dias de recuperação da semana, agora distribuídos em vez de empilhados só no fim.</div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Cardio — cardápio flexível (não é dia fixo)</h2>
+  <div class="qcard">
+    <div class="qh">🏃 Regras</div>
+    <div class="qbody">
+      <ul>
+        <li><b>2x corrida leve/semana (~30 min)</b> + <b>3x caminhada Z2/semana (~45 min)</b> + 1x HIIT/semana a partir da semana 5 (só após liberação cardiológica)</li>
+        <li>2 dias de recuperação por semana: quarta (leve/opcional) e domingo (descanso total, sem cardio)</li>
+        <li>Corrida nunca sobe mais de 10% de duração sobre a mais longa dos últimos 30 dias</li>
+        <li>HIIT nunca em dias seguidos</li>
+        <li>Nos dias de musculação, cardio sempre depois dela, no mesmo dia; na quarta (sem musculação), a caminhada leve pode entrar isolada como recuperação ativa</li>
+        <li>Volume alvo: ~195-250 min/semana nas semanas de trabalho (próximo da faixa ACSM de perda de peso clinicamente significativa, &gt;250 min/semana); mais baixo nas semanas de deload</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>Alongamento & mobilidade</h2>
+  <div class="qcard">
+    <div class="qh">🧘 Antes do treino — mobilidade dinâmica (5-8 min)</div>
+    <div class="qbody">
+      <ul>
+        <li>Alongamento <b>estático não entra antes de força/potência</b>: evidência consistente (revisões sistemáticas com meta-análise) mostra um <b>"stretch-induced force deficit"</b> — perda aguda de força e potência logo após alongar estaticamente, principalmente com holds ≥60s. O efeito é transitório (some em minutos), mas não ajuda quem está progredindo carga.</li>
+        <li>Em vez disso: <b>mobilidade dinâmica</b> (agachamento com peso corporal, leg swings, círculos de quadril, ativação de glúteo, marcha com elevação de joelho) — aquece a articulação, mantém ou até melhora ROM e desempenho, sem o efeito de queda de força do alongamento estático.</li>
+        <li>Foco em <b>quadril, joelho e tornozelo</b> nos dias de perna (que são 3 dos 5 treinos da sua semana) — mobilidade de quadril e tornozelo adequada reduz sobrecarga compensatória no joelho, relevante pela sua predisposição genética a osteoartrite de joelho (MCF2L).</li>
+      </ul>
+    </div>
+  </div>
+  <div class="qcard">
+    <div class="qh">🧘 Depois do treino — alongamento estático (8-10 min)</div>
+    <div class="qbody">
+      <ul>
+        <li>É o momento certo para o alongamento estático clássico: músculo já aquecido, sem risco de prejudicar o treino que já acabou. <b>Não reduz de forma relevante a dor muscular tardia (DOMS)</b> — revisões sistemáticas mostram efeito pequeno e sem significância clínica nisso — mas é a forma mais eficiente de ganhar <b>amplitude de movimento (ROM)</b> a médio prazo quando feito com regularidade.</li>
+        <li>Protocolo sugerido (ACSM): <b>2-4 séries de 10-30s por músculo</b>, sem dor, respiração controlada. Priorize os grupos mais usados nos seus treinos de perna: <b>quadríceps, isquiotibiais, glúteo, panturrilha</b> — e adicione <b>peitoral/dorsal</b> nos dias de superior.</li>
+        <li>Ganho de ROM/flexibilidade é especialmente relevante no seu caso pela <b>menor densidade óssea</b> (WNT16) e predisposição a <b>osteoartrite de joelho</b> — manter boa mobilidade articular é parte da proteção das articulações a longo prazo, junto com o fortalecimento muscular que já está no plano.</li>
+        <li>Frequência mínima eficaz: <b>2-3x/semana</b>; ideal é fazer <b>nos 5 dias de treino</b>, já que o alongamento pós-treino aproveita o aquecimento que você já fez.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="disc">
+    ⚠️ Este plano organiza os princípios que você definiu (periodização, foco em pernas, cuidados com refluxo e pré-diabetes) em uma estrutura de treino. Os exercícios listados são <b>sugestões consistentes com o desenho do plano</b>, não uma prescrição individualizada — ajuste conforme equipamento disponível, limitações articulares e orientação de um educador físico. Progressão de carga deve respeitar técnica antes de peso.
+  </div>
+</div>
+
+<!-- ===================== ABA DIÁRIO DE TREINO ===================== -->
+<div class="wrap tabpane" id="tab-diario">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+
+  <div class="lead">
+    <h3>📔 Diário de Treino — aderência real vs. plano</h3>
+    <ul>
+      <li><span class="tag t-good">COMO FUNCIONA</span><div>Registro das sessões conforme executadas (dados do Apple Watch/Apple Fitness). Manda o print do resumo da atividade e eu adiciono uma linha aqui — assim dá pra comparar o que foi feito de fato com o plano das abas 🏋️ Treinos (musculação 5x/semana + 2x corrida ~30min + 3x caminhada Z2 ~45min) e 🍽️ Dieta (TDEE calculado a partir dessa frequência real).</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Sessões registradas</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Data</th><th>Atividade</th><th>Duração</th><th>Distância</th><th>Cal. ativas (relógio)</th><th>Cal. ativas — estimativa ajustada*</th><th>Cal. totais</th><th>Ritmo médio</th><th>BPM médio</th><th>Esforço</th></tr>
+      <tr><td>09/09/2026 (qua)</td><td>Caminhada interna (esteira)</td><td>45:24</td><td>4,01 km</td><td>235 kcal</td><td>~190–210 kcal</td><td>324 kcal</td><td>11'19"/km</td><td>109 bpm</td><td>3/10 (Fácil)</td></tr>
+      <tr><td>10/09/2026 (qui)</td><td>Treino funcional de força (pernas)</td><td>47:29</td><td>—</td><td>312 kcal</td><td>~190–235 kcal</td><td>405 kcal</td><td>—</td><td>125 bpm (pico 163)</td><td>não registrado</td></tr>
+      <tr><td>10/09/2026 (qui)</td><td>Caminhada interna (esteira)</td><td>45:05</td><td>4,19 km</td><td>362 kcal</td><td>~290–325 kcal</td><td>450 kcal</td><td>10'45"/km</td><td>126 bpm</td><td>4/10 (Moderado)</td></tr>
+      <tr><td>11/09/2026 (sex)</td><td>Treino funcional de força</td><td>55:12</td><td>—</td><td>284 kcal</td><td>~170–215 kcal</td><td>392 kcal</td><td>—</td><td>114 bpm</td><td>não registrado</td></tr>
+      <tr><td>11/09/2026 (sex)</td><td>Caminhada interna (esteira)</td><td>30:19</td><td>3,63 km</td><td>351 kcal</td><td>~245–280 kcal</td><td>410 kcal</td><td>8'21"/km</td><td>159 bpm</td><td>6/10 (Moderado)</td></tr>
+    </table>
+  </div>
+  <p style="color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6">*<b>Estimativa ajustada</b>, não medição real: aplica um desconto sobre as calorias ativas do relógio, baseado no erro médio do Apple Watch vs. calorimetria indireta (padrão-ouro) medido em estudo publicado (Shcherbina et al., <i>J Pers Med</i>, 2017, Stanford) — erro menor em caminhada (~10–20% de superestimação) e maior em treino de força (~25–40%), porque o algoritmo baseado em frequência cardíaca capta mal o gasto de exercícios de resistência/força. É uma faixa aproximada da literatura, não o seu gasto calórico real medido — só calorimetria indireta ou água duplamente marcada dariam esse número com precisão.</p>
+
+  <div class="disc" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);color:#bbf7d0">
+    ✅ 09/09: caminhada em ritmo leve/fácil (109 bpm médio) — compatível com trabalho em zona 2 (Z2), coerente com o objetivo de recuperação ativa sem estresse cardiovascular alto. 10/09: treino de perna (125 bpm médio, pico 163) seguido de caminhada (126 bpm médio, esforço 4/10) — dia combinado força + cardio, coerente com o dia de "Pernas + cardio" do split semanal. Ritmo da caminhada (10'45"/km) um pouco mais puxado que o de 09/09, ainda dentro de zona 2 pro seu perfil.
+  </div>
+
+  <div class="disc" style="background:rgba(250,204,21,.08);border-color:rgba(250,204,21,.3);color:#fde68a">
+    ⚠️ 11/09: treino de perna leve (114 bpm médio, mais baixo que os dois registros anteriores). A "caminhada" seguinte, porém, foi a mais intensa do diário até aqui — 8'21"/km de ritmo médio (parciais de 7'45" e 7'27"/km são ritmo de corrida, não caminhada) e <b>159 bpm médio</b>, esforço percebido 6/10. Isso está bem acima de zona 2 (Z2 fica, pro seu perfil, na faixa de ~110-130 bpm) — foi, na prática, um treino de intensidade moderada-alta, mais parecido com as sessões de "corrida leve" do plano do que com a "caminhada Z2". Não é um problema em si, mas vale registrar como corrida/esteira em ritmo mais forte, não caminhada de recuperação — ritmo e frequência cardíaca desse nível não cumprem o papel de recuperação ativa que a caminhada Z2 tem no plano.
+  </div>
+
+  <div class="disc">
+    ⚠️ Este diário é um registro dos seus próprios dados de atividade (Apple Watch/Fitness) para acompanhamento de aderência — não é uma prescrição nem substitui avaliação de um educador físico. Esforço percebido (escala 1-10) ajuda a calibrar o plano ao longo do tempo; quando não informado, fica marcado como "não registrado".
   </div>
 </div>
 
@@ -958,6 +1184,99 @@
   </div>
 </div>
 
+<!-- ===================== ABA SONO (POLISSONOGRAFIA) ===================== -->
+<div class="wrap tabpane" id="tab-sono">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+
+  <div class="lead">
+    <h3>😴 Polissonografia — 19/08/2026 (Hospital São Camilo)</h3>
+    <ul>
+      <li><span class="tag t-warn">DIAGNÓSTICO</span><div><b>Apneia obstrutiva do sono LEVE</b> — IAH (índice de apneia+hipopneia) de <b>10,1/h</b> (faixa leve: 5-15/h, critério AASM). 1 apneia obstrutiva + 58 hipopneias na noite; nenhuma apneia central ou mista.</div></li>
+      <li><span class="tag t-warn">PADRÃO REM</span><div>Eventos respiratórios concentrados no <b>sono REM</b> (índice 17,7/h) vs. NREM (8,1/h) — mais que o dobro. SpO2 mínima de <b>88%</b>, com dessaturação leve associada aos eventos (23 dessaturações na noite).</div></li>
+      <li><span class="tag t-warn">SONO FRAGMENTADO</span><div><b>96 despertares</b> na noite (índice 14,3/h). Ronco constante de leve a moderada intensidade registrado durante o exame.</div></li>
+      <li><span class="tag t-good">EFICIÊNCIA NORMAL</span><div>Eficiência do sono <b>87,1%</b> (normal &gt;85%) e latência para adormecer de apenas 4,5 min — sem dificuldade para pegar no sono.</div></li>
+      <li><span class="tag t-warn">ARQUITETURA</span><div><b>REM discretamente reduzido</b> (17,4% do sono, abaixo do range típico de ~20-25%) e leve aumento do sono N3/ondas lentas — conforme observado no laudo.</div></li>
+      <li><span class="tag t-bad">CONECTA COM</span><div>Sono fragmentado e apneia, mesmo leve, são fatores conhecidos associados a <b>menor testosterona</b> (você já tem queda registrada: 609→384 ng/dL) e a <b>piora da sensibilidade à insulina</b> (sua HbA1c está em 6,0%, pré-diabetes). Vale levar este laudo ao médico que acompanha esses dois quadros — não dá pra afirmar causalidade só com esse exame, mas é uma peça a mais no quebra-cabeça.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Resumo do exame — 19/08/2026 23:07 às 20/08/2026 05:51</h2>
+  <div class="kpi">
+    <div class="kbox"><div class="kl">Eficiência do sono</div><div class="kv">87,1%</div><div class="goal">Normal &gt; 85%</div></div>
+    <div class="kbox"><div class="kl">IAH (apneia+hipopneia)</div><div class="kv">10,1 /h</div><div class="goal">Leve: 5-15/h</div></div>
+    <div class="kbox"><div class="kl">SpO2 mínima</div><div class="kv">88%</div><div class="goal">Meta: &gt;90%</div></div>
+    <div class="kbox"><div class="kl">Despertares</div><div class="kv">96</div><div class="goal">Índice 14,3/h</div></div>
+    <div class="kbox"><div class="kl">Latência para dormir</div><div class="kv">4,5 min</div><div class="goal">Normal</div></div>
+    <div class="kbox"><div class="kl">Latência sono REM</div><div class="kv">79 min</div><div class="goal">Normal</div></div>
+    <div class="kbox"><div class="kl">Tempo total de sono</div><div class="kv">351 min</div><div class="goal">≈5h51 (TTR 6h44)</div></div>
+    <div class="kbox"><div class="kl">Total de dessaturações</div><div class="kv">23</div><div class="goal">SpO2 predom. 94%</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Estágios do sono</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Estágio</th><th>Minutos</th><th>% do TTS</th><th>Referência adulto*</th></tr>
+      <tr><td>N1</td><td>19,0</td><td>5,4%</td><td style="color:#64748b">2–5%</td></tr>
+      <tr><td>N2</td><td>218,0</td><td>62,1%</td><td style="color:#64748b">45–55%</td></tr>
+      <tr><td>N3 (ondas lentas)</td><td>53,0</td><td>15,1%</td><td style="color:#64748b">13–23%</td></tr>
+      <tr><td>REM</td><td>61,0</td><td>17,4%</td><td style="color:#64748b">20–25%</td></tr>
+      <tr><td>Vigília</td><td>52,0</td><td>12,9%</td><td style="color:#64748b">—</td></tr>
+    </table>
+  </div>
+  <p style="color:var(--muted);font-size:12px;margin-top:8px">*Faixas de referência gerais para adultos (literatura de medicina do sono), não são um valor de corte diagnóstico. N2 acima do típico e REM discretamente abaixo — consistente com a conclusão do próprio laudo.</p>
+
+  <h2><span class="dot"></span>Eventos respiratórios</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th>Tipo</th><th>Número</th><th>Índice (/h)</th><th>Duração média</th></tr>
+      <tr><td>Apneia obstrutiva</td><td>1</td><td>0,2</td><td>14,0 s</td></tr>
+      <tr><td>Apneia central</td><td>0</td><td>0,0</td><td>—</td></tr>
+      <tr><td>Apneia mista</td><td>0</td><td>0,0</td><td>—</td></tr>
+      <tr><td>Hipopneias</td><td>58</td><td>9,7</td><td>19,4 s</td></tr>
+      <tr><td><b>Apneia + Hipopneia (IAH)</b></td><td><b>59</b></td><td><b>10,1</b></td><td>19,0 s</td></tr>
+      <tr><td>RERA</td><td>0</td><td>0,0</td><td>—</td></tr>
+    </table>
+  </div>
+  <div class="rastreio-grid" style="margin-top:12px">
+    <div class="rcard"><div class="rh">Índice em sono REM</div><div class="rb">17,7 eventos/h — mais que o dobro do NREM</div></div>
+    <div class="rcard"><div class="rh">Índice em sono NREM</div><div class="rb">8,1–8,3 eventos/h</div></div>
+    <div class="rcard"><div class="rh">Índice na posição supino</div><div class="rb">8,9 eventos/h (A+H+RERA) — dormir de lado costuma ajudar em apneia posicional</div></div>
+    <div class="rcard"><div class="rh">PLMS (movimento periódico de pernas)</div><div class="rb">0 eventos — ausente</div></div>
+  </div>
+
+  <h2><span class="dot"></span>Oximetria e frequência cardíaca</h2>
+  <div class="tablewrap">
+    <table>
+      <tr><th></th><th>Sono</th><th>NREM</th><th>REM</th><th>Vigília</th></tr>
+      <tr><td>SpO2 média</td><td>93%</td><td>93%</td><td>93%</td><td>93%</td></tr>
+      <tr><td>SpO2 mínima</td><td>88%</td><td>90%</td><td>88%</td><td>88%</td></tr>
+      <tr><td>FC média (bpm)</td><td style="color:#64748b">—</td><td>55,6</td><td>58,1</td><td>59,5</td></tr>
+      <tr><td>FC máxima (bpm)</td><td style="color:#64748b">—</td><td>85</td><td>77</td><td>95</td></tr>
+    </table>
+  </div>
+
+  <h2><span class="dot"></span>Conclusão do laudo</h2>
+  <p style="color:var(--muted);font-size:12.5px;margin:-4px 0 12px">Dr. Victor Alexandre Dantas de Miranda — Neurologia e Medicina do Sono, CRM-SP 146.905</p>
+  <div class="qcard">
+    <div class="qbody">
+      <ul>
+        <li>Índice de distúrbio respiratório aumentado, caracterizando <b>apneia LEVE</b> (IAH 5–15)</li>
+        <li>Discreta dessaturação da oxihemoglobina associada aos eventos respiratórios anormais, atingindo SpO2 mínima de 88%</li>
+        <li>Aumento do índice de despertares, fragmentando o sono</li>
+        <li>Presença de ronco constante de leve a moderada intensidade</li>
+        <li>Eficiência do sono normal</li>
+        <li>Latência reduzida para início do sono, porém normal para sono REM</li>
+        <li>Arquitetura do sono evidenciando discreta redução do sono REM e aumento do sono de ondas lentas (N3)</li>
+        <li>Ausência de movimento periódico de membros inferiores</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="disc">
+    ⚠️ Exame nº 6263453, Hospital São Camilo, solicitado por Dr. Thiago Villela Bolzan (19/08/2026, 90 kg, 1,75 m). Este é o exame <b>baseline</b> — você mencionou intenção de repetir em ~1 ano para comparar a evolução. A apneia obstrutiva do sono, mesmo leve, é um fator de risco descrito na literatura para queda de testosterona e piora da resistência à insulina — vale discutir estes achados com o médico que acompanha a testosterona em queda e a HbA1c em 6,0% já registradas neste painel. <b>Não substitui avaliação do médico do sono</b> que solicitou e assinou o laudo.
+  </div>
+</div>
+
 <!-- ===================== ABA QUALIDADE DE VIDA ===================== -->
 <div class="wrap tabpane" id="tab-vida">
   <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
@@ -1014,35 +1333,36 @@
   </div>
 
   <div class="week">
-    <div class="wday wstr"><div class="wn">Seg</div><div class="wact">💪 Força<br>Peito + Tríceps</div></div>
-    <div class="wday won"><div class="wn">Ter</div><div class="wact">🏃 Cardio<br>30–40 min moderado</div></div>
-    <div class="wday wstr"><div class="wn">Qua</div><div class="wact">💪 Força<br>Costas + Bíceps</div></div>
-    <div class="wday wrest"><div class="wn">Qui</div><div class="wact">😴 Descanso<br>ou caminhada leve</div></div>
-    <div class="wday wstr"><div class="wn">Sex</div><div class="wact">💪 Força<br>Pernas + Glúteos</div></div>
-    <div class="wday won"><div class="wn">Sáb</div><div class="wact">🏃 Cardio<br>HIIT 20 min</div></div>
-    <div class="wday wmix"><div class="wn">Dom</div><div class="wact">💪 Força<br>Ombro + Core</div></div>
+    <div class="wday wstr"><div class="wn">Seg</div><div class="wact">🏋️ Pernas A<br>Quadríceps</div></div>
+    <div class="wday wstr"><div class="wn">Ter</div><div class="wact">💪 Superior A</div></div>
+    <div class="wday wrest"><div class="wn">Qua</div><div class="wact">😴 Descanso<br>(ou caminhada leve)</div></div>
+    <div class="wday wstr"><div class="wn">Qui</div><div class="wact">🏋️ Pernas B<br>Posterior</div></div>
+    <div class="wday wstr"><div class="wn">Sex</div><div class="wact">💪 Superior B</div></div>
+    <div class="wday won"><div class="wn">Sáb</div><div class="wact">🏋️ Pernas C<br>+ cardio forte</div></div>
+    <div class="wday wrest"><div class="wn">Dom</div><div class="wact">😴 Descanso<br>total</div></div>
   </div>
+  <p style="color:var(--muted);font-size:12.5px;margin:-8px 0 18px">Split de 12 semanas priorizando pernas (superior já bem desenvolvido) — detalhe completo por dia, séries/reps e periodização na aba <b>🏋️ Treinos</b>.</p>
 
   <div class="grid">
     <div class="qcard">
-      <div class="qh">🏋️ Força — 4×/semana</div>
+      <div class="qh">🏋️ Força — 5×/semana</div>
       <div class="qbody">
         <ul>
           <li>Progressão de carga obrigatória — seu diferencial genético (ACTN3 + PPARD)</li>
-          <li>Foco em compostos: agachamento, terra, supino, remada, barra fixa</li>
-          <li>Proteína <b>1,6–2,2 g/kg/dia</b> para garantir ganho muscular efetivo</li>
-          <li>Meta: 85 kg / 18% BF / 44 kg de músculo (atual: 41,9 kg)</li>
+          <li>3 dias de perna por semana (foco atual) + 2 dias de superior (manutenção)</li>
+          <li>Proteína <b>~2,3 g/kg/dia</b> para preservar músculo em déficit</li>
+          <li>Meta: 85 kg / 18% BF / 44 kg de músculo (atual: 41,4 kg)</li>
         </ul>
       </div>
     </div>
     <div class="qcard">
-      <div class="qh">🏃 Cardio — 2–3×/semana</div>
+      <div class="qh">🏃 Cardio — cardápio flexível</div>
       <div class="qbody">
         <ul>
           <li>Compensa o <b>ADRB2</b> — capacidade cardiorrespiratória geneticamente menor</li>
           <li>Reduz LDL, melhora glicemia e eleva testosterona livre naturalmente</li>
-          <li>Opções: corrida, ciclismo, elíptico em <b>zona 2</b> (consegue conversar sem parar)</li>
-          <li>HIIT 20 min equivale a ~40 min de cardio moderado contínuo</li>
+          <li>2x corrida leve (~30 min) + 3x caminhada Z2 (~45 min) por semana; sempre depois da musculação</li>
+          <li><b>HIIT só a partir de liberação cardiológica</b> (pré-diabetes + LDL alto) — ver aba Treinos</li>
         </ul>
       </div>
     </div>
@@ -1052,7 +1372,7 @@
         <ul>
           <li><b>Desaquecimento obrigatório 5–10 min</b> — gene CHRM2: recuperação cardíaca mais lenta</li>
           <li><b>Nunca pare abruptamente</b> o cardio — reduza a intensidade gradualmente</li>
-          <li>Inclua <b>saltos ou corrida 2×/semana</b> — estimula densidade óssea (WNT16)</li>
+          <li>Sem abdominal tradicional deitado (hérnia de hiato) — <b>Pallof press, prancha, hiperextensão</b> nos dias de perna</li>
           <li><b>Caminhada 10–15 min após refeições</b> principais — reduz glicemia pós-prandial</li>
         </ul>
       </div>
@@ -1199,6 +1519,11 @@
       <span class="rtag rtag-u">Urgente — 36 anos</span>
     </div>
     <div class="rcard">
+      <div class="rh">🫀 Check-up cardiológico pré-HIIT</div>
+      <div class="rb">Pré-requisito antes de iniciar HIIT/intervalos de alta intensidade (bloco 2 do plano, semana 5+), dado pré-diabetes + LDL alto — estratificação de risco recomendada pelo ACSM antes de exercício vigoroso nesse perfil. <i>Status conforme informado: consulta marcada/realizada — confirmar data e liberação por escrito.</i></div>
+      <span class="rtag rtag-p">Confirmar antes da semana 5</span>
+    </div>
+    <div class="rcard">
       <div class="rh">🍬 HbA1c + glicemia de jejum</div>
       <div class="rb">HbA1c em 6,0% e subindo há anos. Repetir a cada 3–4 meses para medir o impacto das mudanças de hábito na glicemia.</div>
       <span class="rtag rtag-u">A cada 3–4 meses</span>
@@ -1243,8 +1568,8 @@
       <div class="vid-ta"><b>10 min de luz natural</b> (janela ou varanda) — âncora o CLOCK gene e eleva o cortisol matinal saudável. <b>Suplementos da manhã:</b> Vitamina D3+K2, Metilfolato, Zinco (com o café da manhã proteico).</div>
     </div>
     <div class="vid-ti">
-      <div class="vid-tm">Pré-treino — hidratação e ativação</div>
-      <div class="vid-ta">Refeição leve 60–90 min antes do treino intenso. Hidratação: <b>500 ml antes</b>, 500–1.000 ml durante. Creatina 3–5 g com refeição pré-treino se desejar suplementar para força.</div>
+      <div class="vid-tm">Pré-treino — treino em jejum</div>
+      <div class="vid-ta">Sem refeição antes — apenas <b>hidratação</b>: 500 ml de água ao acordar, 500-1.000 ml durante o treino. Se sentir tontura, fraqueza ou queda de performance no jejum, é sinal para reavaliar (não empurrar). Creatina 3-5 g pode ser tomada no shake pós-treino junto com o whey.</div>
     </div>
     <div class="vid-ti">
       <div class="vid-tm">Almoço (~13h)</div>
@@ -1266,20 +1591,71 @@
 
 </div>
 
+<div class="wrap tabpane" id="tab-meds">
+  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+
+  <div class="lead">
+    <h3>💊 O que você toma hoje — registrado em 28/07/2026</h3>
+    <ul>
+      <li><span class="tag t-warn">ATENÇÃO</span><div><b>Bupropiona baixa o limiar convulsivo</b> e o <b>5-HTP é serotoninérgico</b>. A combinação dos dois precisa ser validada pelo médico que prescreveu — fique atento a agitação, tremor, sudorese ou taquicardia.</div></li>
+      <li><span class="tag t-warn">MONITORAR</span><div><b>Clomifeno</b> (uso off-label masculino) exige acompanhamento laboratorial: testosterona, estradiol, LH/FSH, hemograma e função hepática. Conecta com a sua queda de testosterona (609 → 384 ng/dL).</div></li>
+      <li><span class="tag t-good">OK</span><div><b>Ferro + Vit C</b> juntos favorecem a absorção. Tome longe de café, chá, leite e cálcio. <b>B12 e magnésio</b> à noite estão bem posicionados.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>☀️ Após o café da manhã</h2>
+
+  <div class="supl-list">
+    <div class="supl">
+      <div class="sico">💊</div>
+      <div class="stx"><div class="sn">Bupropiona + Naltrexona 90/8 mg — 2 cápsulas</div><div class="sd">Combo para controle de peso (tipo Contrave/Mysimba). Total: 180 mg bupropiona + 16 mg naltrexona. Bupropiona reduz o limiar convulsivo — evitar jejum prolongado e excesso de álcool.</div></div>
+      <div class="sdose">2 cáps<br>manhã</div>
+    </div>
+    <div class="supl">
+      <div class="sico">⚗️</div>
+      <div class="stx"><div class="sn">Clomifeno 12,5 mg</div><div class="sd">SERM — uso off-label masculino para estimular a produção endógena de testosterona/fertilidade. Requer exames periódicos de testosterona, estradiol, LH/FSH e função hepática.</div></div>
+      <div class="sdose">12,5 mg<br>manhã</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🩸</div>
+      <div class="stx"><div class="sn">Ferro quelato Endogen + Vit C + B9</div><div class="sd">Reposição de ferro com vitamina C (melhora absorção) e ácido fólico. Tomar longe de café, chá, leite e cálcio, que reduzem a absorção do ferro.</div></div>
+      <div class="sdose">manhã</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🧬</div>
+      <div class="stx"><div class="sn">Vitamina B12 1 mg (Oficial Farma)</div><div class="sd">1000 mcg de reposição. Nos exames de sangue a B12 está em ordem — manter monitorada, já que o folato (B9) pode mascarar deficiência de B12.</div></div>
+      <div class="sdose">1 mg<br>manhã</div>
+    </div>
+  </div>
+
+  <h2><span class="dot"></span>🌙 À noite</h2>
+
+  <div class="supl-list">
+    <div class="supl">
+      <div class="sico">⚡</div>
+      <div class="stx"><div class="sn">Magnésio FSL Top 5</div><div class="sd">Apoia qualidade do sono, sensibilidade à insulina (HbA1c 6,0%) e recuperação muscular. Horário noturno é o ideal.</div></div>
+      <div class="sdose">noite</div>
+    </div>
+    <div class="supl">
+      <div class="sico">🌿</div>
+      <div class="stx"><div class="sn">5-HTP 100 mg (Oficial Farma)</div><div class="sd">Precursor de serotonina. É serotoninérgico — a associação com a bupropiona deve ser confirmada pelo prescritor por causa do risco (raro) de síndrome serotoninérgica.</div></div>
+      <div class="sdose">100 mg<br>noite</div>
+    </div>
+  </div>
+
+  <div class="disc">
+    ⚠️ Não é prescrição médica. As doses e combinações — principalmente <b>bupropiona + 5-HTP</b> e o <b>clomifeno</b> — devem ser confirmadas com o profissional que prescreveu. Este quadro é apenas um registro organizado do que você informou tomar em 28/07/2026.
+  </div>
+
+</div>
+
 <footer>
   Gerado a partir de 12 PDFs de sangue + 11 relatórios Genera · valores conforme laudos originais.<br>
   Faixas de referência do laboratório (adulto masculino). Testes genéticos são de triagem, não diagnóstico.
 </footer>
 
 <script>
-// registrar rótulos de dados e defaults globais dos gráficos
-if(window.ChartDataLabels){Chart.register(ChartDataLabels);}
-Chart.defaults.plugins.datalabels={
-  align:'top',anchor:'end',clamp:true,color:'#e2e8f0',
-  font:{size:10,weight:'700'},
-  formatter:function(v){return v==null?'':String(v).replace('.',',');}
-};
-// alternância de abas
+// alternância de abas — roda primeiro, independente do Chart.js carregar ou não
 document.querySelectorAll('.tab').forEach(t=>{
   t.addEventListener('click',()=>{
     document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
@@ -1289,34 +1665,60 @@ document.querySelectorAll('.tab').forEach(t=>{
     window.scrollTo({top:0,behavior:'smooth'});
   });
 });
+// registrar rótulos de dados e defaults globais dos gráficos (se o Chart.js carregou)
+if(typeof Chart!=='undefined'){
+  if(window.ChartDataLabels){Chart.register(ChartDataLabels);}
+  Chart.defaults.plugins.datalabels={
+    align:'top',anchor:'end',clamp:true,color:'#e2e8f0',
+    font:{size:10,weight:'700'},
+    formatter:function(v){return v==null?'':String(v).replace('.',',');}
+  };
+}
 
 const categories = [
   {cat:'🩸 Hemograma', items:[
-    {name:'Hemoglobina', val:'15,6', unit:'g/dL', ref:'13 – 17', status:'good', key:'hb'},
-    {name:'Eosinófilos', val:'8,6', unit:'%', ref:'1,0 – 6,0', status:'warn', key:'eos'},
-    {name:'Linfócitos', val:'43,3', unit:'%', ref:'20 – 40', status:'warn', key:'linf'},
+    {name:'Hemoglobina', val:'15,8', unit:'g/dL', ref:'13 – 17', status:'good', key:'hb'},
+    {name:'Eritrócitos', val:'5,39', unit:'10⁶/µL', ref:'4,50 – 5,50', status:'good', key:'eritro'},
+    {name:'Hematócrito', val:'48,0', unit:'%', ref:'40,0 – 50,0', status:'good', key:'hematocrito'},
+    {name:'VCM', val:'89,1', unit:'fL', ref:'83,0 – 101,0', status:'good', key:'vcm'},
+    {name:'HCM', val:'29,2', unit:'pg', ref:'27,0 – 32,0', status:'good', key:'hcm'},
+    {name:'CHCM', val:'32,9', unit:'g/dL', ref:'31,0 – 35,0', status:'good', key:'chcm'},
+    {name:'RDW', val:'14,5', unit:'%', ref:'11,6 – 14,0', status:'warn', key:'rdw'},
+    {name:'Neutrófilos', val:'44,9', unit:'%', ref:'40,0 – 80,0', status:'good', key:'neutro'},
+    {name:'Eosinófilos', val:'5,9', unit:'%', ref:'1,0 – 6,0', status:'good', key:'eos'},
+    {name:'Linfócitos', val:'40,7', unit:'%', ref:'20 – 40', status:'warn', key:'linf'},
+    {name:'Basófilos', val:'0,7', unit:'%', ref:'0,0 – 2,0', status:'good', key:'baso'},
+    {name:'Monócitos', val:'7,8', unit:'%', ref:'2,0 – 10,0', status:'good', key:'mono'},
+    {name:'Plaquetas', val:'274.000', unit:'/µL', ref:'150.000 – 450.000', status:'good', key:'plaq'},
+    {name:'VPM', val:'9,0', unit:'fL', ref:'8,3 – 12,5', status:'good', key:'vpm'},
+  ]},
+  {cat:'🩹 Coagulação', items:[
+    {name:'Atividade de Protrombina', val:'97,0', unit:'%', ref:'70,00 – 100,00', status:'good', key:'tp_ativ'},
+    {name:'RNI (Razão Normatizada)', val:'1,02', unit:'', ref:'1,00 – 1,25', status:'good', key:'rni'},
+    {name:'TTPA (tempo)', val:'31,70', unit:'s', ref:'27,80 – 38,60', status:'good', key:'ttpa'},
+    {name:'TTPA (relação)', val:'0,95', unit:'', ref:'0,90 – 1,25', status:'good', key:'ttpa_rel'},
   ]},
   {cat:'🍬 Glicemia & Metabolismo', items:[
-    {name:'Glicose (jejum)', val:'98', unit:'mg/dL', ref:'70 – 99', status:'warn', key:'glic'},
+    {name:'Glicose (jejum)', val:'80', unit:'mg/dL', ref:'70 – 99', status:'good', key:'glic'},
     {name:'Hemoglobina Glicada', val:'6,0', unit:'%', ref:'Normal < 5,7', status:'bad', key:'hba1c'},
     {name:'Glic. Média Estimada', val:'125', unit:'mg/dL', ref:'—', status:'warn', key:'gme'},
   ]},
   {cat:'🫀 Perfil Lipídico', items:[
-    {name:'Colesterol Total', val:'238', unit:'mg/dL', ref:'Ideal < 190', status:'bad', key:'colT'},
-    {name:'LDL ("ruim")', val:'158', unit:'mg/dL', ref:'Ideal < 130', status:'bad', key:'ldl'},
-    {name:'HDL ("bom")', val:'65', unit:'mg/dL', ref:'Ideal > 40', status:'good', key:'hdl'},
-    {name:'Não-HDL', val:'173', unit:'mg/dL', ref:'Ideal < 130', status:'bad', key:'nhdl'},
-    {name:'Triglicérides', val:'54', unit:'mg/dL', ref:'Ideal < 150', status:'good', key:'trig'},
+    {name:'Colesterol Total', val:'191', unit:'mg/dL', ref:'Ideal < 190', status:'warn', key:'colT'},
+    {name:'LDL ("ruim")', val:'129', unit:'mg/dL', ref:'Ideal < 130', status:'good', key:'ldl'},
+    {name:'HDL ("bom")', val:'47', unit:'mg/dL', ref:'Ideal > 40', status:'good', key:'hdl'},
+    {name:'Não-HDL', val:'144', unit:'mg/dL', ref:'Ideal < 130', status:'warn', key:'nhdl'},
+    {name:'Triglicérides', val:'56', unit:'mg/dL', ref:'Ideal < 150', status:'good', key:'trig'},
   ]},
   {cat:'🫘 Função Renal', items:[
-    {name:'Creatinina', val:'1,20', unit:'mg/dL', ref:'0,70 – 1,30', status:'good', key:'creat'},
-    {name:'eGFR (filtração)', val:'80', unit:'mL/min', ref:'> 90', status:'warn', key:'egfr'},
+    {name:'Creatinina', val:'1,17', unit:'mg/dL', ref:'0,70 – 1,30', status:'good', key:'creat'},
+    {name:'eGFR (filtração)', val:'83', unit:'mL/min', ref:'> 90', status:'warn', key:'egfr'},
     {name:'Ureia', val:'43', unit:'mg/dL', ref:'17 – 48', status:'good', key:'ureia'},
     {name:'Ácido Úrico', val:'5,8', unit:'mg/dL', ref:'3,4 – 7,0', status:'good', key:'urico'},
   ]},
   {cat:'🫁 Função Hepática', items:[
-    {name:'TGO', val:'23', unit:'U/L', ref:'≤ 40', status:'good', key:'tgo'},
-    {name:'TGP', val:'26', unit:'U/L', ref:'≤ 41', status:'good', key:'tgp'},
+    {name:'TGO', val:'29', unit:'U/L', ref:'≤ 40', status:'good', key:'tgo'},
+    {name:'TGP', val:'27', unit:'U/L', ref:'≤ 41', status:'good', key:'tgp'},
     {name:'Gama-GT', val:'29', unit:'U/L', ref:'< 60', status:'good', key:'ggt'},
     {name:'Fosfatase Alcalina', val:'60', unit:'U/L', ref:'40 – 129', status:'good', key:'fosf'},
     {name:'Bilirrubina Total', val:'0,36', unit:'mg/dL', ref:'≤ 1,20', status:'good', key:'bili'},
@@ -1326,64 +1728,97 @@ const categories = [
     {name:'Albumina', val:'4,7', unit:'g/dL', ref:'3,5 – 5,2', status:'good', key:'alb'},
   ]},
   {cat:'⚗️ Hormônios', items:[
-    {name:'Testosterona Total', val:'384', unit:'ng/dL', ref:'165 – 753', status:'warn', key:'testT'},
-    {name:'Testosterona Livre', val:'8,97', unit:'ng/dL', ref:'3,4 – 24,6', status:'good', key:'testL'},
-    {name:'Testost. Biodisponível', val:'210', unit:'ng/dL', ref:'82 – 626', status:'good', key:'testBio'},
-    {name:'SHBG', val:'25,5', unit:'nmol/L', ref:'10 – 57', status:'good', key:'shbg'},
-    {name:'TSH (tireoide)', val:'2,59', unit:'µUI/mL', ref:'0,4 – 4,3', status:'good', key:'tsh'},
+    {name:'Testosterona Total', val:'1.070,93', unit:'ng/dL', ref:'165 – 753 (22-49a)', status:'bad', key:'testT'},
+    {name:'Testosterona Livre', val:'26,54', unit:'ng/dL', ref:'3,4 – 24,6', status:'bad', key:'testL'},
+    {name:'Testost. Biodisponível', val:'621,92', unit:'ng/dL', ref:'82 – 626', status:'warn', key:'testBio'},
+    {name:'SHBG', val:'32,5', unit:'nmol/L', ref:'10 – 57', status:'good', key:'shbg'},
+    {name:'Estradiol', val:'89,2', unit:'pg/mL', ref:'até 39,8 (homens)', status:'bad', key:'estr'},
+    {name:'Hormônio Luteinizante (LH)', val:'8,1', unit:'mUI/mL', ref:'1,5 – 9,3', status:'good', key:'lh'},
+    {name:'Prolactina', val:'14,31', unit:'ng/mL', ref:'2,10 – 17,70', status:'good', key:'prl'},
+    {name:'Progesterona', val:'< 0,21', unit:'ng/mL', ref:'0,28 – 1,22', status:'warn', key:'prog'},
+    {name:'TSH (tireoide)', val:'2,12', unit:'µUI/mL', ref:'0,4 – 4,3', status:'good', key:'tsh'},
     {name:'T3 Total', val:'95', unit:'ng/dL', ref:'60 – 181', status:'good', key:'t3'},
-    {name:'T4 (Tiroxina)', val:'7,0', unit:'µg/dL', ref:'4,5 – 10,9', status:'good', key:'t4'},
+    {name:'T4 Total', val:'7,0', unit:'µg/dL', ref:'4,5 – 10,9', status:'good', key:'t4'},
+    {name:'T4 Livre', val:'1,29', unit:'ng/dL', ref:'0,89 – 1,76', status:'good', key:'t4livre'},
   ]},
   {cat:'💊 Vitaminas & Minerais', items:[
-    {name:'Vitamina D', val:'45', unit:'ng/mL', ref:'> 20', status:'good', key:'vitd'},
-    {name:'Vitamina B12', val:'421', unit:'pg/mL', ref:'223 – 672', status:'good', key:'b12'},
+    {name:'Vitamina D', val:'29', unit:'ng/mL', ref:'> 20 (ideal 30-60)', status:'warn', key:'vitd'},
+    {name:'Vitamina B12', val:'627', unit:'pg/mL', ref:'223 – 672', status:'good', key:'b12'},
     {name:'Ácido Fólico', val:'9,81', unit:'ng/mL', ref:'> 5,38', status:'good', key:'folato'},
-    {name:'Ferro', val:'62', unit:'µg/dL', ref:'33 – 193', status:'good', key:'ferro'},
-    {name:'Ferritina', val:'32,3', unit:'ng/mL', ref:'22 – 322', status:'good', key:'ferrit'},
+    {name:'Ferro', val:'64', unit:'µg/dL', ref:'33 – 193', status:'good', key:'ferro'},
+    {name:'Ferritina', val:'34,5', unit:'ng/mL', ref:'22 – 322', status:'good', key:'ferrit'},
+    {name:'Cap. Fixação Latente do Ferro', val:'217,3', unit:'µg/dL', ref:'140,0 – 280,0', status:'good', key:'cflf'},
+    {name:'Cap. Total de Fixação do Ferro', val:'281', unit:'µg/dL', ref:'250 – 425', status:'good', key:'cttf'},
+    {name:'Índice de Saturação da Transferrina', val:'23', unit:'%', ref:'20 – 50', status:'good', key:'ist'},
+    {name:'Magnésio', val:'2,1', unit:'mg/dL', ref:'1,6 – 2,6', status:'good', key:'mg'},
   ]},
 ];
 
-const L = ['03/19','09/20','11/22','02/23','04/23','10/23','10/24','03/25','06/25','09/25','11/25','07/26'];
+const L = ['03/19','09/20','11/22','02/23','04/23','10/23','10/24','03/25','06/25','09/25','11/25','07/26','09/26'];
 const series = {
-  colT:[null,219,187,null,161,null,186,170,229,166,201,238],
-  ldl:[null,133,129,null,95,null,123,114,162,103,138,158],
-  hdl:[null,75,50,null,57,null,49,42,53,52,54,65],
-  trig:[null,35,28,null,30,null,null,57,45,37,31,54],
-  glic:[null,null,null,null,98,91,94,98,89,78,81,98],
-  hba1c:[null,null,null,null,null,5.5,5.7,null,5.8,5.5,5.7,6.0],
-  homa:[null,null,null,null,null,null,null,3.99,null,null,1.10,null],
-  creat:[null,1.30,null,null,1.32,null,1.21,1.12,1.18,1.26,1.28,1.20],
-  ureia:[null,44,null,null,43,null,null,null,51,null,46,43],
-  egfr:[null,null,null,null,null,null,null,null,null,null,75,80],
-  testT:[null,609,462,473,493,481,441,429,461,426,406,384],
-  testL:[null,11.94,11.37,10.44,null,11.73,null,null,null,null,8.16,8.97],
-  testBio:[null,null,null,null,null,null,null,null,null,null,191.15,210.10],
-  shbg:[36.6,39,24,29.8,26,24.7,26.3,25.3,30.7,32.2,33.8,25.5],
-  tgo:[null,64,null,null,24,27,30,null,31,33,44,23],
-  tgp:[null,59,null,null,16,28,34,null,25,31,47,26],
-  ggt:[null,null,null,null,null,11,null,null,22,18,19,29],
-  fosf:[null,60,null,null,65,null,null,null,65,null,71,60],
-  bili:[0.48,null,null,null,null,0.50,null,null,0.26,null,0.65,0.36],
-  amilase:[null,null,null,null,null,76,null,null,null,null,null,79],
-  lipase:[null,null,null,null,null,null,null,null,null,null,null,49],
-  prot:[null,null,null,null,null,null,null,null,null,null,null,7.3],
-  alb:[null,null,null,null,null,null,null,null,null,null,null,4.7],
-  glob:[null,null,null,null,null,null,null,null,null,null,null,2.7],
-  gme:[null,null,null,null,null,112,117,null,120,110,117,125],
-  nhdl:[null,144,137,null,104,null,null,128,176,114,147,173],
-  vldl:[null,11,8,null,9,null,14,14,14,11,9,15],
-  vitd:[null,null,null,null,34.95,null,22.06,40.98,70.82,52.76,41.1,45],
-  b12:[null,null,null,null,460,null,441,455,null,null,626,421],
-  ferro:[null,null,null,null,null,null,66,65,55,71,51,62],
-  ferrit:[null,null,null,null,38.5,null,41.3,null,null,null,33.1,32.3],
-  folato:[null,null,null,null,null,null,null,null,null,null,null,9.81],
-  urico:[null,5.8,null,null,5.7,null,null,null,6.3,null,4.9,5.8],
-  tsh:[null,2.44,null,null,1.68,1.65,2.25,null,1.67,1.47,null,2.59],
-  t3:[null,null,96,null,null,null,null,null,75,79,80,95],
-  t4:[null,7.8,8.0,null,null,null,null,null,8.5,null,7.5,7.0],
-  hb:[16.6,16.4,null,null,15.4,15.2,15.4,null,15.3,14.6,15.4,15.6],
-  eos:[null,null,null,null,null,null,null,null,null,null,6.0,8.6],
-  linf:[null,null,null,null,null,null,null,null,null,null,37.8,43.3],
+  colT:[null,219,187,null,161,null,186,170,229,166,201,238,191],
+  ldl:[null,133,129,null,95,null,123,114,162,103,138,158,129],
+  hdl:[null,75,50,null,57,null,49,42,53,52,54,65,47],
+  trig:[null,35,28,null,30,null,null,57,45,37,31,54,56],
+  glic:[null,null,null,null,98,91,94,98,89,78,81,98,80],
+  hba1c:[null,null,null,null,null,5.5,5.7,null,5.8,5.5,5.7,6.0,null],
+  homa:[null,null,null,null,null,null,null,3.99,null,null,1.10,null,null],
+  creat:[null,1.30,null,null,1.32,null,1.21,1.12,1.18,1.26,1.28,1.20,1.17],
+  ureia:[null,44,null,null,43,null,null,null,51,null,46,43,43],
+  egfr:[null,null,null,null,null,null,null,null,null,null,75,80,83],
+  mg:[null,null,null,null,null,null,null,null,null,null,null,null,2.1],
+  testT:[null,609,462,473,493,481,441,429,461,426,406,384,1070.93],
+  testL:[null,11.94,11.37,10.44,null,11.73,null,null,null,null,8.16,8.97,26.54],
+  testBio:[null,null,null,null,null,null,null,null,null,null,191.15,210.10,621.92],
+  shbg:[36.6,39,24,29.8,26,24.7,26.3,25.3,30.7,32.2,33.8,25.5,32.5],
+  tgo:[null,64,null,null,24,27,30,null,31,33,44,23,29],
+  tgp:[null,59,null,null,16,28,34,null,25,31,47,26,27],
+  ggt:[null,null,null,null,null,11,null,null,22,18,19,29,null],
+  fosf:[null,60,null,null,65,null,null,null,65,null,71,60,null],
+  bili:[0.48,null,null,null,null,0.50,null,null,0.26,null,0.65,0.36,null],
+  amilase:[null,null,null,null,null,76,null,null,null,null,null,79,null],
+  lipase:[null,null,null,null,null,null,null,null,null,null,null,49,null],
+  prot:[null,null,null,null,null,null,null,null,null,null,null,7.3,null],
+  alb:[null,null,null,null,null,null,null,null,null,null,null,4.7,null],
+  glob:[null,null,null,null,null,null,null,null,null,null,null,2.7,null],
+  gme:[null,null,null,null,null,112,117,null,120,110,117,125,null],
+  nhdl:[null,144,137,null,104,null,null,128,176,114,147,173,144],
+  vldl:[null,11,8,null,9,null,14,14,14,11,9,15,15],
+  vitd:[null,null,null,null,34.95,null,22.06,40.98,70.82,52.76,41.1,45,29],
+  b12:[null,null,null,null,460,null,441,455,null,null,626,421,627],
+  ferro:[null,null,null,null,null,null,66,65,55,71,51,62,64],
+  ferrit:[null,null,null,null,38.5,null,41.3,null,null,null,33.1,32.3,34.5],
+  folato:[null,null,null,null,null,null,null,null,null,null,null,9.81,null],
+  urico:[null,5.8,null,null,5.7,null,null,null,6.3,null,4.9,5.8,null],
+  tsh:[null,2.44,null,null,1.68,1.65,2.25,null,1.67,1.47,null,2.59,2.12],
+  t3:[null,null,96,null,null,null,null,null,75,79,80,95,null],
+  t4:[null,7.8,8.0,null,null,null,null,null,8.5,null,7.5,7.0,null],
+  hb:[16.6,16.4,null,null,15.4,15.2,15.4,null,15.3,14.6,15.4,15.6,15.8],
+  eos:[null,null,null,null,null,null,null,null,null,null,6.0,8.6,5.9],
+  linf:[null,null,null,null,null,null,null,null,null,null,37.8,43.3,40.7],
+  plaq:[null,297,null,null,307,297,null,null,310,297,287,296,274],
+  eritro:[null,null,null,null,null,null,null,null,null,null,null,null,5.39],
+  hematocrito:[null,null,null,null,null,null,null,null,null,null,null,null,48.0],
+  vcm:[null,null,null,null,null,null,null,null,null,null,null,null,89.1],
+  hcm:[null,null,null,null,null,null,null,null,null,null,null,null,29.2],
+  chcm:[null,null,null,null,null,null,null,null,null,null,null,null,32.9],
+  rdw:[null,null,null,null,null,null,null,null,null,null,null,null,14.5],
+  neutro:[null,null,null,null,null,null,null,null,null,null,null,null,44.9],
+  baso:[null,null,null,null,null,null,null,null,null,null,null,null,0.7],
+  mono:[null,null,null,null,null,null,null,null,null,null,null,null,7.8],
+  vpm:[null,null,null,null,null,null,null,null,null,null,null,null,9.0],
+  cflf:[null,null,null,null,null,null,null,null,null,null,null,null,217.3],
+  cttf:[null,321,null,null,null,null,308,null,null,null,null,null,281],
+  ist:[null,null,null,null,null,null,null,null,null,null,null,null,23],
+  t4livre:[null,null,null,null,null,null,1.09,null,1.35,1.32,1.15,null,1.29],
+  prl:[null,14.91,null,null,12.58,null,null,null,18.80,null,null,null,14.31],
+  estr:[null,44.9,null,null,null,null,23.6,null,15.9,null,null,null,89.2],
+  prog:[null,null,null,null,null,null,null,null,null,null,null,null,0.21],
+  lh:[null,null,null,null,null,null,null,null,null,null,null,null,8.1],
+  tp_ativ:[null,null,null,null,null,null,null,null,null,null,null,null,97],
+  rni:[null,null,null,null,null,null,null,null,null,null,null,null,1.02],
+  ttpa:[null,null,null,null,null,null,null,null,null,null,null,null,31.70],
+  ttpa_rel:[null,null,null,null,null,null,null,null,null,null,null,null,0.95],
 };
 const colors={good:'#22c55e',warn:'#f59e0b',bad:'#ef4444'};
 
@@ -1402,6 +1837,7 @@ const tips={
   creat:`<b>O que é:</b> produto do metabolismo muscular filtrado pelos rins. Principal marcador de função renal no dia a dia.<br><b>Ideal:</b> 0,70–1,30 mg/dL. Pode ser levemente maior em pessoas com muita massa muscular.<br><b>Se alta:</b> rins filtrando menos — causas: desidratação, doença renal, anti-inflamatórios frequentes ou exercício muito intenso.<br><b>Avaliar junto:</b> sempre interpretar com o eGFR, que é mais preciso por corrigir pela idade.<br><b>O que fazer:</b> manter boa hidratação e evitar AINES frequentes.`,
   egfr:`<b>O que é:</b> taxa estimada de filtração glomerular — calcula quanto os rins filtram por minuto, corrigindo por idade, sexo e creatinina. Melhor indicador de função renal.<br><b>Ideal:</b> acima de 90 mL/min. Entre 60–89 é levemente reduzido (estágio G2).<br><b>Seu valor (80):</b> pode ser variação normal, desidratação pontual ou início de redução — vale monitorar.<br><b>Como proteger os rins:</b> hidratação (2L+/dia), controlar pressão e glicemia, evitar uso frequente de AINES.`,
   ureia:`<b>O que é:</b> produto final do metabolismo de proteínas, produzido no fígado e eliminado pelos rins.<br><b>Ideal:</b> 17–48 mg/dL. Pode ser mais alta em dietas ricas em proteína.<br><b>Se alta:</b> desidratação, excesso de proteína na dieta, sangramento intestinal ou função renal reduzida.<br><b>Se baixa:</b> dieta pobre em proteína, doença hepática ou má absorção.<br><b>O que fazer:</b> manter boa hidratação e interpretar sempre junto com creatinina e eGFR.`,
+  mg:`<b>O que é:</b> mineral envolvido em centenas de reações enzimáticas — função muscular, nervosa, ritmo cardíaco e metabolismo ósseo e da glicose.<br><b>Ideal:</b> 1,6–2,6 mg/dL.<br><b>Se baixo:</b> cãibras, fadiga, arritmias, piora da sensibilidade à insulina.<br><b>Seu valor (2,1 mg/dL):</b> normal, dentro da faixa — coerente com a suplementação de magnésio glicina que você já usa à noite.`,
   urico:`<b>O que é:</b> produto da degradação das purinas, presentes em carnes, frutos do mar e cervejas. Filtrado pelos rins; em excesso, cristaliza nas articulações causando gota.<br><b>Ideal:</b> 3,4–7,0 mg/dL. Abaixo de 6,0 é mais seguro para prevenir gota.<br><b>Se alto:</b> crise de gota (dor intensa, geralmente no hálux), cálculo renal e possível lesão renal crônica.<br><b>Como reduzir:</b> menos carne vermelha e vísceras, menos álcool (especialmente cerveja), menos frutose (refrigerantes), mais água; vitamina C ajuda.`,
   tgo:`<b>O que é:</b> enzima presente no fígado, músculos e coração. Quando células se lesam, é liberada no sangue. Menos específica do fígado que a TGP.<br><b>Ideal:</b> até 40 U/L. Valores até 2× o limite são considerados leves.<br><b>Se alta:</b> esteatose hepática, álcool, exercício físico intenso, lesão muscular ou medicamentos.<br><b>Ponto positivo:</b> normalizou no seu último exame (23 U/L) — era 44 no anterior.<br><b>Como manter baixa:</b> evitar álcool, reduzir gordura corporal, não usar suplementos hepatotóxicos sem indicação.`,
   tgp:`<b>O que é:</b> enzima mais específica do fígado que a TGO. Elevação isolada da TGP geralmente aponta para origem hepática.<br><b>Ideal:</b> até 41 U/L para homens.<br><b>Se alta:</b> fígado gorduroso (esteatose) é a causa mais comum em adultos jovens; também: hepatites virais, álcool ou medicamentos.<br><b>Ponto positivo:</b> normalizou no último exame (26 U/L) — era 47. Ótima evolução.<br><b>Como manter:</b> manter o peso saudável e moderar álcool.`,
@@ -1423,7 +1859,30 @@ const tips={
   b12:`<b>O que é:</b> vitamina essencial para síntese de DNA, formação das hemácias e funcionamento do sistema nervoso. Não é produzida pelo organismo — vem exclusivamente da dieta animal ou suplementação.<br><b>Ideal:</b> 300–672 pg/mL. Abaixo de 200 há deficiência clara; 200–300 é zona limítrofe.<br><b>Se baixa:</b> anemia megaloblástica, formigamento nas mãos e pés (neuropatia), perda de memória, fadiga e alterações de humor. Pode levar anos para se manifestar.<br><b>Fontes:</b> carnes, fígado, ovos, laticínios e peixes. Vegetarianos/veganos precisam suplementar obrigatoriamente.`,
   folato:`<b>O que é:</b> vitamina B9 — essencial para síntese de DNA, divisão celular e metabolismo da homocisteína. Crítica na gestação para prevenir defeitos do tubo neural.<br><b>Ideal:</b> acima de 5,38 ng/mL. Acima de 7 é ótimo.<br><b>Se baixo:</b> anemia megaloblástica, homocisteína alta (risco cardiovascular) e piora do humor.<br><b>Atenção MTHFR:</b> seu gene MTHFR prejudica a conversão do ácido fólico — ao suplementar, preferir a forma metilfolato (já ativa).<br><b>Fontes:</b> espinafre, couve, brócolis, feijão, lentilha e ovos.`,
   ferro:`<b>O que é:</b> ferro sérico — concentração de ferro circulante no sangue, ligado à transferrina. Marcador imediato, mas sofre variações do dia a dia.<br><b>Ideal:</b> 33–193 µg/dL. Sempre avaliar junto com a ferritina para quadro completo.<br><b>Se baixo:</b> reservas em queda — cansaço, palidez, queda de cabelo, unhas frágeis (anemia ferropriva em estágio inicial).<br><b>Se alto:</b> hemocromatose, excesso de suplementação ou inflamação aguda.<br><b>Fontes:</b> carne vermelha e fígado (ferro heme, mais absorvido); feijão e espinafre (não-heme, absorção melhorada com vitamina C).`,
-  ferrit:`<b>O que é:</b> proteína de armazenamento de ferro — reflete as reservas corporais totais. Mais confiável que o ferro sérico, pois não oscila com refeições.<br><b>Ideal funcional:</b> 50–200 ng/mL para homens (faixa lab é 22–322, mas abaixo de 50 pode causar sintomas).<br><b>Se baixa:</b> estoque esgotado — fadiga mesmo com hemoglobina normal, queda de cabelo, prejuízo cognitivo, síndrome das pernas inquietas.<br><b>Se alta (&gt;300):</b> inflamação sistêmica, hemocromatose, doença hepática ou excesso de suplementação — investigar.<br><b>Seu valor (32,3):</b> dentro da faixa laboratorial, mas abaixo do ideal funcional de 50 — vale monitorar.`,
+  ferrit:`<b>O que é:</b> proteína de armazenamento de ferro — reflete as reservas corporais totais. Mais confiável que o ferro sérico, pois não oscila com refeições.<br><b>Ideal funcional:</b> 50–200 ng/mL para homens (faixa lab é 22–322, mas abaixo de 50 pode causar sintomas).<br><b>Se baixa:</b> estoque esgotado — fadiga mesmo com hemoglobina normal, queda de cabelo, prejuízo cognitivo, síndrome das pernas inquietas.<br><b>Se alta (&gt;300):</b> inflamação sistêmica, hemocromatose, doença hepática ou excesso de suplementação — investigar.<br><b>Seu valor (34,5):</b> dentro da faixa laboratorial, mas abaixo do ideal funcional de 50 — vale monitorar.`,
+  eritro:`<b>O que é:</b> número de hemácias (glóbulos vermelhos) por microlitro de sangue — junto com hemoglobina e hematócrito, compõe a série vermelha.<br><b>Ideal:</b> 4,50–5,50 ×10⁶/µL para homens.<br><b>Se baixo:</b> anemia. <b>Se alto:</b> desidratação, tabagismo, policitemia ou altitude elevada.<br><b>Seu valor (5,39):</b> dentro da faixa, próximo do limite superior — normal.`,
+  hematocrito:`<b>O que é:</b> percentual do volume sanguíneo ocupado pelas hemácias.<br><b>Ideal:</b> 40,0–50,0% para homens.<br><b>Se baixo:</b> anemia, sangramento ou diluição sanguínea. <b>Se alto:</b> desidratação ou policitemia.<br><b>Seu valor (48,0%):</b> dentro da faixa, normal.`,
+  vcm:`<b>O que é:</b> Volume Corpuscular Médio — tamanho médio de cada hemácia. Ajuda a classificar o tipo de anemia quando presente.<br><b>Ideal:</b> 83,0–101,0 fL.<br><b>Se baixo (microcítico):</b> sugere deficiência de ferro. <b>Se alto (macrocítico):</b> sugere deficiência de B12/folato ou álcool.<br><b>Seu valor (89,1 fL):</b> normal, sem sinal de anemia por tamanho de hemácia.`,
+  hcm:`<b>O que é:</b> Hemoglobina Corpuscular Média — quantidade média de hemoglobina dentro de cada hemácia.<br><b>Ideal:</b> 27,0–32,0 pg.<br><b>Interpretação:</b> segue o mesmo raciocínio do VCM — usado junto para classificar anemias.<br><b>Seu valor (29,2 pg):</b> normal.`,
+  chcm:`<b>O que é:</b> Concentração de Hemoglobina Corpuscular Média — concentração de hemoglobina dentro das hemácias.<br><b>Ideal:</b> 31,0–35,0 g/dL.<br><b>Seu valor (32,9 g/dL):</b> normal.`,
+  rdw:`<b>O que é:</b> Red Cell Distribution Width — mede o quanto as hemácias variam de tamanho entre si (anisocitose). Costuma subir antes de outros sinais de deficiência de ferro/B12/folato aparecerem.<br><b>Ideal:</b> 11,6–14,0%.<br><b>Seu valor (14,5%):</b> discretamente acima do limite, com "anisocitose" anotada no laudo — achado leve e isolado (ferro, ferritina, B12 e VCM/HCM/CHCM todos normais neste exame). Vale reavaliar no próximo exame; não indica problema por si só.`,
+  neutro:`<b>O que é:</b> principal glóbulo branco de defesa contra bactérias — geralmente a maior fração dos leucócitos.<br><b>Ideal:</b> 40,0–80,0% dos leucócitos.<br><b>Se baixo:</b> risco infeccioso aumentado (neutropenia). <b>Se alto:</b> infecção bacteriana aguda ou estresse físico.<br><b>Seu valor (44,9%):</b> normal.`,
+  baso:`<b>O que é:</b> glóbulo branco envolvido em reações alérgicas e inflamatórias, o mais raro dos leucócitos.<br><b>Ideal:</b> 0,0–2,0%.<br><b>Seu valor (0,7%):</b> normal.`,
+  mono:`<b>O que é:</b> glóbulo branco que combate infecções crônicas e "limpa" tecidos lesados; origina os macrófagos nos tecidos.<br><b>Ideal:</b> 2,0–10,0%.<br><b>Se alto:</b> infecções crônicas, recuperação de infecção aguda ou doenças inflamatórias.<br><b>Seu valor (7,8%):</b> normal.`,
+  plaq:`<b>O que é:</b> fragmentos celulares essenciais para a coagulação sanguínea — formam o "tampão" inicial em cortes e lesões.<br><b>Ideal:</b> 150.000–450.000/µL.<br><b>Se baixa:</b> risco de sangramento. <b>Se alta:</b> risco de trombose, inflamação ou doença da medula óssea.<br><b>Seu valor (274.000/µL):</b> normal.`,
+  vpm:`<b>O que é:</b> Volume Plaquetário Médio — tamanho médio das plaquetas. Plaquetas maiores costumam ser mais jovens e mais ativas.<br><b>Ideal:</b> 8,3–12,5 fL.<br><b>Seu valor (9,0 fL):</b> normal.`,
+  cflf:`<b>O que é:</b> Capacidade de Fixação Latente do Ferro — quanto da transferrina (proteína transportadora de ferro) ainda está "livre" para carregar mais ferro.<br><b>Ideal:</b> 140,0–280,0 µg/dL.<br><b>Interpretação:</b> avaliado sempre junto com ferro sérico, ferritina e capacidade total de fixação para o quadro completo do metabolismo do ferro.<br><b>Seu valor (217,3 µg/dL):</b> normal.`,
+  cttf:`<b>O que é:</b> Capacidade Total de Fixação do Ferro — soma do ferro já ligado à transferrina com a capacidade latente; reflete a "capacidade transportadora" total de ferro do sangue.<br><b>Ideal:</b> 250–425 µg/dL.<br><b>Se baixa:</b> inflamação crônica ou excesso de ferro. <b>Se alta:</b> deficiência de ferro.<br><b>Seu valor (281 µg/dL):</b> normal, e vem caindo gradualmente desde 2020 (321→308→281) — ainda dentro da faixa, sem sinal de problema.`,
+  ist:`<b>O que é:</b> Índice de Saturação da Transferrina — percentual da transferrina que está de fato carregando ferro. Um dos marcadores mais sensíveis para deficiência ou excesso de ferro.<br><b>Ideal:</b> 20–50%.<br><b>Se baixo (&lt;20%):</b> sugere deficiência de ferro mesmo com ferritina normal. <b>Se alto (&gt;45%):</b> pode sugerir sobrecarga de ferro/hemocromatose.<br><b>Seu valor (23%):</b> normal.`,
+  t4livre:`<b>O que é:</b> fração de tiroxina (T4) que circula livre, não ligada a proteínas transportadoras — é a parte biologicamente ativa e disponível para os tecidos. Mais precisa que o T4 total, pois não é afetada por variações nas proteínas carreadoras.<br><b>Ideal:</b> 0,89–1,76 ng/dL.<br><b>Sempre interpretar junto com o TSH</b> para avaliação completa da tireoide.<br><b>Seu valor (1,29 ng/dL):</b> normal e estável ao longo do tempo.`,
+  prl:`<b>O que é:</b> hormônio produzido pela hipófise, mais conhecido por seu papel na lactação em mulheres, mas presente e com função reguladora (libido, imunidade) em homens também.<br><b>Ideal:</b> 2,10–17,70 ng/mL.<br><b>Se alta:</b> pode suprimir a testosterona e o eixo reprodutivo (hipogonadismo hipogonadotrófico), causar queda de libido e, raramente, sinalizar um tumor hipofisário (prolactinoma) — avaliar com endocrinologista se persistentemente elevada.<br><b>Seu valor (14,31 ng/mL):</b> normal e estável.`,
+  estr:`<b>O que é:</b> estradiol — principal estrogênio, presente também em homens em pequenas quantidades, produzido em parte pela conversão (aromatização) da testosterona.<br><b>Ideal para homens adultos:</b> até 39,8 pg/mL.<br><b>Se alto:</b> ginecomastia (aumento do tecido mamário), retenção de líquido, alteração de humor e, indiretamente, pode contribuir para supressão do eixo hormonal.<br><b>Seu valor (89,2 pg/mL) está mais que o dobro do limite de referência</b> — achado novo e relevante. Costuma acompanhar aumentos importantes de testosterona (mais substrato para aromatização) — vale conversar com o médico que acompanha o uso do clomifeno sobre esse resultado.`,
+  prog:`<b>O que é:</b> hormônio mais associado ao ciclo reprodutivo feminino; em homens, não é um marcador de rotina e tem papel clínico limitado — costuma ser solicitado em contextos hormonais específicos.<br><b>Referência (adultos):</b> 0,28–1,22 ng/mL.<br><b>Seu valor (&lt;0,21 ng/mL):</b> abaixo da referência informada, mas isso é esperado e pouco relevante clinicamente para homens — não é um marcador de acompanhamento de rotina na sua avaliação.`,
+  lh:`<b>O que é:</b> Hormônio Luteinizante — produzido pela hipófise, estimula os testículos a produzirem testosterona. É o principal mecanismo de ação do clomifeno (bloqueia o feedback negativo do estrogênio na hipófise, elevando o LH e, por consequência, a testosterona).<br><b>Ideal (adultos):</b> 1,5–9,3 mUI/mL.<br><b>Seu valor (8,1 mUI/mL):</b> dentro da faixa, na porção mais alta — consistente com estímulo pelo clomifeno, e explica o salto observado na testosterona total.`,
+  tp_ativ:`<b>O que é:</b> Atividade de Protrombina — parte do Tempo de Protrombina (TP), avalia a via extrínseca da coagulação (fatores II, V, VII, X e fibrinogênio).<br><b>Ideal:</b> 70,00–100,00%.<br><b>Se baixa:</b> deficiência de fatores de coagulação, doença hepática ou uso de anticoagulantes (varfarina).<br><b>Seu valor (97,00%):</b> normal.`,
+  rni:`<b>O que é:</b> RNI (ou INR) — padroniza o Tempo de Protrombina entre laboratórios diferentes. Usado principalmente para monitorar pacientes em uso de anticoagulantes orais (varfarina).<br><b>Ideal para quem não usa anticoagulante:</b> 1,00–1,25.<br><b>Seu valor (1,02):</b> normal.`,
+  ttpa:`<b>O que é:</b> Tempo de Tromboplastina Parcial Ativado — avalia a via intrínseca da coagulação (fatores XII, XI, IX, VIII e cofatores).<br><b>Ideal:</b> 27,80–38,60 segundos.<br><b>Se alterado:</b> deficiência de fatores de coagulação ou uso de heparina.<br><b>Seu valor (31,70s):</b> normal.`,
+  ttpa_rel:`<b>O que é:</b> relação entre o seu TTPA e o tempo basal de referência — outra forma de padronizar o resultado.<br><b>Ideal:</b> 0,90–1,25.<br><b>Seu valor (0,95):</b> normal.`,
 };
 
 const cont=document.getElementById('cards');
@@ -1444,6 +1903,8 @@ categories.forEach(group=>{
   grid.appendChild(el);
   const data=series[c.key]||[];
   const pts=L.map((l,j)=>({x:l,y:data[j]})).filter(p=>p.y!=null);
+  if(typeof Chart!=='undefined'){
+  try{
   new Chart(document.getElementById('ch'+i),{
     type:'line',
     data:{labels:pts.map(p=>p.x),datasets:[{data:pts.map(p=>p.y),
@@ -1454,13 +1915,27 @@ categories.forEach(group=>{
       scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},
         y:{ticks:{display:false},grid:{display:false},grace:'25%'}}}
   });
+  }catch(e){}
+  }
   });
 });
 
 const rows=[
   ['Hemoglobina (g/dL)','hb','13–17',13,17],
+  ['Eritrócitos (10⁶/µL)','eritro','4,50–5,50',4.5,5.5],
+  ['Hematócrito (%)','hematocrito','40,0–50,0',40,50],
+  ['VCM (fL)','vcm','83,0–101,0',83,101],
+  ['HCM (pg)','hcm','27,0–32,0',27,32],
+  ['CHCM (g/dL)','chcm','31,0–35,0',31,35],
+  ['RDW (%)','rdw','11,6–14,0',11.6,14.0],
   ['Leucócitos (/µL)','leuc','4.000–10.000',4000,10000],
+  ['Neutrófilos (%)','neutro','40,0–80,0',40,80],
+  ['Eosinófilos (%)','eos','1,0–6,0',1.0,6.0],
+  ['Linfócitos (%)','linf','20–40',20,40],
+  ['Basófilos (%)','baso','0,0–2,0',0,2.0],
+  ['Monócitos (%)','mono','2,0–10,0',2.0,10.0],
   ['Plaquetas (mil)','plaq','150–450',150,450],
+  ['VPM (fL)','vpm','8,3–12,5',8.3,12.5],
   ['Glicose jejum (mg/dL)','glic','70–99',70,99],
   ['Hemog. Glicada (%)','hba1c','<5,7',0,5.7],
   ['Glic. Média Est. (mg/dL)','gme','—',0,999],
@@ -1487,17 +1962,29 @@ const rows=[
   ['Testost. Livre','testL','3,4–24,6',3.4,24.6],
   ['Testost. Biodisp.','testBio','82–626',82,626],
   ['SHBG (nmol/L)','shbg','10–57',10,57],
+  ['Estradiol (pg/mL)','estr','até 39,8',0,39.8],
+  ['LH (mUI/mL)','lh','1,5–9,3',1.5,9.3],
+  ['Prolactina (ng/mL)','prl','2,10–17,70',2.1,17.7],
+  ['Progesterona (ng/mL)','prog','0,28–1,22',0.28,1.22],
   ['TSH','tsh','0,4–4,3',0.4,4.3],
   ['T3 Total (ng/dL)','t3','60–181',60,181],
-  ['T4 (µg/dL)','t4','4,5–10,9',4.5,10.9],
+  ['T4 Total (µg/dL)','t4','4,5–10,9',4.5,10.9],
+  ['T4 Livre (ng/dL)','t4livre','0,89–1,76',0.89,1.76],
   ['Vitamina D','vitd','>20',20,999],
+  ['Magnésio','mg','1,6–2,6',1.6,2.6],
   ['Vitamina B12','b12','223–672',223,672],
   ['Ácido Fólico (ng/mL)','folato','>5,38',5.38,999],
   ['Ferro','ferro','33–193',33,193],
   ['Ferritina (ng/mL)','ferrit','22–322',22,322],
+  ['Cap. Fixação Latente Ferro (µg/dL)','cflf','140–280',140,280],
+  ['Cap. Total Fixação Ferro (µg/dL)','cttf','250–425',250,425],
+  ['Índice Saturação Transferrina (%)','ist','20–50',20,50],
+  ['TP - Atividade Protrombina (%)','tp_ativ','70–100',70,100],
+  ['TP - RNI','rni','1,00–1,25',1.0,1.25],
+  ['TTPA (s)','ttpa','27,80–38,60',27.8,38.6],
+  ['TTPA - Relação','ttpa_rel','0,90–1,25',0.9,1.25],
 ];
-const extra={ leuc:[5900,4990,null,null,5630,4770,5990,null,5590,4650,5310,5350],
-  plaq:[null,297,null,null,307,297,null,null,310,297,287,296] };
+const extra={ leuc:[5900,4990,null,null,5630,4770,5990,null,5590,4650,5310,5350,4710] };
 const tbl=document.getElementById('bigtable');
 let head='<tr><th>Marcador</th><th>Ref.</th>'+L.map(l=>`<th>${l}</th>`).join('')+'</tr>';
 let body='';
@@ -1513,17 +2000,20 @@ rows.forEach(r=>{
 });
 tbl.innerHTML=head+body;
 // ===== Bioimpedância =====
-const bL=['08/09','01/10','31/10','16/11','04/12','26/07'];
-const bio={peso:[87.8,84.1,82.0,82.1,81.8,93.2],gc:[18.8,16.7,15.2,15.0,12.9,23.5],mm:[41.3,40.6,40.2,40.6,41.5,41.4],visc:[7,6,5,5,4,10],agua:[59.6,61.0,62.1,62.2,63.8,56.0],idade:[null,null,null,null,null,null]};
+const bL=['08/09','01/10','31/10','16/11','04/12','26/07','13/08'];
+const bio={peso:[87.8,84.1,82.0,82.1,81.8,93.2,90.2],gc:[18.8,16.7,15.2,15.0,12.9,23.5,21.5],mm:[41.3,40.6,40.2,40.6,41.5,41.4,41.4],visc:[7,6,5,5,4,10,8],agua:[59.6,61.0,62.1,62.2,63.8,56.0,57.4],idade:[null,null,null,null,null,null,null]};
 function bchart(id,arr,color){
+  if(typeof Chart==='undefined')return;
+  try{
   new Chart(document.getElementById(id),{type:'line',
     data:{labels:bL,datasets:[{data:arr,borderColor:color,backgroundColor:color+'22',fill:true,tension:.35,pointRadius:3,pointBackgroundColor:color,borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:20}},plugins:{legend:{display:false}},
       scales:{x:{ticks:{color:'#64748b',font:{size:9}},grid:{display:false}},y:{ticks:{display:false},grid:{display:false},grace:'25%'}}}});
+  }catch(e){}
 }
 bchart('bch0',bio.peso,'#22c55e');bchart('bch1',bio.gc,'#22c55e');bchart('bch2',bio.mm,'#38bdf8');
 bchart('bch3',bio.visc,'#22c55e');bchart('bch4',bio.agua,'#38bdf8');bchart('bch5',bio.idade,'#22c55e');
-const seg=[['Braço direito',[4.57,4.36,4.35,4.37,4.50,4.56],4.7],['Braço esquerdo',[4.65,4.48,4.42,4.50,4.58,4.70],4.7],['Perna direita',[9.66,9.66,9.69,9.67,9.77,9.69],10.2],['Perna esquerda',[9.57,9.51,9.50,9.50,9.68,9.55],10.2],['Tronco',[33.71,32.69,32.43,32.74,33.29,34.05],34.0]];
+const seg=[['Braço direito',[4.57,4.36,4.35,4.37,4.50,4.56,4.55],4.7],['Braço esquerdo',[4.65,4.48,4.42,4.50,4.58,4.70,4.48],4.7],['Perna direita',[9.66,9.66,9.69,9.67,9.77,9.69,9.71],10.2],['Perna esquerda',[9.57,9.51,9.50,9.50,9.68,9.55,9.62],10.2],['Tronco',[33.71,32.69,32.43,32.74,33.29,34.05,33.53],34.0]];
 const segT=document.getElementById('segtable');
 if(segT){let hh='<tr><th>Região</th>'+bL.map(l=>`<th>${l}</th>`).join('')+'<th>Meta</th></tr>';let bb='';
   seg.forEach(r=>{const cells=r[1].map(v=>`<td>${String(v).replace('.',',')}</td>`).join('');bb+=`<tr><td>${r[0]}</td>${cells}<td style="color:#64748b">${String(r[2]).replace('.',',')}</td></tr>`;});
@@ -1545,6 +2035,7 @@ document.querySelectorAll('.gcard').forEach(function(card){
 
 // ===== Ajuste de gráficos para impressão =====
 function setPrintCharts(print){
+  if(typeof Chart==='undefined')return;
   document.querySelectorAll('canvas').forEach(function(canvas){
     var chart=Chart.getChart(canvas);
     if(!chart)return;
@@ -1590,7 +2081,7 @@ function exportarContexto(){
   seg.forEach(s=>{
     md+=`| ${s[0]} | `+s[1].map(v=>String(v).replace('.',',')).join(' | ')+` | ${String(s[2]).replace('.',',')} |\n`;
   });
-  md+='\n### KPIs atuais (26/07/2026 vs dez/2025)\n\n';
+  md+='\n### KPIs atuais (13/08/2026 vs 26/07/2026)\n\n';
   document.querySelectorAll('#tab-bio .kbox').forEach(k=>{
     const label=k.querySelector('.kl')?.textContent?.trim();
     const value=k.querySelector('.kv')?.textContent?.trim();
@@ -1598,14 +2089,14 @@ function exportarContexto(){
     const goal=k.querySelector('.goal')?.textContent?.trim();
     if(label&&value) md+=`- **${label}:** ${value} (${delta}) — ${goal}\n`;
   });
-  md+='\n**TMB InBody:** 1.909 kcal · **IMC:** 30,4\n\n---\n\n';
+  md+='\n**TMB InBody:** 1.900 kcal · **IMC:** 29,5\n\n---\n\n';
 
   // === DIETA ===
   md+='## Dieta — Protocolo Recomposição Corporal (jul/2026)\n\n';
   const dt=document.querySelector('#tab-dieta .daytotal');
   if(dt) md+=`**Meta calórica:** ${dt.querySelector('.dv')?.textContent?.trim()} (${dt.querySelector('.dm')?.textContent?.trim()})\n`;
-  md+='**Macros:** ~220g proteína · ~265g carboidrato · ~60g gordura\n';
-  md+='**TDEE:** TMB 1.909 + Musculação 45min (+350 kcal) + Caminhada inclinada 1h (+510 kcal) + NEAT (+380 kcal) = 3.150 kcal\n\n';
+  md+='**Macros (TACO):** ~235g proteína · ~160g carboidrato · ~62g gordura · Total ~2.180 kcal (sem pré-treino — treino em jejum; pós-treino só whey+água+creatina)\n';
+  md+='**TDEE:** TMB 1.900 (medido) + NEAT ~290 + musculação 5x/sem (~260/dia média) + cardio (2x corrida 30min + 3x caminhada 45min/sem, ~275/dia média) = TDEE recalibrado ~2.920 kcal (média entre método semanal ~2.725 e calibração empírica pela perda de gordura observada ~3.120) · déficit real ~740 kcal/dia\n\n';
   document.querySelectorAll('#tab-dieta .meal').forEach(meal=>{
     const title=meal.querySelector('.mt')?.textContent?.trim();
     const time=meal.querySelector('.mtime')?.textContent?.trim();
