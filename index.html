@@ -410,6 +410,7 @@
       <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Glicemia de jejum caiu para 80 mg/dL</b> (era 98) — dentro da faixa ótima. A hemoglobina glicada (6,0%, pré-diabetes) não foi reavaliada nesta coleta, então esse ponto ainda precisa de acompanhamento — glicemia de jejum isolada não substitui a HbA1c para essa avaliação.</div></li>
       <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Função renal e hepática seguem normais</b>: creatinina 1,17, eGFR 83, ureia 43, TGO 29, TGP 27 — fígado mantém a melhora do exame de julho.</div></li>
       <li><span class="tag t-good">NOVO — 10/09/2026 (resultados que chegaram depois)</span><div><b>Magnésio normal (2,1 mg/dL)</b> — primeiro resultado desse marcador no seu histórico, coerente com a suplementação que você já faz.</div></li>
+      <li><span class="tag t-good">NOVO — 10/09/2026 (último resultado pendente, chegou em 14/09)</span><div><b>Zinco sérico normal (72,5 µg/dL, ref. 70,0–120,0)</b> — primeiro resultado desse marcador no seu histórico. Está dentro da faixa, mas perto do limite inferior; mantenha a suplementação de zinco quelado. Com esse resultado, <b>a coleta de 10/09/2026 está completa</b>.</div></li>
       <li><span class="tag t-good">OK</span><div>Ácido fólico e sorologias (HIV, hepatites, sífilis) negativas. Lembre do <b>reforço da vacina de Hepatite B</b> (Anti-HBs baixo).</div></li>
     </ul>
   </div>
@@ -430,10 +431,6 @@
   <h2><span class="dot"></span>Evolução ao longo do tempo</h2>
   <div class="tablewrap">
     <table id="bigtable"></table>
-  </div>
-
-  <div class="disc" style="background:rgba(56,189,248,.08);border-color:rgba(56,189,248,.3);color:#bae6fd">
-    ⏳ <b>Único resultado ainda pendente da coleta de 10/09/2026</b> (segundo o próprio laudo): Zinco Sérico. Todos os demais itens (Ureia, Creatinina, Magnésio, Glicose, Perfil Lipídico, TGO, TGP) já saíram e foram atualizados. Assim que o Zinco sair, é só mandar que eu atualizo.
   </div>
 
   <div class="disc">
@@ -1752,6 +1749,7 @@ const categories = [
     {name:'Cap. Total de Fixação do Ferro', val:'281', unit:'µg/dL', ref:'250 – 425', status:'good', key:'cttf'},
     {name:'Índice de Saturação da Transferrina', val:'23', unit:'%', ref:'20 – 50', status:'good', key:'ist'},
     {name:'Magnésio', val:'2,1', unit:'mg/dL', ref:'1,6 – 2,6', status:'good', key:'mg'},
+    {name:'Zinco Sérico', val:'72,5', unit:'µg/dL', ref:'70,0 – 120,0', status:'good', key:'zinco'},
   ]},
 ];
 
@@ -1768,6 +1766,7 @@ const series = {
   ureia:[null,44,null,null,43,null,null,null,51,null,46,43,43],
   egfr:[null,null,null,null,null,null,null,null,null,null,75,80,83],
   mg:[null,null,null,null,null,null,null,null,null,null,null,null,2.1],
+  zinco:[null,null,null,null,null,null,null,null,null,null,null,null,72.5],
   testT:[null,609,462,473,493,481,441,429,461,426,406,384,1070.93],
   testL:[null,11.94,11.37,10.44,null,11.73,null,null,null,null,8.16,8.97,26.54],
   testBio:[null,null,null,null,null,null,null,null,null,null,191.15,210.10,621.92],
@@ -1884,6 +1883,7 @@ const tips={
   rni:`<b>O que é:</b> RNI (ou INR) — padroniza o Tempo de Protrombina entre laboratórios diferentes. Usado principalmente para monitorar pacientes em uso de anticoagulantes orais (varfarina).<br><b>Ideal para quem não usa anticoagulante:</b> 1,00–1,25.<br><b>Seu valor (1,02):</b> normal.`,
   ttpa:`<b>O que é:</b> Tempo de Tromboplastina Parcial Ativado — avalia a via intrínseca da coagulação (fatores XII, XI, IX, VIII e cofatores).<br><b>Ideal:</b> 27,80–38,60 segundos.<br><b>Se alterado:</b> deficiência de fatores de coagulação ou uso de heparina.<br><b>Seu valor (31,70s):</b> normal.`,
   ttpa_rel:`<b>O que é:</b> relação entre o seu TTPA e o tempo basal de referência — outra forma de padronizar o resultado.<br><b>Ideal:</b> 0,90–1,25.<br><b>Seu valor (0,95):</b> normal.`,
+  zinco:`<b>O que é:</b> mineral essencial para produção de testosterona, imunidade, cicatrização e síntese proteica — cofator de centenas de enzimas.<br><b>Ideal:</b> 70,0–120,0 µg/dL (carência abaixo de 30,0).<br><b>Se baixo:</b> queda de testosterona, imunidade reduzida, cicatrização lenta, perda de paladar/olfato.<br><b>Seu valor (72,5 µg/dL):</b> normal, mas perto do limite inferior da faixa — coerente com manter a suplementação de zinco quelado que você já faz.<br><b>Fontes:</b> carnes vermelhas, ostras, sementes de abóbora, castanhas.`,
 };
 
 const cont=document.getElementById('cards');
@@ -1973,6 +1973,7 @@ const rows=[
   ['T4 Livre (ng/dL)','t4livre','0,89–1,76',0.89,1.76],
   ['Vitamina D','vitd','>20',20,999],
   ['Magnésio','mg','1,6–2,6',1.6,2.6],
+  ['Zinco Sérico (µg/dL)','zinco','70,0–120,0',70,120],
   ['Vitamina B12','b12','223–672',223,672],
   ['Ácido Fólico (ng/mL)','folato','>5,38',5.38,999],
   ['Ferro','ferro','33–193',33,193],
