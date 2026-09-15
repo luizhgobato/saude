@@ -285,6 +285,46 @@
     body.printing-bio header p{font-size:0 !important}
     body.printing-bio header p::before{content:'Luiz Henrique Gobato · Jul/2026';font-size:11.5px;color:#555}
     body.printing-bio header .badge{display:none !important}
+    body.printing-gene header h1{font-size:0 !important}
+    body.printing-gene header h1::before{content:'🧬 Exame Genético Genera';font-size:19px}
+    body.printing-gene header p{font-size:0 !important}
+    body.printing-gene header p::before{content:'Luiz Henrique Gobato';font-size:11.5px;color:#555}
+    body.printing-gene header .badge{display:none !important}
+    body.printing-dieta header h1{font-size:0 !important}
+    body.printing-dieta header h1::before{content:'🍽️ Dieta — Recomposição Corporal';font-size:19px}
+    body.printing-dieta header p{font-size:0 !important}
+    body.printing-dieta header p::before{content:'Luiz Henrique Gobato · Jul/2026';font-size:11.5px;color:#555}
+    body.printing-dieta header .badge{display:none !important}
+    body.printing-treino header h1{font-size:0 !important}
+    body.printing-treino header h1::before{content:'🏋️ Treino — Periodização 12 Semanas';font-size:19px}
+    body.printing-treino header p{font-size:0 !important}
+    body.printing-treino header p::before{content:'Luiz Henrique Gobato';font-size:11.5px;color:#555}
+    body.printing-treino header .badge{display:none !important}
+    body.printing-diario header h1{font-size:0 !important}
+    body.printing-diario header h1::before{content:'📔 Diário de Treino';font-size:19px}
+    body.printing-diario header p{font-size:0 !important}
+    body.printing-diario header p::before{content:'Luiz Henrique Gobato';font-size:11.5px;color:#555}
+    body.printing-diario header .badge{display:none !important}
+    body.printing-endo header h1{font-size:0 !important}
+    body.printing-endo header h1::before{content:'🔬 Endoscopia Digestiva Alta';font-size:19px}
+    body.printing-endo header p{font-size:0 !important}
+    body.printing-endo header p::before{content:'Luiz Henrique Gobato · 2023 · 2025 · 2026';font-size:11.5px;color:#555}
+    body.printing-endo header .badge{display:none !important}
+    body.printing-sono header h1{font-size:0 !important}
+    body.printing-sono header h1::before{content:'😴 Polissonografia';font-size:19px}
+    body.printing-sono header p{font-size:0 !important}
+    body.printing-sono header p::before{content:'Luiz Henrique Gobato · 19/08/2026';font-size:11.5px;color:#555}
+    body.printing-sono header .badge{display:none !important}
+    body.printing-vida header h1{font-size:0 !important}
+    body.printing-vida header h1::before{content:'🌿 Qualidade de Vida';font-size:19px}
+    body.printing-vida header p{font-size:0 !important}
+    body.printing-vida header p::before{content:'Luiz Henrique Gobato';font-size:11.5px;color:#555}
+    body.printing-vida header .badge{display:none !important}
+    body.printing-meds header h1{font-size:0 !important}
+    body.printing-meds header h1::before{content:'💊 Remédios & Suplementos';font-size:19px}
+    body.printing-meds header p{font-size:0 !important}
+    body.printing-meds header p::before{content:'Luiz Henrique Gobato · registrado em 28/07/2026';font-size:11.5px;color:#555}
+    body.printing-meds header .badge{display:none !important}
     #tab-bio h2{font-size:10.5px !important;margin:5px 0 4px !important}
     #tab-bio h3{font-size:10px !important;margin:4px 0 3px !important}
     #tab-bio .kpi{grid-template-columns:repeat(5,1fr) !important;gap:4px !important;margin-bottom:5px !important}
@@ -440,7 +480,7 @@
 
 <!-- ===================== ABA GENÉTICA ===================== -->
 <div class="wrap tabpane" id="tab-gene">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-gene');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-gene')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>🧬 O que seu DNA diz — e como usar a favor da sua qualidade de vida</h3>
@@ -771,7 +811,7 @@
 
 <!-- ===================== ABA DIETA IDEAL ===================== -->
 <div class="wrap tabpane" id="tab-dieta">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-dieta');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-dieta')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
     <h3>🍽️ Dieta — protocolo recomposição corporal (jul/2026)</h3>
     <ul>
@@ -900,7 +940,7 @@
 
 <!-- ===================== ABA TREINOS ===================== -->
 <div class="wrap tabpane" id="tab-treino">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-treino');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-treino')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>🏋️ Treino — periodização de 12 semanas, foco em pernas</h3>
@@ -1069,7 +1109,7 @@
 
 <!-- ===================== ABA DIÁRIO DE TREINO ===================== -->
 <div class="wrap tabpane" id="tab-diario">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-diario');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-diario')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>📔 Diário de Treino — aderência real vs. plano</h3>
@@ -1106,7 +1146,7 @@
 
 <!-- ===================== ABA ENDOSCOPIA ===================== -->
 <div class="wrap tabpane" id="tab-endo">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-endo');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-endo')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
     <h3>🔬 Endoscopia Digestiva Alta — 3 exames (2023 · 2025 · 2026)</h3>
     <ul>
@@ -1184,7 +1224,7 @@
 
 <!-- ===================== ABA SONO (POLISSONOGRAFIA) ===================== -->
 <div class="wrap tabpane" id="tab-sono">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-sono');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-sono')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>😴 Polissonografia — 19/08/2026 (Hospital São Camilo)</h3>
@@ -1277,7 +1317,7 @@
 
 <!-- ===================== ABA QUALIDADE DE VIDA ===================== -->
 <div class="wrap tabpane" id="tab-vida">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-vida');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-vida')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <h2><span class="dot"></span>Suas 5 prioridades de saúde agora</h2>
 
@@ -1590,7 +1630,7 @@
 </div>
 
 <div class="wrap tabpane" id="tab-meds">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-meds');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-meds')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>💊 O que você toma hoje — registrado em 28/07/2026</h3>
