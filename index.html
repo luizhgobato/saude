@@ -280,6 +280,10 @@
     h2,h3.cat{break-after:avoid}
     .grid,.serology,.kpi{break-before:avoid}
     /* ===== BIOIMPEDÂNCIA: título e página única ===== */
+    body.printing-sangue header h1{font-size:0 !important}
+    body.printing-sangue header h1::before{content:'🩸 Exames de Sangue';font-size:19px}
+    body.printing-sangue header p{font-size:0 !important}
+    body.printing-sangue header p::before{content:'Luiz Henrique Gobato · 14 coletas de Mar/2019 a Set/2026';font-size:11.5px;color:#555}
     body.printing-bio header h1{font-size:0 !important}
     body.printing-bio header h1::before{content:'⚖️ Bioimpedância';font-size:19px}
     body.printing-bio header p{font-size:0 !important}
@@ -433,7 +437,7 @@
 </head>
 <body>
 <header>
-  <h1>🩸 Exames de Sangue</h1>
+  <h1>🩺 Saúde</h1>
   <p>Luiz Henrique Gobato &nbsp;·&nbsp; 14 coletas de Mar/2019 a Set/2026</p>
   <div class="badge">Sangue: até 10/09/2026 (DASA) · Genético: Genera</div>
   <button class="export-btn" onclick="exportarContexto()">⬇️ Exportar contexto para Claude</button>
@@ -453,7 +457,7 @@
 </div>
 
 <div class="wrap tabpane active" id="tab-sangue">
-  <button class="print-btn" onclick="window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" onclick="document.body.classList.add('printing-sangue');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-sangue')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
     <h3>⚡ Resumo rápido — o que merece atenção</h3>
