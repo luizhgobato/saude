@@ -290,7 +290,8 @@
     /* oculta resumos, avisos da IA e sorologias */
     .disc,.lead,.serology,h2:has(+ .serology){display:none !important}
     /* tabela de evolução (sangue) em página landscape isolada — não afeta outras abas */
-    #tab-sangue .tablewrap{break-before:page;page:tabpage;overflow:visible !important}
+    #tab-sangue h2:has(+ .tablewrap){break-before:page !important;break-after:avoid !important;page:tabpage}
+    #tab-sangue .tablewrap{break-before:avoid !important;page:tabpage;overflow:visible !important}
     #bigtable th,#bigtable td{font-size:10px !important;padding:2px 3px !important;white-space:nowrap}
     #bigtable td:first-child,#bigtable th:first-child{font-size:10px !important}
     /* quebra de página */
