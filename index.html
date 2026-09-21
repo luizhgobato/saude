@@ -187,6 +187,10 @@
     /* cards de exame — 3 por linha em A4. inline-block em vez de grid: CSS Grid não pagina
        de forma confiável em todo navegador, cortando o card (e o gráfico dentro dele) ao meio
        entre duas páginas mesmo com break-inside:avoid */
+    /* titulo de cada categoria (ex: GLICEMIA) + seus cards viram um bloco unico que nao
+       quebra no meio -- break-after:avoid sozinho no h3 nao e confiavel no Safari/iOS,
+       que deixa o titulo numa pagina e os cards na seguinte */
+    #cards .catblock{break-inside:avoid !important;page-break-inside:avoid !important}
     #cards .grid{display:block !important}
     #cards .grid::after{content:'';display:table;clear:both}
     #cards .card{
@@ -2080,10 +2084,12 @@ const tips={
 const cont=document.getElementById('cards');
 let idx=0;
 categories.forEach(group=>{
+  const catblock=document.createElement('div');catblock.className='catblock';
+  cont.appendChild(catblock);
   const h=document.createElement('h3');h.className='cat';h.textContent=group.cat;
-  cont.appendChild(h);
+  catblock.appendChild(h);
   const grid=document.createElement('div');grid.className='grid';
-  cont.appendChild(grid);
+  catblock.appendChild(grid);
   group.items.forEach(c=>{
   const i=idx++;
   const el=document.createElement('div');el.className='card';
