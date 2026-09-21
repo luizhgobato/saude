@@ -176,7 +176,16 @@
     .lead h3{font-size:13px;margin-bottom:6px}
     .lead li{padding:4px 0;font-size:11.5px}
     .lead li .tag{font-size:10px;padding:2px 7px}
-    /* cards de exame — 3 por linha em A4 */
+    /* cards de exame — 3 por linha em A4. inline-block em vez de grid: CSS Grid não pagina
+       de forma confiável em todo navegador, cortando o card (e o gráfico dentro dele) ao meio
+       entre duas páginas mesmo com break-inside:avoid */
+    #cards .grid{display:block !important}
+    #cards .grid::after{content:'';display:table;clear:both}
+    #cards .card{
+      display:inline-block !important;width:31.3% !important;vertical-align:top;
+      margin:0 1.3% 9px 0 !important;
+      break-inside:avoid-page !important;page-break-inside:avoid !important;
+    }
     .grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr)) !important;gap:9px}
     .grid.gene-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr)) !important;gap:9px}
     .card{padding:10px 12px;border-radius:8px}
@@ -277,7 +286,7 @@
     #bigtable th,#bigtable td{font-size:10px !important;padding:2px 3px !important;white-space:nowrap}
     #bigtable td:first-child,#bigtable th:first-child{font-size:10px !important}
     /* quebra de página */
-    .card,.gcard,.meal,.endo,.lead,.qcard,.rcard,.kbox{break-inside:avoid}
+    .card,.gcard,.meal,.endo,.lead,.qcard,.rcard,.kbox,.chartbox{break-inside:avoid;page-break-inside:avoid}
     h2,h3.cat{break-after:avoid}
     .grid,.serology,.kpi{break-before:avoid}
     /* ===== BIOIMPEDÂNCIA: título e página única ===== */
