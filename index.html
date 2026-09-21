@@ -290,8 +290,12 @@
     /* oculta resumos, avisos da IA e sorologias */
     .disc,.lead,.serology,h2:has(+ .serology){display:none !important}
     /* tabela de evolução (sangue) em página landscape isolada — não afeta outras abas */
-    #tab-sangue h2:has(+ .tablewrap){break-before:page !important;break-after:avoid !important;page:tabpage}
-    #tab-sangue .tablewrap{break-before:avoid !important;page:tabpage;overflow:visible !important}
+    /* sem "page:" (nome de pagina) aqui de proposito -- não tem suporte confiavel em
+       navegadores mobile (Safari/Chrome Android), causando titulo numa pagina e tabela
+       na seguinte mesmo com break-before/break-after corretos. Só break-before/after,
+       que tem suporte bem mais amplo entre dispositivos. */
+    #tab-sangue h2:has(+ .tablewrap){break-before:page !important;break-after:avoid !important}
+    #tab-sangue .tablewrap{break-before:avoid !important;overflow:visible !important}
     #bigtable th,#bigtable td{font-size:10px !important;padding:2px 3px !important;white-space:nowrap}
     #bigtable td:first-child,#bigtable th:first-child{font-size:10px !important}
     #bigtable tr:nth-child(even) td{background:#f2f6fb !important}
@@ -386,7 +390,6 @@
     #tab-sono .qcard .qbody li{margin:2px 0 !important}
     #tab-sono p{font-size:9.5px !important;margin:4px 0 !important}
   }
-  @page tabpage{size:A4 portrait;margin:5mm 8mm}
   /* endoscopia */
   .endo{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin-bottom:16px}
   .endo .eh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;border-bottom:1px solid var(--line);padding-bottom:10px;margin-bottom:6px}
