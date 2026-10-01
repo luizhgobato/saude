@@ -343,6 +343,11 @@
     body.printing-endo header p{font-size:0 !important}
     body.printing-endo header p::before{content:'Luiz Henrique Gobato · 2023 · 2025 · 2026';font-size:11.5px;color:#555}
     body.printing-endo header .badge{display:none !important}
+    body.printing-imagem header h1{font-size:0 !important}
+    body.printing-imagem header h1::before{content:'🩻 Exames de Imagem';font-size:19px}
+    body.printing-imagem header p{font-size:0 !important}
+    body.printing-imagem header p::before{content:'Luiz Henrique Gobato · Carótidas, Tireoide e Abdome · Set/2026';font-size:11.5px;color:#555}
+    body.printing-imagem header .badge{display:none !important}
     body.printing-sono header h1{font-size:0 !important}
     body.printing-sono header h1::before{content:'😴 Polissonografia';font-size:19px}
     body.printing-sono header p{font-size:0 !important}
@@ -486,6 +491,7 @@
   <div class="tab" data-tab="treino-alt">🆕 Treino Alternativo</div>
   <div class="tab" data-tab="diario">📔 Diário de Treino</div>
   <div class="tab" data-tab="endo">🔬 Endoscopia</div>
+  <div class="tab" data-tab="imagem">🩻 Exames de Imagem</div>
   <div class="tab" data-tab="sono">😴 Sono (PSG)</div>
   <div class="tab" data-tab="vida">🌿 Qualidade de Vida</div>
   <div class="tab" data-tab="meds">💊 Remédios & Suplementos</div>
@@ -1409,6 +1415,52 @@
 
   <div class="disc">
     ⚠️ Reprodução organizada dos seus laudos de endoscopia e biópsia. <b>Não substitui avaliação do gastroenterologista</b> — a conduta (medicação para refluxo, controle de hábitos, seguimento das biópsias) deve ser definida com seu médico.
+  </div>
+</div>
+
+<!-- ===================== ABA EXAMES DE IMAGEM ===================== -->
+<div class="wrap tabpane" id="tab-imagem">
+  <button class="print-btn" onclick="document.body.classList.add('printing-imagem');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-imagem')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
+
+  <div class="lead">
+    <h3>🩻 Exames de Imagem — Carótidas, Tireoide e Abdome (28/09/2026)</h3>
+    <ul>
+      <li><span class="tag t-good">CARÓTIDAS — NOVO</span><div>Doppler de carótidas e vertebrais <b>sem evidências de anormalidades</b> — sem placas ateromatosas, espessura médio-intimal normal (0,48mm direita / 0,55mm esquerda, dentro da faixa esperada pra idade) e velocidades de fluxo normais em todos os segmentos. Boa notícia considerando o LDL alto e a pré-diabetes já registrados aqui — reduz a suspeita de aterosclerose carotídea neste momento (exame de screening, não descarta doença coronariana por si só).</div></li>
+      <li><span class="tag t-warn">TIREOIDE — VOLUME AUMENTOU</span><div>Volume subiu de <b>16 cm³ (out/2024) para 19,4 cm³ (set/2026)</b> — o laudo passou de "dimensões preservadas" para "dimensões aumentadas". Sem nódulos, sem linfonodos atípicos, Doppler sem fluxos anômalos. Isolado isso não fecha diagnóstico nenhum, mas vale levar ao médico que acompanha seu TSH/T4 — é o mesmo órgão já sendo monitorado aqui.</div></li>
+      <li><span class="tag t-good">ABDOME — ESTÁVEL</span><div>Fígado, vesícula, vias biliares, pâncreas, baço, rins, aorta e bexiga <b>sem alterações</b> nos dois exames (2024 e 2026) — sem esteatose, sem cálculos, sem massas, sem líquido livre.</div></li>
+      <li><span class="tag t-warn">LEMBRETE</span><div>Isso aqui é organização dos laudos, não diagnóstico — a interpretação clínica final (inclusive se o aumento de volume da tireoide pede investigação adicional) é do médico que acompanha você.</div></li>
+    </ul>
+  </div>
+
+  <h2><span class="dot"></span>Laudos detalhados</h2>
+
+  <div class="endo">
+    <div class="eh"><div class="et">Doppler de Carótidas e Artérias Vertebrais</div><div class="edate">28/09/2026</div>
+      <div class="edoc">Dra. Larissa Chaves Nunes de Carvalho (CRM 163663) · Delboni/DASA · Unidade DASZ Ibirapuera</div></div>
+    <div class="organ"><div class="ol">Carótidas</div><p>Trajeto habitual, sem acotovelamentos importantes nos segmentos acessíveis. <b>Sem evidências de placas ateromatosas</b> bilateralmente. Espessura médio-intimal: <b>0,48 mm (comum direita)</b> e <b>0,55 mm (comum esquerda)</b>. Análise espectral com morfologia preservada e velocidades normais em todos os segmentos (VPS carótida comum: 102 cm/s direita / 100 cm/s esquerda).</p></div>
+    <div class="organ"><div class="ol">Artérias vertebrais</div><p>Avaliadas bilateralmente entre as apófises transversas. Fluxo anterógrado com velocidades dentro dos parâmetros normais.</p></div>
+    <div class="concl"><span class="ct">Impressão diagnóstica</span>
+      <div class="dxlist"><span class="dxtag">Sem evidências de anormalidades</span></div>
+    </div>
+  </div>
+
+  <div class="endo">
+    <div class="eh"><div class="et">Ultrassonografia da Tireoide com Doppler</div><div class="edate">28/09/2026 <span style="font-weight:400;color:var(--muted);font-size:11px">(anterior: 09/10/2024)</span></div>
+      <div class="edoc">Dra. Ana Paula Verschoore Ferreira da Costa (CRM 72315) · Delboni/DASA · Unidade DASZ Ibirapuera</div></div>
+    <div class="organ"><div class="ol">Tireoide</div><p><b>Dimensões aumentadas</b> (em 10/2024 o laudo descrevia "dimensões preservadas"), contornos regulares, ecotextura homogênea, sem lesões focais. Lobo direito: 4,89 x 1,82 x 2,33 cm. Lobo esquerdo: 4,66 x 1,56 x 2,24 cm. Istmo: 0,36 cm. <b>Volume: 19,4 cm³</b> (era 16 cm³ em 10/2024). Sem linfonodos cervicais atípicos. Doppler sem fluxos anômalos, vascularização glandular com padrão habitual.</p></div>
+    <div class="concl"><span class="ct">Impressão diagnóstica</span>
+      <div class="dxlist"><span class="dxtag">Volume aumentado</span><span class="dxtag">Ecotextura habitual</span><span class="dxtag">Doppler normal</span></div>
+    </div>
+  </div>
+
+  <div class="endo">
+    <div class="eh"><div class="et">Ultrassonografia do Abdome Total</div><div class="edate">28/09/2026 <span style="font-weight:400;color:var(--muted);font-size:11px">(anterior: 09/10/2024)</span></div>
+      <div class="edoc">Dra. Ana Paula Verschoore Ferreira da Costa (CRM 72315) · Delboni/DASA · Unidade DASZ Ibirapuera</div></div>
+    <div class="organ"><div class="ol">Fígado, vias biliares e pâncreas</div><p>Fígado de dimensões normais, contornos regulares, bordas finas, textura homogênea, sem alterações focais. Veias hepáticas e porta com calibres preservados. Vesícula biliar tópica, conteúdo anecóico e homogêneo. Vias biliares e ducto pancreático de calibre preservado. Pâncreas normal.</p></div>
+    <div class="organ"><div class="ol">Baço, rins e retroperitônio</div><p>Baço de forma, contornos e ecotextura normais. Rins tópicos, sem cálculos, sem hidronefrose — rim direito 10,1 cm (igual a 2024), rim esquerdo 11,3 cm (era 10,8 cm em 2024, variação dentro do esperado). Aorta e veia cava inferior de calibres normais. Sem linfonodomegalias, sem líquido livre intracavitário. Bexiga normal.</p></div>
+    <div class="concl"><span class="ct">Impressão diagnóstica</span>
+      <div class="dxlist"><span class="dxtag">Sem evidências de anormalidades</span></div>
+    </div>
   </div>
 </div>
 
