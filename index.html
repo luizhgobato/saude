@@ -1200,8 +1200,11 @@
 <!-- ===================== ABA TREINO ALTERNATIVO ===================== -->
 <div class="wrap tabpane" id="tab-treino-alt">
   <button class="print-btn" onclick="document.body.classList.add('printing-treino-alt');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-treino-alt')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" style="margin-left:8px" onclick="var n=document.getElementById('notas-treino-alt');var open=(n.style.display==='none');n.style.display=open?'block':'none';this.textContent=open?'📝 Fechar bloco de notas':'📝 Abrir bloco de notas'">📝 Abrir bloco de notas</button>
 
-  <h2><span class="dot"></span>🆕 Treino Alternativo — Musculação + Corrida (em avaliação, não substituiu o plano de periodização)</h2>
+  <div id="notas-treino-alt" class="qcard" style="display:none;margin-bottom:14px">
+    <div class="qh">📝 Bloco de notas — contexto e explicações</div>
+    <div class="qbody">
   <div class="lead" style="margin-bottom:14px">
     <ul>
       <li><span class="tag t-warn">STATUS</span><div>Proposta trazida de outra IA e ajustada aqui com base na sua condromalácia patelar grau 2 bilateral e na sua matemática de carga. Está sendo <b>comparada lado a lado</b> com o plano de periodização da aba 🏋️ Treinos — decisão de qual vira definitivo é sua, registrando as sessões no 📔 Diário de Treino.</div></li>
@@ -1212,7 +1215,7 @@
     </ul>
   </div>
 
-  <h2><span class="dot"></span>✅ Fase 0 — Gate superado (histórico, mantido por registro)</h2>
+  <h3 style="margin:16px 0 8px;color:var(--ink);font-size:14px">✅ Fase 0 — Gate superado (histórico, mantido por registro)</h3>
   <p style="color:var(--muted);font-size:11.5px;margin-bottom:8px">Decisão de 28/10/2026: Fase 0 encerrada. Seguindo a partir daqui com o <b>Plano por volume semanal</b> abaixo, que usa 130-140bpm como zona 2 praticável (não os 110-130bpm teóricos da Condição 2 — na prática, ficar abaixo de 130bpm correndo não é alcançável no condicionamento atual, viraria caminhada). Jejum deixou de ser exigência fixa.</p>
   <div class="lead" style="margin-bottom:14px">
     <ul>
@@ -1224,7 +1227,7 @@
     </ul>
   </div>
 
-  <h2><span class="dot"></span>🏃 Corrida — 12 semanas rumo aos 10km em 50min</h2>
+  <h3 style="margin:16px 0 8px;color:var(--ink);font-size:14px">🏃 Corrida — 12 semanas rumo aos 10km em 50min</h3>
   <p style="color:var(--muted);font-size:11.5px;margin-bottom:8px">Tabela histórica (pré-28/10/2026) — superada pelo <b>Plano por volume semanal</b> abaixo, que é a referência ativa a partir de agora.</p>
   <div class="tablewrap">
     <table>
@@ -1244,15 +1247,23 @@
     </table>
   </div>
   <p style="color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6">Regras fixas: <b>regra de dor do joelho vale igual pra corrida</b> (doeu durante/24h depois → sessão vira mais leve ou descanso). Se sono/apneia estiver ruim numa semana, a <b>corrida fácil corta primeiro</b> — nunca a qualidade nem o longão sem necessidade real. Progressão do longão repeita ~15-20%/sem dentro de cada fase; se pesar demais, repete a semana anterior em vez de avançar.</p>
-
-  <h2><span class="dot"></span>📅 Plano por volume semanal (definido no chat, 28/10/2026)</h2>
-  <div class="lead" style="margin-bottom:14px">
+<h3 style="margin:16px 0 8px;color:var(--ink);font-size:14px">📅 Lógica do plano por volume semanal</h3>
+  <div class="lead" style="margin-bottom:0">
     <ul>
       <li><span class="tag t-good">PLANO ATIVO</span><div>Este é o plano de referência a partir de 28/10/2026, substituindo a Fase 0 e a tabela de 12 semanas (mantidas acima só como histórico). Zona 2 definida como 130-140bpm — faixa real e praticável no condicionamento atual, confirmada em conversa. Jejum não é mais exigência fixa.</div></li>
       <li><span class="tag t-good">LÓGICA</span><div>Progressão em ondas: consolidação após pico, depois build gradual (~10-15%/sem), novo pico a cada 3-4 semanas, deload em seguida. Teto de ~38-40km/semana por enquanto, considerando a condromalácia patelar — não ultrapassar sem reavaliação de fisioterapeuta/ortopedista.</div></li>
       <li><span class="tag t-warn">FORÇA E HYROX — AINDA NÃO DEFINIDOS</span><div>Os dias de força abaixo usam as fichas já existentes (Pernas A/B, Superior A/B) dessa mesma aba. Seções específicas de treino Hyrox ainda não foram definidas — ficam pendentes.</div></li>
     </ul>
   </div>
+<h3 style="margin:16px 0 8px;color:var(--ink);font-size:14px">📏 Faixas de referência</h3>
+<p style="color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6">Faixas de referência usadas aqui: Z2 ≈ 9'00-9'30/km a 130-140bpm (histórico real do relógio, não o critério de 110-130bpm da Fase 0). Intensidade: blocos a 5'45-6'30/km, 150-165bpm, recuperação em trote a 8'30-9'30/km. Se uma cirurgia for marcada, este plano é pausado e substituído por um taper específico — avisar aqui no chat pra reprogramar.</p>
+    </div>
+  </div>
+
+
+  <h2><span class="dot"></span>🆕 Treino Alternativo — Musculação + Corrida (em avaliação, não substituiu o plano de periodização)</h2>
+
+  <h2><span class="dot"></span>📅 Plano por volume semanal (definido no chat, 28/10/2026)</h2>
   <h3 style="margin-bottom:8px;color:var(--muted);font-size:14px">🗂️ Semanas anteriores (histórico — toque para expandir)</h3>
   <details class="qcard" style="margin-bottom:10px">
     <summary class="qh" style="cursor:pointer">Semana 05/10 a 11/10 — concluída</summary>
@@ -1266,6 +1277,11 @@
         <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><span class="ex-note">✅ feito — 35:11, 5,00km, 7'02"/km, 163bpm med</span></li>
         <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão (previsto)</span><span class="ex-note">— sem treino registrado</span></li>
       </ul>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
+        <b>Volume planejado:</b> ~12km (estimado a partir dos alvos por tempo da fase Base — longão 40-45min Z2, fácil 18min Z2 ×3, qualidade 20min Z2, convertido a ritmo ~9-9'30"/km; plano original era por tempo, não distância) &nbsp;|&nbsp; <b>Realizado:</b> 31,00km corridos<br>
+        <b>Tipos planejados:</b> 3× corrida fácil Z2 (seg/ter/qui) + 1× qualidade Z2 (sáb) + 1× longão Z2 (dom) + 2× descanso total (qua/sex) + força nos dias combinados<br>
+        <b>Tipos realizados:</b> 5× corrida (2 fora do ritmo/dia previsto), 2× força fora do plano (qua e qui), nenhum dos 2 dias de descanso cumprido como descanso, domingo sem registro
+      </div>
     </div>
   </details>
   <details class="qcard" style="margin-bottom:10px">
@@ -1280,6 +1296,11 @@
         <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><span class="ex-note">✅ feito — 1:31:03, 10,05km, 9'03"/km, 137bpm med</span></li>
         <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão (previsto)</span><span class="ex-note">✅ feito — corrida 42:31, 5,00km, 8'29"/km, 141bpm med; força 33:16, 143bpm med (fora do plano, domingo era só longão)</span></li>
       </ul>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
+        <b>Volume planejado:</b> ~9km (estimado a partir dos alvos por tempo da fase Deload — longão 30min Z2, fácil 12min Z2 ×3, qualidade 15min Z2, convertido a ritmo ~9-9'30"/km; plano original era por tempo, não distância) &nbsp;|&nbsp; <b>Realizado:</b> 28,17km corridos<br>
+        <b>Tipos planejados:</b> 3× corrida fácil Z2 curta (seg/ter/qui) + 1× qualidade leve (sáb) + 1× longão leve (dom) + 2× descanso total (qua/sex) + força nos dias combinados — semana de deload, volume intencionalmente baixo<br>
+        <b>Tipos realizados:</b> 5× corrida (1 fora do dia previsto), 2× força fora do plano (ter e dom), 1 dos 2 dias de descanso cumprido (sexta)
+      </div>
     </div>
   </details>
   <details class="qcard" style="margin-bottom:14px">
@@ -1294,6 +1315,11 @@
         <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade (previsto)</span><span class="ex-note">✅ feito — longão Z2, 1:59:20, 13,14km, 9'04"/km, 137bpm med</span></li>
         <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão (previsto)</span><span class="ex-note">✅ feito — força 35:16, 119bpm med; corrida 33:13, 3,54km, 9'22"/km, 135bpm med</span></li>
       </ul>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
+        <b>Volume planejado:</b> ~13km (estimado a partir dos alvos da fase Construção — longão ~4,5km, fácil 20min Z2 ×3, qualidade tempo ~15-25min, convertido a ritmo ~9-9'30"/km onde não havia km explícito) &nbsp;|&nbsp; <b>Realizado:</b> 37,70km corridos (pico de volume)<br>
+        <b>Tipos planejados:</b> 3× corrida fácil Z2 (seg/ter/qui) + 1× qualidade tempo (sáb) + 1× longão ~4,5km (dom) + 2× descanso total (qua/sex) + força nos dias combinados<br>
+        <b>Tipos realizados:</b> 4× corrida (incluindo 1 intervalado fora do plano na quarta), 1× força fora do plano (ter), quinta e sexta sem registro, domingo com força + corrida
+      </div>
     </div>
   </details>
   <div class="qcard" style="margin-bottom:14px">
@@ -1308,6 +1334,11 @@
         <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Descanso total</span></li>
         <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão reduzido ~10km Z2</span></li>
       </ul>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
+        <b>Volume planejado:</b> ~26km &nbsp;|&nbsp; <b>Realizado até agora:</b> 5,95km (semana em andamento)<br>
+        <b>Tipos planejados:</b> 1× intervalado + corrida leve, 2× Z2 + força, 1× longão reduzido ~10km, 3× descanso total<br>
+        <b>Tipos realizados até agora:</b> intervalado 4x4 (feito) + corrida leve (feito) na segunda; descanso cumprido na terça — resto da semana ainda não chegou
+      </div>
     </div>
   </div>
   <div class="qcard" style="margin-bottom:14px">
@@ -1322,9 +1353,13 @@
         <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Intensidade (fartlek 4x3 ou 4x4, ~4km) + Superior A</span></li>
         <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão 11km Z2</span></li>
       </ul>
+      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
+        <b>Volume planejado:</b> ~30km &nbsp;|&nbsp; <b>Realizado:</b> 0km (semana futura, ainda não chegou)<br>
+        <b>Tipos planejados:</b> 3× Z2 + força (Pernas A, Superior B, Pernas B) + 2× descanso total + 1× intensidade (fartlek ~4km) + Superior A + 1× longão 11km<br>
+        <b>Tipos realizados:</b> nenhum ainda
+      </div>
     </div>
   </div>
-  <p style="color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6">Faixas de referência usadas aqui: Z2 ≈ 9'00-9'30/km a 130-140bpm (histórico real do relógio, não o critério de 110-130bpm da Fase 0). Intensidade: blocos a 5'45-6'30/km, 150-165bpm, recuperação em trote a 8'30-9'30/km. Se uma cirurgia for marcada, este plano é pausado e substituído por um taper específico — avisar aqui no chat pra reprogramar.</p>
 
 
   <h2><span class="dot"></span>Treino detalhado por dia (aquecimento no próprio exercício)</h2>
