@@ -433,6 +433,27 @@
   .qcard .qbody .ex-sets{display:block;color:var(--accent);font-weight:600;font-size:13px;margin-top:2px}
   .qcard .qbody .ex-note{display:block;color:var(--muted);font-size:11px;margin-top:1px}
   .qcard .qbody b{color:var(--ink)}
+  .qcard .qbody .ex-det{margin-top:6px;display:flex;flex-direction:column;gap:5px}
+  .qcard .qbody .ex-det .act{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;font-size:12px}
+  .qcard .qbody .ex-det .act b{font-size:12px;margin-right:2px}
+  .qcard .qbody .ex-det .act.ok{color:var(--good);font-weight:600}
+  .qcard .qbody .ex-det .act.no{color:var(--muted)}
+  .qcard .qbody .ex-det .m{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--ink);font-size:11.5px;white-space:nowrap}
+  .qcard .qh .wk-km{margin-left:auto;font-size:12px;font-weight:700;color:var(--good);background:rgba(34,197,94,.12);border-radius:999px;padding:2px 10px;white-space:nowrap}
+  .qcard .qbody .wk-sum{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+  .qcard .qbody .wk-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .qcard .qbody .wk-stat{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .qcard .qbody .lbl{font-size:10.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .qcard .qbody .wk-stat .val{font-size:20px;font-weight:800;color:var(--ink);line-height:1.25;margin-top:2px}
+  .qcard .qbody .wk-stat .sub{font-size:11px;color:var(--muted)}
+  .qcard .qbody .wk-stat .sub.over{color:var(--warn)}
+  .qcard .qbody .wk-bar{height:6px;background:var(--line);border-radius:3px;margin-top:10px;overflow:hidden}
+  .qcard .qbody .wk-bar span{display:block;height:100%;border-radius:3px;background:var(--good)}
+  .qcard .qbody .wk-types{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+  .qcard .qbody .wk-types .col{background:var(--card2);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  .qcard .qbody .wk-types ul{list-style:none;padding:0;margin:6px 0 0}
+  .qcard .qbody .wk-types li{font-size:12.5px;color:var(--ink);padding:4px 0;margin:0;border-bottom:1px dashed var(--line);line-height:1.45}
+  .qcard .qbody .wk-types li:last-child{border-bottom:none}
   .prio{display:flex;align-items:flex-start;gap:14px;padding:13px 16px;background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:9px}
   .prio-l{border-left:3px solid var(--bad)}
   .prio-w{border-left:3px solid var(--warn)}
@@ -894,6 +915,7 @@
     </ul>
   </div>
 
+  <div class="swap">Calorias por porção pela <b>TACO (UNICAMP)</b>; onde há opções, o total usa a opção indicada no subtotal. Arroz calculado <b>já cozido</b> (TACO 128 kcal/100 g). Itens sem TACO (whey, iogurte Parmalat) usam <b>rótulo médio</b>, marcados com <b>*</b>. Valores podem variar ±10%.</div>
   <div class="swap"><b>Carboidratos intercambiáveis pelo arroz (mesma porção cozida ~90 g):</b> batata doce, mandioca, mandioquinha, inhame, cará, arroz integral. Pão integral: 1 fatia = 25–30 g. Tapioca: 40 g.</div>
   <div class="swap"><b>Vegetais e folhas (à vontade, sem azeite extra):</b> alface, rúcula, agrião, brócolis, abobrinha, pepino, tomate, pimentão, cebola, couve, espinafre, champignon, palmito.</div>
   <div class="swap"><b>Cardio (corrida ~30min 2x/semana + caminhada Z2 ~45min 3x/semana):</b> pode ser imediatamente após a musculação <i>ou</i> separada à tarde (~16:00–17:00, usando a Ref 4 como pré-cardio). Ver cardápio completo de cardio na aba 🏋️ Treinos.</div>
@@ -906,33 +928,32 @@
   </div>
   </div>
 
-  <h2><span class="dot"></span>Total do dia <span style="font-size:12px;color:var(--muted);font-weight:400">(calculado pela TACO)</span></h2>
+  <h2><span class="dot"></span>Total do dia</h2>
   <div class="daytotal">
-    <div><div class="dl">Total pela TACO — opções padrão (café/lanche opção B)</div><div class="dm">déficit real ~650 kcal sobre TDEE recalibrado de ~2.700 kcal — ritmo moderado</div></div>
+    <div><div class="dl">Calorias por dia</div></div>
     <div class="dv">≈ 2.050 kcal</div>
   </div>
 
-  <div style="display:flex;gap:12px;margin:10px 0 22px;flex-wrap:wrap;">
-    <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0 22px">
+    <div style="background:#1e3a5f;border-radius:8px;padding:10px 4px;text-align:center;">
       <div style="font-size:22px;font-weight:700;color:#60a5fa;">~188 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">PROTEÍNA · 37%</div>
     </div>
-    <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
+    <div style="background:#1e3a5f;border-radius:8px;padding:10px 4px;text-align:center;">
       <div style="font-size:22px;font-weight:700;color:#34d399;">~156 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">CARBOIDRATO · 30%</div>
     </div>
-    <div style="background:#1e3a5f;border-radius:8px;padding:10px 20px;text-align:center;">
+    <div style="background:#1e3a5f;border-radius:8px;padding:10px 4px;text-align:center;">
       <div style="font-size:22px;font-weight:700;color:#fbbf24;">~72 g</div>
       <div style="font-size:11px;color:var(--muted);letter-spacing:.5px;">GORDURA · 32%</div>
     </div>
   </div>
 
-  <p style="color:var(--muted);font-size:12px;margin:-10px 0 18px">Calorias por porção pela <b>TACO (UNICAMP)</b>; onde há opções, o total usa a opção indicada no subtotal. Arroz calculado <b>já cozido</b> (TACO 128 kcal/100 g). Itens sem TACO (whey, iogurte Parmalat) usam <b>rótulo médio</b>, marcados com <b>*</b>. Valores podem variar ±10%.</p>
 
   <h2><span class="dot"></span>Refeições do dia</h2>
 
   <div class="meal">
-    <div class="mh"><div class="mt">1 · Pós-treino</div><div class="mtime">~após musculação (corrida da manhã continua em jejum, sem nada antes)</div></div>
+    <div class="mh"><div class="mt">1 · Pós-treino</div><div class="mtime">após a musculação</div></div>
     <ul>
       <li>30 g de <b>whey protein* com água</b> + <b>creatina 5 g</b> <span class="kc">120 kcal</span></li>
     </ul>
@@ -940,7 +961,7 @@
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">2 · Café da manhã</div><div class="mtime">~9:30 · mesmas opções do lanche da tarde + 1 fruta</div></div>
+    <div class="mh"><div class="mt">2 · Café da manhã</div><div class="mtime">~9:30</div></div>
     <ul>
       <li><b>Opção A</b> <span class="kc">≈219 kcal</span></li>
       <li style="margin-left:24px">3 <b>ovos</b> <span class="kc">219 kcal</span></li>
@@ -955,13 +976,13 @@
       <li style="margin-left:24px">20 g de <b>whey</b> <span class="kc">80 kcal</span></li>
       <li style="margin-left:24px">1 <b>banana pequena</b> (80g), batida no shake <span class="kc">72 kcal</span></li>
       <li><b>Qualquer opção +</b></li>
-      <li style="margin-left:24px">1 <b>banana</b> <small style="color:var(--muted)">(exceto na Opção D, que já leva banana)</small> <span class="kc">90 kcal</span></li>
+      <li style="margin-left:24px">1 <b>banana</b> <small style="color:var(--muted)">(exceto Opção D)</small> <span class="kc">90 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 309 kcal <span style="color:var(--muted);font-weight:400">(com Opção A + banana)</span> &nbsp;·&nbsp; P 21 g · C 24 g · G 14 g</div>
+    <div class="mtot">Subtotal ≈ 309 kcal &nbsp;·&nbsp; P 21 g · C 24 g · G 14 g</div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">3 · Almoço</div><div class="mtime">~13:00 · serve de pré-treino quando a musculação é no almoço</div></div>
+    <div class="mh"><div class="mt">3 · Almoço</div><div class="mtime">~13:00</div></div>
     <ul>
       <li><b>Proteína</b></li>
       <li style="margin-left:24px">200 g de <b>patinho</b> cozido/grelhado <span class="kc">438 kcal</span></li>
@@ -982,11 +1003,11 @@
       <li style="margin-left:24px">20 g de <b>chocolate meio amargo</b> <span class="kc">108 kcal</span></li>
       <li style="margin-left:24px"><b>Salada e vegetais</b> à vontade <span class="kc">~20 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 709 kcal <span style="color:var(--muted);font-weight:400">(com a opção de proteína escolhida — todas dentro de ±3 kcal)</span> &nbsp;·&nbsp; P 79 g · C 44 g · G 24 g</div>
+    <div class="mtot">Subtotal ≈ 709 kcal &nbsp;·&nbsp; P 79 g · C 44 g · G 24 g</div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">4 · Lanche da tarde</div><div class="mtime">~16:00 · mesmas opções do café da manhã</div></div>
+    <div class="mh"><div class="mt">4 · Lanche da tarde</div><div class="mtime">~16:00</div></div>
     <ul>
       <li><b>Opção A</b> <span class="kc">≈219 kcal</span></li>
       <li style="margin-left:24px">3 <b>ovos</b> <span class="kc">219 kcal</span></li>
@@ -1005,14 +1026,14 @@
       <li style="margin-left:24px">30 g de <b>whey</b> <span class="kc">120 kcal</span></li>
       <li style="margin-left:24px">50 g de <b>chocolate amargo</b> <span class="kc">270 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 276 kcal <span style="color:var(--muted);font-weight:400">(com Opção B)</span> &nbsp;·&nbsp; P 18 g · C 22 g · G 12 g</div>
+    <div class="mtot">Subtotal ≈ 276 kcal &nbsp;·&nbsp; P 18 g · C 22 g · G 12 g</div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">5 · Jantar</div><div class="mtime">~19:30 · mínimo 2-3h antes de deitar (refluxo)</div></div>
+    <div class="mh"><div class="mt">5 · Jantar</div><div class="mtime">~19:30</div></div>
     <ul>
       <li><b>Proteína</b></li>
-      <li style="margin-left:24px">160 g de <b>filé de coxa/sobrecoxa de frango sem pele</b> <span class="kc">286 kcal</span></li>
+      <li style="margin-left:24px">130 g de <b>patinho</b> cozido/grelhado <span class="kc">285 kcal</span></li>
       <li style="margin-left:24px">173 g de <b>peito de frango</b> grelhado <span class="kc">285 kcal</span></li>
       <li style="margin-left:24px">193 g de <b>peito de peru</b> grelhado <span class="kc">286 kcal</span></li>
       <li style="margin-left:24px">220 g de <b>tilápia/peixe branco</b> grelhado <span class="kc">286 kcal</span></li>
@@ -1033,11 +1054,11 @@
       <li style="margin-left:24px">Hambúrguer de 188 g de <b>patinho moído</b> <span class="kc">412 kcal</span></li>
       <li style="margin-left:24px">1 <b>pão de hambúrguer</b> <span class="kc">145 kcal</span></li>
     </ul>
-    <div class="mtot">Subtotal ≈ 557 kcal <span style="color:var(--muted);font-weight:400">(qualquer combinação — todas na mesma caloria)</span> &nbsp;·&nbsp; P 46 g · C 44 g · G 20 g</div>
+    <div class="mtot">Subtotal ≈ 557 kcal &nbsp;·&nbsp; P 46 g · C 44 g · G 20 g</div>
   </div>
 
   <div class="meal">
-    <div class="mh"><div class="mt">6 · Noite</div><div class="mtime">~22:00 · leve, sem sólidos pesados (refluxo)</div></div>
+    <div class="mh"><div class="mt">6 · Noite</div><div class="mtime">~22:00</div></div>
     <ul>
       <li>1 <b>maçã</b> <span class="kc">80 kcal</span></li>
     </ul>
@@ -1280,108 +1301,140 @@
   </div>
 
 
-  <h2><span class="dot"></span>🆕 Treino Alternativo — Musculação + Corrida (em avaliação, não substituiu o plano de periodização)</h2>
+  <h2><span class="dot"></span>🆕 Treino Alternativo</h2>
 
-  <h2><span class="dot"></span>📅 Plano por volume semanal (definido no chat, 28/10/2026)</h2>
-  <h3 style="margin-bottom:8px;color:var(--muted);font-size:14px">🗂️ Semanas anteriores (histórico — toque para expandir)</h3>
+  <h2><span class="dot"></span>📅 Plano semanal</h2>
+  <h3 style="margin-bottom:8px;color:var(--muted);font-size:14px">Semanas anteriores</h3>
   <details class="qcard" style="margin-bottom:10px">
-    <summary class="qh" style="cursor:pointer">Semana 05/10 a 11/10 — concluída</summary>
+    <summary class="qh" style="cursor:pointer">05/10 – 11/10<span class="wk-km">31,00 km</span></summary>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + caminhada (Pernas A sem registro)</span><span class="ex-note">✅ feito — corrida 36:37, 5,49km, 6'33"/km, 161bpm med; caminhada 35:31, 3,88km, 9'09"/km, 127bpm med</span></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Corrida</span><span class="ex-note">✅ feito — 1:04:41, 9,51km, 6'48"/km, 164bpm med (ritmo de prova, mais forte que o previsto)</span></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total (previsto)</span><span class="ex-note">✅ feito — treino funcional de força 29:16, 115bpm med (fora do plano, dia era descanso)</span></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida</span><span class="ex-note">✅ feito — força 24:24, 139bpm med; corrida 32:30, 5,00km, 6'30"/km, 178bpm med; caminhada noite 1:50:53, 9,59km, 11'34"/km, 109bpm med</span></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total (previsto)</span><span class="ex-note">✅ feito — corrida 40:18, 6,00km, 6'43"/km, 174bpm med (fora do plano, dia era descanso)</span></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><span class="ex-note">✅ feito — 35:11, 5,00km, 7'02"/km, 163bpm med</span></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão (previsto)</span><span class="ex-note">— sem treino registrado</span></li>
+        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + Pernas A</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">36:37</span><span class="m">5,49 km</span><span class="m">6'33"/km</span><span class="m">161 bpm</span></span><span class="act"><b>✅ Caminhada</b><span class="m">35:31</span><span class="m">3,88 km</span><span class="m">9'09"/km</span><span class="m">127 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:04:41</span><span class="m">9,51 km</span><span class="m">6'48"/km</span><span class="m">164 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Funcional de força</b><span class="m">29:16</span><span class="m">115 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">24:24</span><span class="m">139 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">32:30</span><span class="m">5,00 km</span><span class="m">6'30"/km</span><span class="m">178 bpm</span></span><span class="act"><b>✅ Caminhada</b><span class="m">1:50:53</span><span class="m">9,59 km</span><span class="m">11'34"/km</span><span class="m">109 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">40:18</span><span class="m">6,00 km</span><span class="m">6'43"/km</span><span class="m">174 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">35:11</span><span class="m">5,00 km</span><span class="m">7'02"/km</span><span class="m">163 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act no">— sem registro</span></div></li>
       </ul>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
-        <b>Volume planejado:</b> ~12km (estimado a partir dos alvos por tempo da fase Base — longão 40-45min Z2, fácil 18min Z2 ×3, qualidade 20min Z2, convertido a ritmo ~9-9'30"/km; plano original era por tempo, não distância) &nbsp;|&nbsp; <b>Realizado:</b> 31,00km corridos<br>
-        <b>Tipos planejados:</b> 3× corrida fácil Z2 (seg/ter/qui) + 1× qualidade Z2 (sáb) + 1× longão Z2 (dom) + 2× descanso total (qua/sex) + força nos dias combinados<br>
-        <b>Tipos realizados:</b> 5× corrida (2 fora do ritmo/dia previsto), 2× força fora do plano (qua e qui), nenhum dos 2 dias de descanso cumprido como descanso, domingo sem registro
+      <div class="wk-sum">
+        <div class="wk-stats">
+          <div class="wk-stat"><div class="lbl">Planejado</div><div class="val">~12 km</div></div>
+          <div class="wk-stat"><div class="lbl">Realizado</div><div class="val">31,00 km</div><div class="sub over">258% do plano</div></div>
+        </div>
+        <div class="wk-bar"><span style="width:100%;background:var(--warn)"></span></div>
+        <div class="wk-types">
+          <div class="col"><div class="lbl">Planejado</div><ul><li>3× fácil Z2</li><li>1× qualidade</li><li>1× longão</li><li>2× descanso</li></ul></div>
+          <div class="col"><div class="lbl">Realizado</div><ul><li>5× corrida</li><li>2× caminhada</li><li>2× força</li><li>0/2 descansos</li></ul></div>
+        </div>
       </div>
     </div>
   </details>
   <details class="qcard" style="margin-bottom:10px">
-    <summary class="qh" style="cursor:pointer">Semana 12/10 a 18/10 — concluída</summary>
+    <summary class="qh" style="cursor:pointer">12/10 – 18/10<span class="wk-km">28,17 km</span></summary>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil (previsto)</span><span class="ex-note">✅ feito — caminhada 1:27:47, 8,23km, 10'40"/km, 111bpm med (substituiu a corrida; Pernas A sem registro)</span></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Superior B + corrida fácil</span><span class="ex-note">✅ feito — força 28:13, 115bpm med; corrida esteira 22:09, 3,07km, 7'12"/km, 151bpm med</span></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total (previsto)</span><span class="ex-note">✅ feito — corrida esteira 36:38, 5,02km, 7'17"/km, 140bpm med (fora do plano, dia era descanso)</span></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><span class="ex-note">✅ feito — corrida 37:12, 5,03km, 7'23"/km, 160bpm med (Pernas B sem registro)</span></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total (previsto)</span><span class="ex-note">— sem treino registrado</span></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><span class="ex-note">✅ feito — 1:31:03, 10,05km, 9'03"/km, 137bpm med</span></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão (previsto)</span><span class="ex-note">✅ feito — corrida 42:31, 5,00km, 8'29"/km, 141bpm med; força 33:16, 143bpm med (fora do plano, domingo era só longão)</span></li>
+        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + Pernas A</span><div class="ex-det"><span class="act"><b>✅ Caminhada</b><span class="m">1:27:47</span><span class="m">8,23 km</span><span class="m">10'40"/km</span><span class="m">111 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Superior B + corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">28:13</span><span class="m">115 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">22:09</span><span class="m">3,07 km</span><span class="m">7'12"/km</span><span class="m">151 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">36:38</span><span class="m">5,02 km</span><span class="m">7'17"/km</span><span class="m">140 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">37:12</span><span class="m">5,03 km</span><span class="m">7'23"/km</span><span class="m">160 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span></div></li>
+        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:31:03</span><span class="m">10,05 km</span><span class="m">9'03"/km</span><span class="m">137 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">42:31</span><span class="m">5,00 km</span><span class="m">8'29"/km</span><span class="m">141 bpm</span></span><span class="act"><b>✅ Força</b><span class="m">33:16</span><span class="m">143 bpm</span></span></div></li>
       </ul>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
-        <b>Volume planejado:</b> ~9km (estimado a partir dos alvos por tempo da fase Deload — longão 30min Z2, fácil 12min Z2 ×3, qualidade 15min Z2, convertido a ritmo ~9-9'30"/km; plano original era por tempo, não distância) &nbsp;|&nbsp; <b>Realizado:</b> 28,17km corridos<br>
-        <b>Tipos planejados:</b> 3× corrida fácil Z2 curta (seg/ter/qui) + 1× qualidade leve (sáb) + 1× longão leve (dom) + 2× descanso total (qua/sex) + força nos dias combinados — semana de deload, volume intencionalmente baixo<br>
-        <b>Tipos realizados:</b> 5× corrida (1 fora do dia previsto), 2× força fora do plano (ter e dom), 1 dos 2 dias de descanso cumprido (sexta)
+      <div class="wk-sum">
+        <div class="wk-stats">
+          <div class="wk-stat"><div class="lbl">Planejado</div><div class="val">~9 km</div></div>
+          <div class="wk-stat"><div class="lbl">Realizado</div><div class="val">28,17 km</div><div class="sub over">313% do plano</div></div>
+        </div>
+        <div class="wk-bar"><span style="width:100%;background:var(--warn)"></span></div>
+        <div class="wk-types">
+          <div class="col"><div class="lbl">Planejado</div><ul><li>3× fácil Z2 curta</li><li>1× qualidade leve</li><li>1× longão leve</li><li>2× descanso</li></ul></div>
+          <div class="col"><div class="lbl">Realizado</div><ul><li>5× corrida</li><li>1× caminhada</li><li>2× força</li><li>1/2 descansos</li></ul></div>
+        </div>
       </div>
     </div>
   </details>
   <details class="qcard" style="margin-bottom:14px">
-    <summary class="qh" style="cursor:pointer">Semana 19/10 a 25/10 — concluída (pico de volume)</summary>
+    <summary class="qh" style="cursor:pointer">19/10 – 25/10<span class="wk-km">37,70 km</span></summary>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil (previsto)</span><span class="ex-note">✅ feito — 1:35:13, 10,00km, 9'31"/km, 138bpm med (saiu longa, prescrita como fácil)</span></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><span class="ex-note">✅ feito — corrida 55:42, 6,01km, 9'16"/km, 133bpm med; força 24:59, 139bpm med (fora do plano)</span></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total (previsto)</span><span class="ex-note">✅ feito — intervalado 4x3min, 37:49, 5,01km, 7'33"/km, 148bpm med (fora do plano, dia era descanso)</span></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil (previsto)</span><span class="ex-note">— sem treino registrado</span></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total (previsto)</span><span class="ex-note">— sem treino registrado</span></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade (previsto)</span><span class="ex-note">✅ feito — longão Z2, 1:59:20, 13,14km, 9'04"/km, 137bpm med</span></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão (previsto)</span><span class="ex-note">✅ feito — força 35:16, 119bpm med; corrida 33:13, 3,54km, 9'22"/km, 135bpm med</span></li>
+        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:35:13</span><span class="m">10,00 km</span><span class="m">9'31"/km</span><span class="m">138 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">55:42</span><span class="m">6,01 km</span><span class="m">9'16"/km</span><span class="m">133 bpm</span></span><span class="act"><b>✅ Força</b><span class="m">24:59</span><span class="m">139 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Intervalado 4x3</b><span class="m">37:49</span><span class="m">5,01 km</span><span class="m">7'33"/km</span><span class="m">148 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><div class="ex-det"><span class="act no">— sem registro</span></div></li>
+        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span></div></li>
+        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Longão Z2</b><span class="m">1:59:20</span><span class="m">13,14 km</span><span class="m">9'04"/km</span><span class="m">137 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">35:16</span><span class="m">119 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">33:13</span><span class="m">3,54 km</span><span class="m">9'22"/km</span><span class="m">135 bpm</span></span></div></li>
       </ul>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
-        <b>Volume planejado:</b> ~13km (estimado a partir dos alvos da fase Construção — longão ~4,5km, fácil 20min Z2 ×3, qualidade tempo ~15-25min, convertido a ritmo ~9-9'30"/km onde não havia km explícito) &nbsp;|&nbsp; <b>Realizado:</b> 37,70km corridos (pico de volume)<br>
-        <b>Tipos planejados:</b> 3× corrida fácil Z2 (seg/ter/qui) + 1× qualidade tempo (sáb) + 1× longão ~4,5km (dom) + 2× descanso total (qua/sex) + força nos dias combinados<br>
-        <b>Tipos realizados:</b> 4× corrida (incluindo 1 intervalado fora do plano na quarta), 1× força fora do plano (ter), quinta e sexta sem registro, domingo com força + corrida
+      <div class="wk-sum">
+        <div class="wk-stats">
+          <div class="wk-stat"><div class="lbl">Planejado</div><div class="val">~13 km</div></div>
+          <div class="wk-stat"><div class="lbl">Realizado</div><div class="val">37,70 km</div><div class="sub over">290% do plano</div></div>
+        </div>
+        <div class="wk-bar"><span style="width:100%;background:var(--warn)"></span></div>
+        <div class="wk-types">
+          <div class="col"><div class="lbl">Planejado</div><ul><li>3× fácil Z2</li><li>1× qualidade</li><li>1× longão ~4,5km</li><li>2× descanso</li></ul></div>
+          <div class="col"><div class="lbl">Realizado</div><ul><li>5× corrida</li><li>2× força</li><li>1/2 descansos</li></ul></div>
+        </div>
       </div>
     </div>
   </details>
+  <h3 style="margin:18px 0 8px;color:var(--muted);font-size:14px">Semana atual</h3>
   <div class="qcard" style="margin-bottom:14px">
-    <div class="qh">Semana 26/10 a 01/11 — alvo ~26km</div>
+    <div class="qh">26/10 – 01/11<span class="wk-km">10,96 km</span></div>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Intervalado 4x4 + corrida leve</span><span class="ex-note">✅ feito — intervalado 28:04, 4,08km, 6'52"/km, 151bpm med; corrida leve 17:02, 1,87km, 9'07"/km, 135bpm med</span></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Descanso total</span><span class="ex-note">✅ feito</span></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Z2 5km + força</span><span class="ex-note">✅ feito (corrida) — 48:52, 5,01km, 9'47"/km, 128bpm med (força não registrada)</span></li>
+        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Intervalado 4x4 + corrida leve</span><div class="ex-det"><span class="act"><b>✅ Intervalado</b><span class="m">28:04</span><span class="m">4,08 km</span><span class="m">6'52"/km</span><span class="m">151 bpm</span></span><span class="act"><b>✅ Corrida leve</b><span class="m">17:02</span><span class="m">1,87 km</span><span class="m">9'07"/km</span><span class="m">135 bpm</span></span></div></li>
+        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span></div></li>
+        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Z2 5km + força</span><div class="ex-det"><span class="act"><b>✅ Corrida Z2</b><span class="m">48:52</span><span class="m">5,01 km</span><span class="m">9'47"/km</span><span class="m">128 bpm</span></span></div></li>
         <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Descanso total</span></li>
         <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Z2 5km + força</span></li>
         <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Descanso total</span></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão reduzido ~10km Z2</span></li>
+        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão ~10km Z2</span></li>
       </ul>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
-        <b>Volume planejado:</b> ~26km &nbsp;|&nbsp; <b>Realizado até agora:</b> 5,95km (semana em andamento)<br>
-        <b>Tipos planejados:</b> 1× intervalado + corrida leve, 2× Z2 + força, 1× longão reduzido ~10km, 3× descanso total<br>
-        <b>Tipos realizados até agora:</b> intervalado 4x4 (feito) + corrida leve (feito) na segunda; descanso cumprido na terça — resto da semana ainda não chegou
+      <div class="wk-sum">
+        <div class="wk-stats">
+          <div class="wk-stat"><div class="lbl">Planejado</div><div class="val">~26 km</div></div>
+          <div class="wk-stat"><div class="lbl">Realizado</div><div class="val">10,96 km</div><div class="sub">42% do plano</div></div>
+        </div>
+        <div class="wk-bar"><span style="width:42%"></span></div>
+        <div class="wk-types">
+          <div class="col"><div class="lbl">Planejado</div><ul><li>1× intervalado + leve</li><li>2× Z2 5km + força</li><li>1× longão ~10km</li><li>3× descanso</li></ul></div>
+          <div class="col"><div class="lbl">Realizado</div><ul><li>1× intervalado + leve</li><li>1× Z2 5km</li><li>0/2 força</li><li>1/3 descansos</li></ul></div>
+        </div>
       </div>
     </div>
   </div>
+  <h3 style="margin:18px 0 8px;color:var(--muted);font-size:14px">Próxima semana</h3>
   <div class="qcard" style="margin-bottom:14px">
-    <div class="qh">Semana 02/11 a 08/11 — alvo ~30km</div>
+    <div class="qh">02/11 – 08/11<span class="wk-km">0,00 km</span></div>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Z2 5km (sem força)</span></li>
+        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Z2 5km</span></li>
         <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Z2 5km + Superior B</span></li>
         <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span></li>
         <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Z2 5km + Pernas B</span></li>
         <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Intensidade (fartlek 4x3 ou 4x4, ~4km) + Superior A</span></li>
+        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Fartlek ~4km + Superior A</span></li>
         <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão 11km Z2</span></li>
       </ul>
-      <div style="margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);line-height:1.6">
-        <b>Volume planejado:</b> ~30km &nbsp;|&nbsp; <b>Realizado:</b> 0km (semana futura, ainda não chegou)<br>
-        <b>Tipos planejados:</b> 1× Z2 sem força (segunda) + 2× Z2 + força (Superior B terca, Pernas B quinta) + 2× descanso total + 1× intensidade (fartlek ~4km) + Superior A + 1× longão 11km<br>
-        <b>Tipos realizados:</b> nenhum ainda
+      <div class="wk-sum">
+        <div class="wk-stats">
+          <div class="wk-stat"><div class="lbl">Planejado</div><div class="val">~30 km</div></div>
+          <div class="wk-stat"><div class="lbl">Realizado</div><div class="val">0,00 km</div><div class="sub">0% do plano</div></div>
+        </div>
+        <div class="wk-bar"><span style="width:0%"></span></div>
+        <div class="wk-types">
+          <div class="col"><div class="lbl">Planejado</div><ul><li>3× Z2 5km</li><li>1× fartlek ~4km</li><li>1× longão 11km</li><li>3× força</li><li>2× descanso</li></ul></div>
+          <div class="col"><div class="lbl">Realizado</div><ul><li>—</li></ul></div>
+        </div>
       </div>
     </div>
   </div>
 
 
-  <h2><span class="dot"></span>Treino detalhado por dia (aquecimento no próprio exercício)</h2>
+  <h2><span class="dot"></span>Treino detalhado por dia</h2>
   <div class="grid">
     <div class="qcard">
       <div class="qh">Segunda — Corrida fácil (sem força)</div>
