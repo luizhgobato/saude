@@ -439,6 +439,10 @@
   .qcard .qbody .ex-det .act.ok{color:var(--good);font-weight:600}
   .qcard .qbody .ex-det .act.no{color:var(--muted)}
   .qcard .qbody .ex-det .kcl .m{color:var(--warn);border-color:rgba(245,158,11,.35)}
+  .qcard .qbody li.ex.done{border-left:3px solid var(--good);padding-left:10px}
+  .qcard .qbody li.ex.todo{border-left:3px dashed var(--line);padding-left:10px}
+  .qcard .qbody li.ex.miss{border-left:3px solid var(--bad);padding-left:10px;opacity:.75}
+  .qcard .qbody .ex-det .kcl.plan .m{color:var(--muted);border-style:dashed;border-color:var(--line);background:transparent}
   .qcard .qbody .ex-det .m{background:var(--card2);border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--ink);font-size:11.5px;white-space:nowrap}
   .qcard .qh .wk-km{margin-left:auto;font-size:12px;font-weight:700;color:var(--good);background:rgba(34,197,94,.12);border-radius:999px;padding:2px 10px;white-space:nowrap}
   .qcard .qbody .wk-sum{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
@@ -1304,7 +1308,7 @@
     <ul>
       <li><span class="tag t-good">PLANO ATIVO</span><div>Este é o plano de referência a partir de 28/10/2026, substituindo a Fase 0 e a tabela de 12 semanas (mantidas acima só como histórico). Zona 2 definida como 130-140bpm — faixa real e praticável no condicionamento atual, confirmada em conversa. Jejum não é mais exigência fixa.</div></li>
       <li><span class="tag t-good">LÓGICA</span><div>Progressão em ondas: consolidação após pico, depois build gradual (~10-15%/sem), novo pico a cada 3-4 semanas, deload em seguida. Teto de ~38-40km/semana por enquanto, considerando a condromalácia patelar — não ultrapassar sem reavaliação de fisioterapeuta/ortopedista.</div></li>
-      <li><span class="tag t-good">FORÇA — 2 SUPERIOR + 1 INFERIOR (decidido 28/10/2026)</span><div>Terça = Superior B, Quinta = Pernas B (cadeia posterior: stiff, búlgaro, mesa flexora, hip thrust — sem agachamento/leg press pesado), Sábado = Superior A. Segunda deixou de ter força (era Pernas A, quadríceps-dominante) — vira só corrida, pra não empilhar carga de quadríceps em cima do volume de corrida. Seções específicas de treino Hyrox ainda não foram definidas — ficam pendentes.</div></li>
+      <li><span class="tag t-good">FORÇA — 2 SUPERIOR + 1 INFERIOR (decidido 28/10/2026)</span><div>Segunda = Superior A, Terça = Superior B, Quinta = Pernas B (cadeia posterior: stiff, búlgaro, mesa flexora, hip thrust — sem agachamento/leg press pesado). Sábado fica só corrida. Seções específicas de treino Hyrox ainda não foram definidas — ficam pendentes.</div></li>
     </ul>
   </div>
 <h3 style="margin:16px 0 8px;color:var(--ink);font-size:14px">📏 Faixas de referência</h3>
@@ -1321,13 +1325,13 @@
     <summary class="qh" style="cursor:pointer">05/10 – 11/10<span class="wk-km">31,00 km</span></summary>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + Pernas A</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">36:37</span><span class="m">5,49 km</span><span class="m">6'33"/km</span><span class="m">161 bpm</span></span><span class="act"><b>✅ Caminhada</b><span class="m">35:31</span><span class="m">3,88 km</span><span class="m">9'09"/km</span><span class="m">127 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~680 kcal</span><span class="m">Dia ~2.870 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:04:41</span><span class="m">9,51 km</span><span class="m">6'48"/km</span><span class="m">164 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~738 kcal</span><span class="m">Dia ~2.928 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Funcional de força</b><span class="m">29:16</span><span class="m">115 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~138 kcal</span><span class="m">Dia ~2.328 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">24:24</span><span class="m">139 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">32:30</span><span class="m">5,00 km</span><span class="m">6'30"/km</span><span class="m">178 bpm</span></span><span class="act"><b>✅ Caminhada</b><span class="m">1:50:53</span><span class="m">9,59 km</span><span class="m">11'34"/km</span><span class="m">109 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~1.073 kcal</span><span class="m">Dia ~3.263 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">40:18</span><span class="m">6,00 km</span><span class="m">6'43"/km</span><span class="m">174 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~505 kcal</span><span class="m">Dia ~2.695 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">35:11</span><span class="m">5,00 km</span><span class="m">7'02"/km</span><span class="m">163 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~408 kcal</span><span class="m">Dia ~2.598 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act no">— sem registro</span></div></li>
+        <li class="ex done"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + Pernas A</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">36:37</span><span class="m">5,49 km</span><span class="m">6'33"/km</span><span class="m">161 bpm</span></span><span class="act"><b>✅ Caminhada</b><span class="m">35:31</span><span class="m">3,88 km</span><span class="m">9'09"/km</span><span class="m">127 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~680 kcal</span><span class="m">Dia ~2.870 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:04:41</span><span class="m">9,51 km</span><span class="m">6'48"/km</span><span class="m">164 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~738 kcal</span><span class="m">Dia ~2.928 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Funcional de força</b><span class="m">29:16</span><span class="m">115 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~138 kcal</span><span class="m">Dia ~2.328 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">24:24</span><span class="m">139 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">32:30</span><span class="m">5,00 km</span><span class="m">6'30"/km</span><span class="m">178 bpm</span></span><span class="act"><b>✅ Caminhada</b><span class="m">1:50:53</span><span class="m">9,59 km</span><span class="m">11'34"/km</span><span class="m">109 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~1.073 kcal</span><span class="m">Dia ~3.263 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">40:18</span><span class="m">6,00 km</span><span class="m">6'43"/km</span><span class="m">174 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~505 kcal</span><span class="m">Dia ~2.695 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">35:11</span><span class="m">5,00 km</span><span class="m">7'02"/km</span><span class="m">163 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~408 kcal</span><span class="m">Dia ~2.598 kcal</span></span></div></li>
+        <li class="ex miss"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act no">— sem registro</span></div></li>
       </ul>
       <div class="wk-sum">
         <div class="wk-stats">
@@ -1346,13 +1350,13 @@
     <summary class="qh" style="cursor:pointer">12/10 – 18/10<span class="wk-km">28,17 km</span></summary>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + Pernas A</span><div class="ex-det"><span class="act"><b>✅ Caminhada</b><span class="m">1:27:47</span><span class="m">8,23 km</span><span class="m">10'40"/km</span><span class="m">111 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~548 kcal</span><span class="m">Dia ~2.738 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Superior B + corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">28:13</span><span class="m">115 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">22:09</span><span class="m">3,07 km</span><span class="m">7'12"/km</span><span class="m">151 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~348 kcal</span><span class="m">Dia ~2.538 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">36:38</span><span class="m">5,02 km</span><span class="m">7'17"/km</span><span class="m">140 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~335 kcal</span><span class="m">Dia ~2.525 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">37:12</span><span class="m">5,03 km</span><span class="m">7'23"/km</span><span class="m">160 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~403 kcal</span><span class="m">Dia ~2.593 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span><span class="act kcl"><span class="m">Dia ~2.190 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:31:03</span><span class="m">10,05 km</span><span class="m">9'03"/km</span><span class="m">137 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~748 kcal</span><span class="m">Dia ~2.938 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">42:31</span><span class="m">5,00 km</span><span class="m">8'29"/km</span><span class="m">141 bpm</span></span><span class="act"><b>✅ Força</b><span class="m">33:16</span><span class="m">143 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~590 kcal</span><span class="m">Dia ~2.780 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil + Pernas A</span><div class="ex-det"><span class="act"><b>✅ Caminhada</b><span class="m">1:27:47</span><span class="m">8,23 km</span><span class="m">10'40"/km</span><span class="m">111 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~548 kcal</span><span class="m">Dia ~2.738 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Terça</span><span class="ex-sets">Superior B + corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">28:13</span><span class="m">115 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">22:09</span><span class="m">3,07 km</span><span class="m">7'12"/km</span><span class="m">151 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~348 kcal</span><span class="m">Dia ~2.538 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">36:38</span><span class="m">5,02 km</span><span class="m">7'17"/km</span><span class="m">140 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~335 kcal</span><span class="m">Dia ~2.525 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">37:12</span><span class="m">5,03 km</span><span class="m">7'23"/km</span><span class="m">160 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~403 kcal</span><span class="m">Dia ~2.593 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span><span class="act kcl"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:31:03</span><span class="m">10,05 km</span><span class="m">9'03"/km</span><span class="m">137 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~748 kcal</span><span class="m">Dia ~2.938 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">42:31</span><span class="m">5,00 km</span><span class="m">8'29"/km</span><span class="m">141 bpm</span></span><span class="act"><b>✅ Força</b><span class="m">33:16</span><span class="m">143 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~590 kcal</span><span class="m">Dia ~2.780 kcal</span></span></div></li>
       </ul>
       <div class="wk-sum">
         <div class="wk-stats">
@@ -1371,13 +1375,13 @@
     <summary class="qh" style="cursor:pointer">19/10 – 25/10<span class="wk-km">37,70 km</span></summary>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:35:13</span><span class="m">10,00 km</span><span class="m">9'31"/km</span><span class="m">138 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~718 kcal</span><span class="m">Dia ~2.908 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">55:42</span><span class="m">6,01 km</span><span class="m">9'16"/km</span><span class="m">133 bpm</span></span><span class="act"><b>✅ Força</b><span class="m">24:59</span><span class="m">139 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~582 kcal</span><span class="m">Dia ~2.772 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Intervalado 4x3</b><span class="m">37:49</span><span class="m">5,01 km</span><span class="m">7'33"/km</span><span class="m">148 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~356 kcal</span><span class="m">Dia ~2.546 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><div class="ex-det"><span class="act no">— sem registro</span></div></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span><span class="act kcl"><span class="m">Dia ~2.190 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Longão Z2</b><span class="m">1:59:20</span><span class="m">13,14 km</span><span class="m">9'04"/km</span><span class="m">137 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~980 kcal</span><span class="m">Dia ~3.170 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">35:16</span><span class="m">119 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">33:13</span><span class="m">3,54 km</span><span class="m">9'22"/km</span><span class="m">135 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~417 kcal</span><span class="m">Dia ~2.607 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Segunda</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">1:35:13</span><span class="m">10,00 km</span><span class="m">9'31"/km</span><span class="m">138 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~718 kcal</span><span class="m">Dia ~2.908 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Terça</span><span class="ex-sets">Corrida fácil</span><div class="ex-det"><span class="act"><b>✅ Corrida</b><span class="m">55:42</span><span class="m">6,01 km</span><span class="m">9'16"/km</span><span class="m">133 bpm</span></span><span class="act"><b>✅ Força</b><span class="m">24:59</span><span class="m">139 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~582 kcal</span><span class="m">Dia ~2.772 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act"><b>✅ Intervalado 4x3</b><span class="m">37:49</span><span class="m">5,01 km</span><span class="m">7'33"/km</span><span class="m">148 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~356 kcal</span><span class="m">Dia ~2.546 kcal</span></span></div></li>
+        <li class="ex miss"><span class="ex-name">Quinta</span><span class="ex-sets">Pernas B + corrida fácil</span><div class="ex-det"><span class="act no">— sem registro</span></div></li>
+        <li class="ex done"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span><span class="act kcl"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Sábado</span><span class="ex-sets">Corrida de qualidade</span><div class="ex-det"><span class="act"><b>✅ Longão Z2</b><span class="m">1:59:20</span><span class="m">13,14 km</span><span class="m">9'04"/km</span><span class="m">137 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~980 kcal</span><span class="m">Dia ~3.170 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Domingo</span><span class="ex-sets">Longão</span><div class="ex-det"><span class="act"><b>✅ Força</b><span class="m">35:16</span><span class="m">119 bpm</span></span><span class="act"><b>✅ Corrida</b><span class="m">33:13</span><span class="m">3,54 km</span><span class="m">9'22"/km</span><span class="m">135 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~417 kcal</span><span class="m">Dia ~2.607 kcal</span></span></div></li>
       </ul>
       <div class="wk-sum">
         <div class="wk-stats">
@@ -1397,13 +1401,13 @@
     <div class="qh">26/10 – 01/11<span class="wk-km">10,96 km</span></div>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Intervalado 4x4 + corrida leve</span><div class="ex-det"><span class="act"><b>✅ Intervalado</b><span class="m">28:04</span><span class="m">4,08 km</span><span class="m">6'52"/km</span><span class="m">151 bpm</span></span><span class="act"><b>✅ Corrida leve</b><span class="m">17:02</span><span class="m">1,87 km</span><span class="m">9'07"/km</span><span class="m">135 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~432 kcal</span><span class="m">Dia ~2.622 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span><span class="act kcl"><span class="m">Dia ~2.190 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Z2 5km + força</span><div class="ex-det"><span class="act"><b>✅ Corrida Z2</b><span class="m">48:52</span><span class="m">5,01 km</span><span class="m">9'47"/km</span><span class="m">128 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~363 kcal</span><span class="m">Dia ~2.553 kcal</span></span></div></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Descanso total</span></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Z2 5km + força</span></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Descanso total</span></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão ~10km Z2</span></li>
+        <li class="ex done"><span class="ex-name">Segunda</span><span class="ex-sets">Intervalado 4x4 + corrida leve</span><div class="ex-det"><span class="act"><b>✅ Intervalado</b><span class="m">28:04</span><span class="m">4,08 km</span><span class="m">6'52"/km</span><span class="m">151 bpm</span></span><span class="act"><b>✅ Corrida leve</b><span class="m">17:02</span><span class="m">1,87 km</span><span class="m">9'07"/km</span><span class="m">135 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~432 kcal</span><span class="m">Dia ~2.622 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Terça</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act ok">✅ Descanso</span><span class="act kcl"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex done"><span class="ex-name">Quarta</span><span class="ex-sets">Z2 5km + força</span><div class="ex-det"><span class="act"><b>✅ Corrida Z2</b><span class="m">48:52</span><span class="m">5,01 km</span><span class="m">9'47"/km</span><span class="m">128 bpm</span></span><span class="act kcl"><span class="m">🔥 Exercício ~363 kcal</span><span class="m">Dia ~2.553 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Quinta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act kcl plan"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Sexta</span><span class="ex-sets">Z2 5km + força</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~518 kcal</span><span class="m">Dia ~2.708 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Sábado</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act kcl plan"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Domingo</span><span class="ex-sets">Longão ~10km Z2</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~725 kcal</span><span class="m">Dia ~2.915 kcal</span></span></div></li>
       </ul>
       <div class="wk-sum">
         <div class="wk-stats">
@@ -1423,13 +1427,13 @@
     <div class="qh">02/11 – 08/11<span class="wk-km">0,00 km</span></div>
     <div class="qbody">
       <ul class="ex-list">
-        <li class="ex"><span class="ex-name">Segunda</span><span class="ex-sets">Z2 5km</span></li>
-        <li class="ex"><span class="ex-name">Terça</span><span class="ex-sets">Z2 5km + Superior B</span></li>
-        <li class="ex"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span></li>
-        <li class="ex"><span class="ex-name">Quinta</span><span class="ex-sets">Z2 5km + Pernas B</span></li>
-        <li class="ex"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span></li>
-        <li class="ex"><span class="ex-name">Sábado</span><span class="ex-sets">Fartlek ~4km + Superior A</span></li>
-        <li class="ex"><span class="ex-name">Domingo</span><span class="ex-sets">Longão 11km Z2</span></li>
+        <li class="ex todo"><span class="ex-name">Segunda</span><span class="ex-sets">Z2 5km + Superior A</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~518 kcal</span><span class="m">Dia ~2.708 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Terça</span><span class="ex-sets">Z2 5km + Superior B</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~518 kcal</span><span class="m">Dia ~2.708 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Quarta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act kcl plan"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Quinta</span><span class="ex-sets">Z2 5km + Pernas B</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~518 kcal</span><span class="m">Dia ~2.708 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Sexta</span><span class="ex-sets">Descanso total</span><div class="ex-det"><span class="act kcl plan"><span class="m">Dia ~2.190 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Sábado</span><span class="ex-sets">Fartlek ~4km</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~290 kcal</span><span class="m">Dia ~2.480 kcal</span></span></div></li>
+        <li class="ex todo"><span class="ex-name">Domingo</span><span class="ex-sets">Longão 11km Z2</span><div class="ex-det"><span class="act kcl plan"><span class="m">🔥 Previsto ~798 kcal</span><span class="m">Dia ~2.988 kcal</span></span></div></li>
       </ul>
       <div class="wk-sum">
         <div class="wk-stats">
@@ -1449,9 +1453,15 @@
   <h2><span class="dot"></span>Treino detalhado por dia</h2>
   <div class="grid">
     <div class="qcard">
-      <div class="qh">Segunda — Corrida fácil (sem força)</div>
-      <div class="qbody">Dia virou só corrida (decisão de 28/10/2026) — antes tinha Pernas A (quadríceps) no almoço, removido pra não empilhar carga de quadríceps em cima do volume de corrida (condromalácia patelar). Força ficou em 3x/semana: Terça (Superior B), Quinta (Pernas B — cadeia posterior), Sábado (Superior A).
+      <div class="qh">Segunda — Superior A + corrida fácil</div>
+      <div class="qbody">
+        Alongamento dinâmico (3-5min): ombro + banda elástica. Descanso: 30-45s entre séries.
         <ul class="ex-list">
+          <li class="ex"><span class="ex-name">Supino sentado (máquina)</span><span class="ex-sets">4×10-15</span><span class="ex-note">aquec 2× · parar antes da falha</span></li>
+          <li class="ex"><span class="ex-name">Puxada alta / barra fixa</span><span class="ex-sets">4×10-15</span><span class="ex-note">parar antes da falha</span></li>
+          <li class="ex"><span class="ex-name">Remada baixa</span><span class="ex-sets">3×10-15</span></li>
+          <li class="ex"><span class="ex-name">Desenvolvimento militar</span><span class="ex-sets">3×10-15</span></li>
+          <li class="ex"><span class="ex-name">Rosca direta + tríceps corda</span><span class="ex-sets">3×12-15 cada</span></li>
           <li class="ex"><span class="ex-name">Corrida fácil (jejum opcional)</span><span class="ex-sets">manhã · Z2 — duração da semana atual na planilha acima</span></li>
         </ul>
       </div>
@@ -1495,15 +1505,9 @@
       <div class="qbody">Dia de escritório, sem tempo — sem treino nem cardio.</div>
     </div>
     <div class="qcard">
-      <div class="qh">Sábado — Superior A + corrida de qualidade (jejum)</div>
+      <div class="qh">Sábado — Corrida de qualidade (jejum)</div>
       <div class="qbody">
-        Alongamento dinâmico (3-5min): ombro + banda elástica. Descanso: 30-45s entre séries.
         <ul class="ex-list">
-          <li class="ex"><span class="ex-name">Supino sentado (máquina)</span><span class="ex-sets">4×10-15</span><span class="ex-note">aquec 2× · parar antes da falha</span></li>
-          <li class="ex"><span class="ex-name">Puxada alta / barra fixa</span><span class="ex-sets">4×10-15</span><span class="ex-note">parar antes da falha</span></li>
-          <li class="ex"><span class="ex-name">Remada baixa</span><span class="ex-sets">3×10-15</span></li>
-          <li class="ex"><span class="ex-name">Desenvolvimento militar</span><span class="ex-sets">3×10-15</span></li>
-          <li class="ex"><span class="ex-name">Rosca direta + tríceps corda</span><span class="ex-sets">3×12-15 cada</span></li>
           <li class="ex"><span class="ex-name">Corrida de qualidade</span><span class="ex-sets">tempo/intervalado — ver planilha acima pra semana atual</span></li>
         </ul>
       </div>
