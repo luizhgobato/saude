@@ -488,10 +488,10 @@
 </header>
 
 <div class="tabs">
-  <div class="tab" data-tab="dieta">🍽️ Dieta Ideal</div>
+  <div class="tab active" data-tab="dieta">🍽️ Dieta Ideal</div>
   <div class="tab" data-tab="treino-alt">🆕 Treino Alternativo</div>
   <div class="tab" data-tab="treino">🏋️ Treinos</div>
-  <div class="tab active" data-tab="sangue">🩸 Exames de Sangue</div>
+  <div class="tab" data-tab="sangue">🩸 Exames de Sangue</div>
   <div class="tab" data-tab="gene">🧬 Exame Genético</div>
   <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
   <div class="tab" data-tab="dinamico">🔥 Treino Dinâmico</div>
@@ -503,7 +503,7 @@
   <div class="tab" data-tab="meds">💊 Remédios & Suplementos</div>
 </div>
 
-<div class="wrap tabpane active" id="tab-sangue">
+<div class="wrap tabpane" id="tab-sangue">
   <button class="print-btn" onclick="document.body.classList.add('printing-sangue');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-sangue')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
@@ -878,7 +878,7 @@
 </div>
 
 <!-- ===================== ABA DIETA IDEAL ===================== -->
-<div class="wrap tabpane" id="tab-dieta">
+<div class="wrap tabpane active" id="tab-dieta">
   <button class="print-btn" onclick="document.body.classList.add('printing-dieta');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-dieta')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
   <div class="lead">
     <h3>🍽️ Dieta — protocolo recomposição corporal (jul/2026)</h3>
