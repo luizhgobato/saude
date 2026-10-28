@@ -880,6 +880,9 @@
 <!-- ===================== ABA DIETA IDEAL ===================== -->
 <div class="wrap tabpane active" id="tab-dieta">
   <button class="print-btn" onclick="document.body.classList.add('printing-dieta');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-dieta')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
+  <button class="print-btn" style="margin-left:8px" onclick="var n=document.getElementById('notas-dieta');var open=(n.style.display==='none');n.style.display=open?'block':'none';this.textContent=open?'📝 Fechar bloco de notas':'📝 Abrir bloco de notas'">📝 Abrir bloco de notas</button>
+
+  <div id="notas-dieta" class="qcard" style="display:none;margin-bottom:14px">
   <div class="lead">
     <h3>🍽️ Dieta — protocolo recomposição corporal (jul/2026)</h3>
     <ul>
@@ -889,6 +892,7 @@
       <li><span class="tag t-bad">REFLUXO</span><div>Jantar com pelo menos <b>2-3h antes de deitar</b>, porções moderadas. Chocolate limitado a <b>1x/dia</b> (gatilho clássico de refluxo) — evitar no jantar, mais perto de deitar.</div></li>
       <li><span class="tag t-bad">PRÉ-DIABETES</span><div>HbA1c 6,0%: prefira carboidratos complexos, evite açúcar livre. Uma caminhada de 20–30 min após almoço ou jantar melhora a glicemia pós-prandial mesmo nos dias em que já treinou.</div></li>
     </ul>
+  </div>
   </div>
 
   <h2><span class="dot"></span>Total do dia <span style="font-size:12px;color:var(--muted);font-weight:400">(calculado pela TACO)</span></h2>
