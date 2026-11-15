@@ -145,6 +145,13 @@
   .meal ul{margin:0;padding-left:18px}
   .meal li{margin:5px 0;font-size:14px;line-height:1.5}
   .meal .macros{margin-top:10px;font-size:11.5px;color:#64748b;font-family:monospace}
+  .daygroup{border:1px solid var(--line);border-radius:14px;margin-bottom:14px;overflow:hidden}
+  .daygroup summary{cursor:pointer;list-style:none;background:var(--card2);padding:14px 20px;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+  .daygroup summary::-webkit-details-marker{display:none}
+  .daygroup summary::after{content:'▸';margin-left:10px;color:var(--muted);transition:transform .15s}
+  .daygroup[open] summary::after{transform:rotate(90deg)}
+  .daygroup .meal{margin:14px 16px;border-left:3px solid var(--accent)}
+  .daygroup .meal:last-child{margin-bottom:16px}
   .swap{background:rgba(56,189,248,.07);border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px;color:#cbd5e1;margin-top:6px}
   .macrobar{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
   .macropill{background:var(--card2);border:1px solid var(--line);border-radius:20px;padding:8px 16px;font-size:13px}
@@ -1106,20 +1113,45 @@
     </div>
 
     <h2><span class="dot"></span>Refeições registradas</h2>
-    <div class="tablewrap">
-      <table>
-        <tr><th>Data</th><th>Refeição</th><th>Descrição</th><th>Kcal (estimado)</th><th>Saldo do dia</th></tr>
-      
-      <tr><td>15/11/2026 (dom)</td><td>Café da manhã: 2 fatias de pão de forma integral com requeijão e muçarela. Almoço: 300g de macarrão com creme de leite e queijo e 250g de salmão. Doces: meia barra de Kit Kat, 6 brigadeiros e 1 fatia grande de bolo.</td><td>Hj eu comi duas fatias de pao de forma integral com requeijao e mussarela
+    <div id="refeicoes-registradas">
 
-No almoco comi 300g de macarrao com creme de leite e queijo e 250g de salmao
+    <details class="daygroup" id="dia-2026-11-15">
+      <summary>15/11/2026 (dom) — Total: ~2250 kcal · Saldo: ~-60 kcal</summary>
 
-Comei meia barra de kitkat 6 brigadeiros, 1 fatia grande de bolo</td><td>~2250 kcal (estim. IA)</td><td>~-60 kcal</td></tr>
-    </table>
+      <div class="meal">
+        <div class="mh"><div class="mt">Café da manhã</div></div>
+        <ul>
+          <li>2 fatias de pão de forma integral <span class="kc">~130 kcal</span></li>
+          <li>Requeijão e muçarela <span class="kc">~100 kcal</span></li>
+        </ul>
+        <div class="mtot">Subtotal ≈ 230 kcal (estim. IA)</div>
+      </div>
+
+      <div class="meal">
+        <div class="mh"><div class="mt">Almoço</div></div>
+        <ul>
+          <li>300 g de macarrão com creme de leite e queijo <span class="kc">~650 kcal</span></li>
+          <li>250 g de salmão <span class="kc">~450 kcal</span></li>
+        </ul>
+        <div class="mtot">Subtotal ≈ 1100 kcal (estim. IA)</div>
+      </div>
+
+      <div class="meal">
+        <div class="mh"><div class="mt">Doces</div></div>
+        <ul>
+          <li>Meia barra de Kit Kat <span class="kc">~110 kcal</span></li>
+          <li>6 brigadeiros <span class="kc">~420 kcal</span></li>
+          <li>1 fatia grande de bolo <span class="kc">~390 kcal</span></li>
+        </ul>
+        <div class="mtot">Subtotal ≈ 920 kcal (estim. IA)</div>
+      </div>
+    </details>
+
+    <!-- fim-refeicoes-registradas -->
     </div>
     <p style="color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6">*<b>Estimativa por IA</b>, não medição real (não há pesagem dos alimentos) — valores podem variar ±15-20% frente ao real.</p>
 
-    <div class="disc">⚠️ Esta sub-aba ainda não tem registros — alimentada manualmente a partir do banco local do bot de WhatsApp (projeto em teste, C:\bot-saude). Não substitui acompanhamento nutricional.</div>
+    <div class="disc">⚠️ Alimentada automaticamente a partir do bot de WhatsApp (projeto em teste, C:\bot-saude). Não substitui acompanhamento nutricional.</div>
   </div>
 
 </div>
