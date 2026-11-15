@@ -81,11 +81,13 @@
   .tab:hover{color:var(--ink)}
   .tab.active{background:var(--card);color:var(--accent);border-color:var(--accent);border-bottom-color:var(--card)}
   @media(max-width:768px){
-    .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;-webkit-overflow-scrolling:touch;
-      scrollbar-width:none;padding:0 14px;gap:6px;margin-top:4px;mask-image:linear-gradient(to right,transparent,#000 14px,#000 calc(100% - 14px),transparent);
-      -webkit-mask-image:linear-gradient(to right,transparent,#000 14px,#000 calc(100% - 14px),transparent)}
-    .tabs::-webkit-scrollbar{display:none}
-    .tab{flex:none;white-space:nowrap;padding:9px 14px;font-size:13px;border-radius:10px 10px 0 0}
+    .tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:6px;padding:0 10px}
+    .tab{white-space:normal;text-align:center;padding:10px 6px;font-size:13px;line-height:1.25;border-radius:10px;
+      display:flex;align-items:center;justify-content:center;min-height:44px}
+    .tab.active{border-bottom-color:var(--accent)}
+    .subtabs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:12px 0 4px}
+    .subtab{text-align:center;padding:10px 6px;font-size:13px;line-height:1.25;min-height:44px;display:flex;align-items:center;justify-content:center}
+    .tabs .tab:last-child:nth-child(odd){grid-column:span 2}
   }
   .tabpane{display:none} .tabpane.active{display:block}
   .subtabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
@@ -93,6 +95,8 @@
   .subtab:hover{color:var(--ink)}
   .subtab.active{color:var(--accent);border-color:var(--accent)}
   .subpane{display:none} .subpane.active{display:block}
+  .rd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:16px}
+  .rd-grid .card{min-width:0}
   /* genética */
   .gcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
   .gcard .gt{font-size:14.5px;font-weight:650;margin-bottom:4px}
@@ -524,7 +528,6 @@
   <div class="tab" data-tab="sangue">🩸 Exames de Sangue</div>
   <div class="tab" data-tab="gene">🧬 Exame Genético</div>
   <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
-  <div class="tab" data-tab="diario">📔 Diário de Treino</div>
   <div class="tab" data-tab="endo">🔬 Endoscopia</div>
   <div class="tab" data-tab="imagem">🩻 Exames de Imagem</div>
   <div class="tab" data-tab="sono">😴 Sono (PSG)</div>
@@ -1090,6 +1093,7 @@
     <div class="subtab active" data-sub="sub-treino">🏋️ Treinos</div>
     <div class="subtab" data-sub="sub-treino-alt">🆕 Treino Alternativo</div>
     <div class="subtab" data-sub="sub-dinamico">🔥 Treino Dinâmico</div>
+    <div class="subtab" data-sub="sub-diario">📔 Diário</div>
     <div class="subtab" data-sub="sub-dash">📊 Dashboard de corridas</div>
   </div>
 
@@ -1637,24 +1641,7 @@
   <p style="color:var(--muted);font-size:11.5px;margin-top:8px">Total de cardio no dia: <b>~25min de elíptico</b> (5 × 5min), intercalado entre todos os exercícios.</p>
   </div>
 
-  <div class="subpane" id="sub-dash">
-  <!-- ===== DASHBOARD DE CORRIDAS (lê automaticamente os cards semanais abaixo) ===== -->
-  <h2><span class="dot"></span>📊 Dashboard de corridas</h2>
-  <p style="color:var(--muted);font-size:11.5px;margin-bottom:10px">Gerado automaticamente a partir das sessões de corrida registradas nos cards semanais abaixo (corrida, longão, intervalado, fartlek). Caminhada, bike e força ficam de fora. Cada semana nova adicionada aparece aqui sozinha.</p>
-  <div class="kpi" id="rd-kpis"></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(420px,1fr));margin-top:12px">
-    <div class="card"><div class="name" style="margin-bottom:2px">Km por semana</div><div class="chartbox" style="height:200px"><canvas id="rd-c1"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">Distância por corrida (km)</div><div class="chartbox" style="height:200px"><canvas id="rd-c2"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">Ritmo por corrida (min/km) — linha tracejada: meta 5'00"/km</div><div class="chartbox" style="height:200px"><canvas id="rd-c3"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixa tracejada: Z2 130–140</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
-  </div>
-  <p id="rd-legend" style="color:var(--muted);font-size:11.5px;margin:8px 0 4px"><span style="color:var(--good)">●</span> fácil/Z2 &nbsp; <span style="color:var(--accent)">●</span> longão &nbsp; <span style="color:var(--warn)">●</span> qualidade (intervalado/fartlek)</p>
-
-  </div>
-</div>
-
-<!-- ===================== ABA DIÁRIO DE TREINO ===================== -->
-<div class="wrap tabpane" id="tab-diario">
+  <div class="subpane" id="sub-diario">
   <button class="print-btn" onclick="document.body.classList.add('printing-diario');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-diario')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
@@ -1794,6 +1781,22 @@
 
   <div class="disc" style="background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.3);color:#bbf7d0">
     ✅ <b>Correção:</b> os alertas acima sobre "falta de check-up cardiológico" (21/09, 02/10, 06/10, 08-09/10) estavam desatualizados — ECG de repouso e ecocardiograma já tinham sido feitos em <b>11/08/2026</b>, por indicação médica, antes de qualquer uma dessas sessões. Resultado: <b>ambos normais</b> (FEVE 65%, câmaras e valvas normais, ritmo sinusal, sem alterações de condução). Detalhe completo na aba 🩻 Exames de Imagem. Isso cobre a avaliação estrutural de repouso — não repito mais esse pedido daqui pra frente. O único exame que isso não substitui é um teste de esforço (ECG/ergométrico sob exercício), que mede resposta à FC alta durante atividade física, não em repouso; se o médico responsável achar necessário, é uma conversa pra ter com ele, não algo que eu vá continuar sinalizando aqui.
+  </div>
+  </div>
+
+  <div class="subpane" id="sub-dash">
+  <!-- ===== DASHBOARD DE CORRIDAS (lê automaticamente os cards semanais abaixo) ===== -->
+  <h2><span class="dot"></span>📊 Dashboard de corridas</h2>
+  <p style="color:var(--muted);font-size:11.5px;margin-bottom:10px">Gerado automaticamente a partir das sessões de corrida registradas nos cards semanais abaixo (corrida, longão, intervalado, fartlek). Caminhada, bike e força ficam de fora. Cada semana nova adicionada aparece aqui sozinha.</p>
+  <div class="kpi" id="rd-kpis"></div>
+  <div class="rd-grid" style="margin-top:12px">
+    <div class="card"><div class="name" style="margin-bottom:2px">Km por semana</div><div class="chartbox" style="height:200px"><canvas id="rd-c1"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Distância por corrida (km)</div><div class="chartbox" style="height:200px"><canvas id="rd-c2"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Ritmo por corrida (min/km) — linha tracejada: meta 5'00"/km</div><div class="chartbox" style="height:200px"><canvas id="rd-c3"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixa tracejada: Z2 130–140</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
+  </div>
+  <p id="rd-legend" style="color:var(--muted);font-size:11.5px;margin:8px 0 4px"><span style="color:var(--good)">●</span> fácil/Z2 &nbsp; <span style="color:var(--accent)">●</span> longão &nbsp; <span style="color:var(--warn)">●</span> qualidade (intervalado/fartlek)</p>
+
   </div>
 </div>
 
