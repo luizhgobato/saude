@@ -85,8 +85,6 @@
     .tab{white-space:normal;text-align:center;padding:10px 6px;font-size:13px;line-height:1.25;border-radius:10px;
       display:flex;align-items:center;justify-content:center;min-height:44px}
     .tab.active{border-bottom-color:var(--accent)}
-    .subtabs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:12px 0 4px}
-    .subtab{text-align:center;padding:10px 6px;font-size:13px;line-height:1.25;min-height:44px;display:flex;align-items:center;justify-content:center}
     .tabs .tab:last-child:nth-child(odd){grid-column:span 2}
   }
   .tabpane{display:none} .tabpane.active{display:block}
@@ -95,6 +93,11 @@
   .subtab:hover{color:var(--ink)}
   .subtab.active{color:var(--accent);border-color:var(--accent)}
   .subpane{display:none} .subpane.active{display:block}
+  @media(max-width:768px){
+    .subtabs{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin:12px 0 4px}
+    .subtab{text-align:center;padding:10px 6px;font-size:13px;line-height:1.25;min-height:44px;display:flex;align-items:center;justify-content:center}
+    .subtabs .subtab:last-child:nth-child(odd){grid-column:span 2}
+  }
   .rd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(420px,100%),1fr));gap:16px}
   .rd-grid .card{min-width:0}
   /* genética */
