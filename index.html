@@ -1315,6 +1315,18 @@
   </div>
 
 
+  <!-- ===== DASHBOARD DE CORRIDAS (lê automaticamente os cards semanais abaixo) ===== -->
+  <h2><span class="dot"></span>📊 Dashboard de corridas</h2>
+  <p style="color:var(--muted);font-size:11.5px;margin-bottom:10px">Gerado automaticamente a partir das sessões de corrida registradas nos cards semanais abaixo (corrida, longão, intervalado, fartlek). Caminhada, bike e força ficam de fora. Cada semana nova adicionada aparece aqui sozinha.</p>
+  <div class="kpi" id="rd-kpis"></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(420px,1fr));margin-top:12px">
+    <div class="card"><div class="name" style="margin-bottom:2px">Km por semana</div><div class="chartbox" style="height:200px"><canvas id="rd-c1"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Distância por corrida (km)</div><div class="chartbox" style="height:200px"><canvas id="rd-c2"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Ritmo por corrida (min/km) — linha tracejada: meta 5'00"/km</div><div class="chartbox" style="height:200px"><canvas id="rd-c3"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixa tracejada: Z2 130–140</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
+  </div>
+  <p id="rd-legend" style="color:var(--muted);font-size:11.5px;margin:8px 0 4px"><span style="color:var(--good)">●</span> fácil/Z2 &nbsp; <span style="color:var(--accent)">●</span> longão &nbsp; <span style="color:var(--warn)">●</span> qualidade (intervalado/fartlek)</p>
+
   <h2><span class="dot"></span>🆕 Treino Alternativo</h2>
 
   <h2><span class="dot"></span>📅 Plano semanal</h2>
@@ -3024,6 +3036,107 @@ function exportarContexto(){
   URL.revokeObjectURL(url);
 }
 
+</script>
+<script>
+// Dashboard de corridas — lê os cards semanais da aba Treino Alternativo
+(function(){
+  var pane=document.getElementById('tab-treino-alt');
+  if(!pane)return;
+  var DAYS=['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
+  var RUN=/^✅\s*(Corrida|Longão|Intervalado|Fartlek)/i;
+  var runs=[],weeks={};
+  pane.querySelectorAll('.qcard').forEach(function(card){
+    var qh=card.querySelector('.qh');if(!qh)return;
+    var m=(qh.textContent||'').match(/(\d\d)\/(\d\d)\s*–\s*\d\d\/\d\d/);
+    if(!m)return;
+    var start=new Date(2026,parseInt(m[2],10)-1,parseInt(m[1],10));
+    var wkLabel=m[1]+'/'+m[2];
+    card.querySelectorAll('li.ex').forEach(function(li){
+      var nm=li.querySelector('.ex-name');var di=nm?DAYS.indexOf(nm.textContent.trim()):-1;
+      if(di<0)return;
+      li.querySelectorAll('.act').forEach(function(act){
+        var b=act.querySelector('b');if(!b)return;
+        var label=b.textContent.trim();if(!RUN.test(label))return;
+        var ms=[].map.call(act.querySelectorAll('.m'),function(x){return x.textContent.trim();});
+        var dur=ms.filter(function(t){return /^\d+(:\d+)+$/.test(t);})[0];
+        var km=ms.filter(function(t){return /\d\s*km$/.test(t)&&t.indexOf('/km')<0;})[0];
+        var bpm=ms.filter(function(t){return /bpm/.test(t);})[0];
+        if(!dur||!km)return;
+        var p=dur.split(':').map(Number),mins=p.length===3?p[0]*60+p[1]+p[2]/60:p[0]+p[1]/60;
+        var d=parseFloat(km.replace(',','.'));if(!(d>0))return;
+        var dt=new Date(start.getTime());dt.setDate(dt.getDate()+di);
+        var type=/Intervalado|Fartlek/i.test(label)?'q':(/Longão|longa/i.test(label)?'l':'e');
+        runs.push({date:dt,lab:('0'+dt.getDate()).slice(-2)+'/'+('0'+(dt.getMonth()+1)).slice(-2),
+          wk:wkLabel,wkT:start.getTime(),mins:mins,km:d,pace:mins/d,bpm:bpm?parseInt(bpm,10):null,type:type});
+      });
+    });
+  });
+  runs.sort(function(a,b){return a.date-b.date;});
+  var kp=document.getElementById('rd-kpis');
+  if(!runs.length){if(kp)kp.innerHTML='<div class="kbox"><div class="kl">Sem corridas registradas</div></div>';return;}
+  function fmtPace(v){var m=Math.floor(v),s=Math.round((v-m)*60);if(s===60){m++;s=0;}return m+"'"+('0'+s).slice(-2)+'"';}
+  function fmtDur(mins){var h=Math.floor(mins/60),m=Math.round(mins%60);if(m===60){h++;m=0;}return h+'h'+('0'+m).slice(-2);}
+  function fmtKm(v){return v.toFixed(1).replace('.',',');}
+  var totKm=0,totMin=0,bpmSum=0,bpmW=0,longest=runs[0],best=runs[0];
+  runs.forEach(function(r){totKm+=r.km;totMin+=r.mins;if(r.bpm){bpmSum+=r.bpm*r.mins;bpmW+=r.mins;}
+    if(r.km>longest.km)longest=r;if(r.km>=5&&r.pace<best.pace)best=r;});
+  var wkKeys=[],wkMap={};
+  runs.forEach(function(r){if(!wkMap[r.wkT]){wkMap[r.wkT]={lab:r.wk,km:0,n:0};wkKeys.push(r.wkT);}wkMap[r.wkT].km+=r.km;wkMap[r.wkT].n++;});
+  wkKeys.sort(function(a,b){return a-b;});
+  var wks=wkKeys.map(function(k){return wkMap[k];});
+  var last=wks[wks.length-1],prev=wks.length>1?wks[wks.length-2]:null;
+  var delta=prev?((last.km-prev.km)>=0?'▲ +':'▼ ')+fmtKm(Math.abs(last.km-prev.km))+' km vs semana anterior':'';
+  function kb(l,v,d,g){return '<div class="kbox"><div class="kl">'+l+'</div><div class="kv">'+v+'</div>'+(d?'<div class="kd flat">'+d+'</div>':'')+(g?'<div class="goal">'+g+'</div>':'')+'</div>';}
+  kp.innerHTML=
+    kb('Total corrido',fmtKm(totKm)+' km',runs.length+' corridas','desde '+runs[0].lab)+
+    kb('Última semana',fmtKm(last.km)+' km',delta,last.n+' corridas ('+last.lab+')')+
+    kb('Tempo correndo',fmtDur(totMin),'','média '+fmtKm(totKm/wks.length)+' km/sem')+
+    kb('Ritmo médio',fmtPace(totMin/totKm)+'/km','','meta: 5\'00"/km')+
+    kb('BPM médio',bpmW?Math.round(bpmSum/bpmW)+' bpm':'—','','ponderado por duração')+
+    kb('Corrida mais longa',fmtKm(longest.km)+' km',longest.lab,'')+
+    kb('Melhor ritmo (≥5 km)',fmtPace(best.pace)+'/km',best.lab+' · '+fmtKm(best.km)+' km','');
+  if(typeof Chart==='undefined')return;
+  var COL={e:'#22c55e',l:'#38bdf8',q:'#f59e0b'};
+  var tick={color:'#64748b',font:{size:9}};
+  var noDL={datalabels:{display:false}};
+  var charts=[];
+  function mk(id,cfg){try{charts.push(new Chart(document.getElementById(id),cfg));}catch(e){}}
+  var labs=runs.map(function(r){return r.lab;});
+  var cols=runs.map(function(r){return COL[r.type];});
+  var base={responsive:true,maintainAspectRatio:false,layout:{padding:{top:18}}};
+  // 1) km por semana
+  mk('rd-c1',{type:'bar',data:{labels:wks.map(function(w){return w.lab;}),
+    datasets:[{data:wks.map(function(w){return Math.round(w.km*10)/10;}),backgroundColor:'#38bdf8',borderRadius:4}]},
+    options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#e2e8f0',font:{size:10,weight:'700'}}},
+      scales:{x:{ticks:tick,grid:{display:false}},y:{ticks:{display:false},grid:{display:false},grace:'15%',beginAtZero:true}}})});
+  // 2) distância por corrida
+  mk('rd-c2',{type:'bar',data:{labels:labs,datasets:[{data:runs.map(function(r){return Math.round(r.km*100)/100;}),backgroundColor:cols,borderRadius:3}]},
+    options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:{display:false},
+      tooltip:{callbacks:{label:function(c){return fmtKm(c.parsed.y)+' km · '+fmtPace(runs[c.dataIndex].pace)+'/km';}}}},
+      scales:{x:{ticks:Object.assign({maxRotation:60,autoSkip:true},tick),grid:{display:false}},y:{ticks:tick,grid:{color:'#1e293b'},beginAtZero:true}}})});
+  // 3) ritmo por corrida (eixo invertido: mais rápido em cima) + meta
+  mk('rd-c3',{type:'line',data:{labels:labs,datasets:[
+    {data:runs.map(function(r){return r.pace;}),borderColor:'#e2e8f0',borderWidth:1.5,pointBackgroundColor:cols,pointBorderColor:cols,pointRadius:4,tension:.25},
+    {data:runs.map(function(){return 5;}),borderColor:'#ef4444',borderDash:[6,4],borderWidth:1.5,pointRadius:0}]},
+    options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:{display:false},
+      tooltip:{filter:function(c){return c.datasetIndex===0;},callbacks:{label:function(c){return fmtPace(c.parsed.y)+'/km';}}}},
+      scales:{x:{ticks:Object.assign({maxRotation:60,autoSkip:true},tick),grid:{display:false}},
+        y:{reverse:true,suggestedMin:4.5,ticks:Object.assign({callback:function(v){return fmtPace(v);}},tick),grid:{color:'#1e293b'}}}})});
+  // 4) BPM por corrida + faixa Z2
+  mk('rd-c4',{type:'line',data:{labels:labs,datasets:[
+    {data:runs.map(function(r){return r.bpm;}),borderColor:'#e2e8f0',borderWidth:1.5,pointBackgroundColor:cols,pointBorderColor:cols,pointRadius:4,tension:.25,spanGaps:true},
+    {data:runs.map(function(){return 130;}),borderColor:'#22c55e',borderDash:[6,4],borderWidth:1,pointRadius:0},
+    {data:runs.map(function(){return 140;}),borderColor:'#22c55e',borderDash:[6,4],borderWidth:1,pointRadius:0}]},
+    options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:{display:false},
+      tooltip:{filter:function(c){return c.datasetIndex===0;},callbacks:{label:function(c){return c.parsed.y+' bpm';}}}},
+      scales:{x:{ticks:Object.assign({maxRotation:60,autoSkip:true},tick),grid:{display:false}},
+        y:{ticks:tick,grid:{color:'#1e293b'},suggestedMin:120,suggestedMax:180}}})});
+  // gráficos criados com a aba oculta: redimensiona ao abrir a aba
+  document.querySelectorAll('.tab').forEach(function(t){
+    if(t.dataset.tab==='treino-alt')t.addEventListener('click',function(){
+      setTimeout(function(){charts.forEach(function(c){c.resize();});},60);});
+  });
+})();
 </script>
 </body>
 </html>
