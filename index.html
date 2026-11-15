@@ -88,6 +88,11 @@
     .tab{flex:none;white-space:nowrap;padding:9px 14px;font-size:13px;border-radius:10px 10px 0 0}
   }
   .tabpane{display:none} .tabpane.active{display:block}
+  .subtabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px}
+  .subtab{background:var(--card2);border:1px solid var(--line);color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer;font-size:13px;user-select:none}
+  .subtab:hover{color:var(--ink)}
+  .subtab.active{color:var(--accent);border-color:var(--accent)}
+  .subpane{display:none} .subpane.active{display:block}
   /* genética */
   .gcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
   .gcard .gt{font-size:14.5px;font-weight:650;margin-bottom:4px}
@@ -515,12 +520,10 @@
 
 <div class="tabs">
   <div class="tab active" data-tab="dieta">🍽️ Dieta Ideal</div>
-  <div class="tab" data-tab="treino-alt">🆕 Treino Alternativo</div>
-  <div class="tab" data-tab="treino">🏋️ Treinos</div>
+  <div class="tab" data-tab="treino">🏋️ Treino</div>
   <div class="tab" data-tab="sangue">🩸 Exames de Sangue</div>
   <div class="tab" data-tab="gene">🧬 Exame Genético</div>
   <div class="tab" data-tab="bio">⚖️ Bioimpedância</div>
-  <div class="tab" data-tab="dinamico">🔥 Treino Dinâmico</div>
   <div class="tab" data-tab="diario">📔 Diário de Treino</div>
   <div class="tab" data-tab="endo">🔬 Endoscopia</div>
   <div class="tab" data-tab="imagem">🩻 Exames de Imagem</div>
@@ -921,7 +924,7 @@
   <div class="swap">Calorias por porção pela <b>TACO (UNICAMP)</b>; onde há opções, o total usa a opção indicada no subtotal. Arroz calculado <b>já cozido</b> (TACO 128 kcal/100 g). Itens sem TACO (whey, iogurte Parmalat) usam <b>rótulo médio</b>, marcados com <b>*</b>. Valores podem variar ±10%.</div>
   <div class="swap"><b>Carboidratos intercambiáveis pelo arroz (mesma porção cozida ~90 g):</b> batata doce, mandioca, mandioquinha, inhame, cará, arroz integral. Pão integral: 1 fatia = 25–30 g. Tapioca: 40 g.</div>
   <div class="swap"><b>Vegetais e folhas (à vontade, sem azeite extra):</b> alface, rúcula, agrião, brócolis, abobrinha, pepino, tomate, pimentão, cebola, couve, espinafre, champignon, palmito.</div>
-  <div class="swap"><b>Cardio (corrida ~30min 2x/semana + caminhada Z2 ~45min 3x/semana):</b> pode ser imediatamente após a musculação <i>ou</i> separada à tarde (~16:00–17:00, usando a Ref 4 como pré-cardio). Ver cardápio completo de cardio na aba 🏋️ Treinos.</div>
+  <div class="swap"><b>Cardio (corrida ~30min 2x/semana + caminhada Z2 ~45min 3x/semana):</b> pode ser imediatamente após a musculação <i>ou</i> separada à tarde (~16:00–17:00, usando a Ref 4 como pré-cardio). Ver cardápio completo de cardio na aba 🏋️ Treino › Treinos.</div>
   <div class="swap"><b>Bateu fome?</b> Gelatina diet à vontade · Chá sem açúcar à vontade · Café sem açúcar até 14h.</div>
   <div class="swap"><b>Vontade de doce depois da refeição?</b> 1-2 quadrados (~10 g) de <b>chocolate amargo ≥70% cacau</b> · <b>Frutas vermelhas</b> (morango, framboesa, mirtilo) — baixo índice glicêmico, boas com sua HbA1c 5,4% · <b>Iogurte grego 0%* + canela + adoçante</b> (stevia/eritritol) · 1 fruta pequena inteira (maçã, pera, kiwi) — evite suco. Evitar doce industrializado e açúcar refinado — é justamente o ponto que sua genética (FTO/SLC2A2) exige mais atenção.</div>
   <div class="swap"><b>Suplementos recomendados:</b> Whey 30 g pós-treino + 25 g na ceia · Creatina 5 g/dia (pós-treino, no whey) · Ômega-3 2 g/dia com almoço ou jantar (auxilia LDL e inflamação) · Vitamina D + Magnésio conforme exames.</div>
@@ -1081,8 +1084,16 @@
 
 </div>
 
-<!-- ===================== ABA TREINOS ===================== -->
+<!-- ===================== ABA TREINO (unificada: Treinos, Alternativo, Dinâmico, Dashboard) ===================== -->
 <div class="wrap tabpane" id="tab-treino">
+  <div class="subtabs">
+    <div class="subtab active" data-sub="sub-treino">🏋️ Treinos</div>
+    <div class="subtab" data-sub="sub-treino-alt">🆕 Treino Alternativo</div>
+    <div class="subtab" data-sub="sub-dinamico">🔥 Treino Dinâmico</div>
+    <div class="subtab" data-sub="sub-dash">📊 Dashboard de corridas</div>
+  </div>
+
+  <div class="subpane active" id="sub-treino">
   <button class="print-btn" onclick="document.body.classList.add('printing-treino');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-treino')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <div class="lead">
@@ -1249,10 +1260,9 @@
   <div class="disc">
     ⚠️ Amplitudes reduzidas nos exercícios de joelho seguem prática geral pra condromalacia, mas <b>não substituem avaliação de ortopedista/fisioterapeuta</b>. Regra de dor: nenhuma durante ou 24h após.
   </div>
-</div>
+  </div>
 
-<!-- ===================== ABA TREINO ALTERNATIVO ===================== -->
-<div class="wrap tabpane" id="tab-treino-alt">
+  <div class="subpane" id="sub-treino-alt">
   <button class="print-btn" onclick="document.body.classList.add('printing-treino-alt');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-treino-alt')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
   <button class="print-btn" style="margin-left:8px" onclick="var n=document.getElementById('notas-treino-alt');var open=(n.style.display==='none');n.style.display=open?'block':'none';this.textContent=open?'📝 Fechar bloco de notas':'📝 Abrir bloco de notas'">📝 Abrir bloco de notas</button>
 
@@ -1261,7 +1271,7 @@
     <div class="qbody">
   <div class="lead" style="margin-bottom:14px">
     <ul>
-      <li><span class="tag t-warn">STATUS</span><div>Proposta trazida de outra IA e ajustada aqui com base na sua condromalácia patelar grau 2 bilateral e na sua matemática de carga. Está sendo <b>comparada lado a lado</b> com o plano de periodização da aba 🏋️ Treinos — decisão de qual vira definitivo é sua, registrando as sessões no 📔 Diário de Treino.</div></li>
+      <li><span class="tag t-warn">STATUS</span><div>Proposta trazida de outra IA e ajustada aqui com base na sua condromalácia patelar grau 2 bilateral e na sua matemática de carga. Está sendo <b>comparada lado a lado</b> com o plano de periodização da aba 🏋️ Treino › Treinos — decisão de qual vira definitivo é sua, registrando as sessões no 📔 Diário de Treino.</div></li>
       <li><span class="tag t-bad">OBJETIVO NOVO</span><div>Voltar a correr <b>10km em 50min</b>. Decisão de 28/10/2026: <b>1 dia de perna/semana</b> (foco em cadeia posterior — stiff, hip thrust, mesa flexora) + <b>2 dias de superior</b> — a corrida já sobrecarrega bastante o quadríceps, então reduzir a frequência de perna pesada protege o joelho (condromalácia patelar), e 2x/semana de superior já é suficiente pra manutenção de massa sob déficit (não há ganho extra indo pra 3x quando o objetivo é manter, não crescer).</div></li>
       <li><span class="tag t-bad">JEJUM</span><div><b>Todas as corridas em jejum, sem exceção</b> — inclusive qualidade/intervalado e a tentativa final dos 10km. Escolha sua, ciente de que pode custar um pouco de desempenho justo nas sessões mais intensas. Água + eletrólitos nas sessões ≥45min e no longão (não quebra jejum).</div></li>
       <li><span class="tag t-warn">HORÁRIO</span><div>Quarta e sexta são dias de escritório com menos tempo — por isso os dois viraram descanso total, sem treino nem corrida. Segunda e quinta agora somam corrida fácil de manhã + musculação no almoço, com horas de intervalo entre as duas sessões.</div></li>
@@ -1314,18 +1324,6 @@
     </div>
   </div>
 
-
-  <!-- ===== DASHBOARD DE CORRIDAS (lê automaticamente os cards semanais abaixo) ===== -->
-  <h2><span class="dot"></span>📊 Dashboard de corridas</h2>
-  <p style="color:var(--muted);font-size:11.5px;margin-bottom:10px">Gerado automaticamente a partir das sessões de corrida registradas nos cards semanais abaixo (corrida, longão, intervalado, fartlek). Caminhada, bike e força ficam de fora. Cada semana nova adicionada aparece aqui sozinha.</p>
-  <div class="kpi" id="rd-kpis"></div>
-  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(420px,1fr));margin-top:12px">
-    <div class="card"><div class="name" style="margin-bottom:2px">Km por semana</div><div class="chartbox" style="height:200px"><canvas id="rd-c1"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">Distância por corrida (km)</div><div class="chartbox" style="height:200px"><canvas id="rd-c2"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">Ritmo por corrida (min/km) — linha tracejada: meta 5'00"/km</div><div class="chartbox" style="height:200px"><canvas id="rd-c3"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixa tracejada: Z2 130–140</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
-  </div>
-  <p id="rd-legend" style="color:var(--muted);font-size:11.5px;margin:8px 0 4px"><span style="color:var(--good)">●</span> fácil/Z2 &nbsp; <span style="color:var(--accent)">●</span> longão &nbsp; <span style="color:var(--warn)">●</span> qualidade (intervalado/fartlek)</p>
 
   <h2><span class="dot"></span>🆕 Treino Alternativo</h2>
 
@@ -1552,16 +1550,15 @@
       </div>
     </div>
   </div>
-</div>
+  </div>
 
-<!-- ===================== ABA TREINO DINÂMICO ===================== -->
-<div class="wrap tabpane" id="tab-dinamico">
+  <div class="subpane" id="sub-dinamico">
   <button class="print-btn" onclick="document.body.classList.add('printing-dinamico');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-dinamico')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
 
   <h2><span class="dot"></span>🔥 Treino Dinâmico — Musculação + Corrida Intercalada (em teste)</h2>
   <div class="lead" style="margin-bottom:14px">
     <ul>
-      <li><span class="tag t-warn">STATUS</span><div>Terceira opção de treino, testada em paralelo com 🏋️ Treinos e 🆕 Treino Alternativo — não substitui nenhuma das duas. Escolhido por engajar mais que musculação pura. Se a meta de correr <b>10km em 50min</b> voltar a ser prioridade, a planilha de corrida estruturada da aba 🆕 Treino Alternativo é quem constrói essa capacidade — os tiros de 500m daqui não substituem isso.</div></li>
+      <li><span class="tag t-warn">STATUS</span><div>Terceira opção de treino, testada em paralelo com 🏋️ Treinos e 🆕 Treino Alternativo — não substitui nenhuma das duas. Escolhido por engajar mais que musculação pura. Se a meta de correr <b>10km em 50min</b> voltar a ser prioridade, a planilha de corrida estruturada da aba 🏋️ Treino › Treino Alternativo é quem constrói essa capacidade — os tiros de 500m daqui não substituem isso.</div></li>
       <li><span class="tag t-bad">OBJETIVO</span><div>4 dias/semana — 2 de superior completo (exercícios diferentes entre eles) + 2 de perna (quadríceps isolado / posterior-glúteo isolado), com viés de volume pra perna por ser o grupo menos desenvolvido.</div></li>
       <li><span class="tag t-bad">REGRA DE SEGURANÇA — JOELHO</span><div>Nos dias de superior, a corrida fica intercalada entre os blocos de exercício sem problema. No <b>dia de quadríceps, a corrida NUNCA intercala com agachamento/leg press/extensora</b> — esses movimentos comprimem a patela do mesmo jeito que a corrida, e empilhar os dois sem pausa é o padrão que já causou alerta de segurança no diário (02/10). Esse dia intercala com <b>elíptico</b> em vez de corrida — baixo impacto, não soma compressão patelar. No dia de posterior/glúteo, stiff/hip thrust/terra unilateral intercalam com elíptico (mesma lógica do dia de quadríceps); agachamento búlgaro e panturrilha ficam fora do circuito.</div></li>
       <li><span class="tag t-warn">ROM</span><div>Agachamento guiado e búlgaro: <b>até 90° de flexão de joelho</b>. Extensora: <b>ROM parcial, carga moderada</b> — é o exercício de maior compressão patelar que existe. Regra de dor do joelho vale igual às outras abas.</div></li>
@@ -1638,6 +1635,22 @@
     </table>
   </div>
   <p style="color:var(--muted);font-size:11.5px;margin-top:8px">Total de cardio no dia: <b>~25min de elíptico</b> (5 × 5min), intercalado entre todos os exercícios.</p>
+  </div>
+
+  <div class="subpane" id="sub-dash">
+  <!-- ===== DASHBOARD DE CORRIDAS (lê automaticamente os cards semanais abaixo) ===== -->
+  <h2><span class="dot"></span>📊 Dashboard de corridas</h2>
+  <p style="color:var(--muted);font-size:11.5px;margin-bottom:10px">Gerado automaticamente a partir das sessões de corrida registradas nos cards semanais abaixo (corrida, longão, intervalado, fartlek). Caminhada, bike e força ficam de fora. Cada semana nova adicionada aparece aqui sozinha.</p>
+  <div class="kpi" id="rd-kpis"></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(420px,1fr));margin-top:12px">
+    <div class="card"><div class="name" style="margin-bottom:2px">Km por semana</div><div class="chartbox" style="height:200px"><canvas id="rd-c1"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Distância por corrida (km)</div><div class="chartbox" style="height:200px"><canvas id="rd-c2"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Ritmo por corrida (min/km) — linha tracejada: meta 5'00"/km</div><div class="chartbox" style="height:200px"><canvas id="rd-c3"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixa tracejada: Z2 130–140</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
+  </div>
+  <p id="rd-legend" style="color:var(--muted);font-size:11.5px;margin:8px 0 4px"><span style="color:var(--good)">●</span> fácil/Z2 &nbsp; <span style="color:var(--accent)">●</span> longão &nbsp; <span style="color:var(--warn)">●</span> qualidade (intervalado/fartlek)</p>
+
+  </div>
 </div>
 
 <!-- ===================== ABA DIÁRIO DE TREINO ===================== -->
@@ -1737,7 +1750,7 @@
   </div>
 
   <div class="disc" style="background:rgba(239,68,68,.08);border-color:rgba(239,68,68,.3);color:#fecaca">
-    🚨 21/09: a corrida "tiro 45s×30s, 30x" é estruturalmente um <b>HIIT</b> (esforço 7/10 "Difícil", 164 bpm médio, pico de 179 bpm) — e o plano da aba 🏋️ Treinos é explícito: <b>HIIT só entra a partir da semana 5, e só após check-up cardiológico</b>, por causa da pré-diabetes (HbA1c 6,0%) e do LDL que já esteve alto. Se esse check-up ainda não foi feito, vale conversar com o cardiologista antes da próxima sessão desse tipo — o treino de força na sequência (26min, 138 bpm médio) não tem essa restrição.
+    🚨 21/09: a corrida "tiro 45s×30s, 30x" é estruturalmente um <b>HIIT</b> (esforço 7/10 "Difícil", 164 bpm médio, pico de 179 bpm) — e o plano da aba 🏋️ Treino › Treinos é explícito: <b>HIIT só entra a partir da semana 5, e só após check-up cardiológico</b>, por causa da pré-diabetes (HbA1c 6,0%) e do LDL que já esteve alto. Se esse check-up ainda não foi feito, vale conversar com o cardiologista antes da próxima sessão desse tipo — o treino de força na sequência (26min, 138 bpm médio) não tem essa restrição.
   </div>
 
   <div class="disc" style="background:rgba(250,204,21,.08);border-color:rgba(250,204,21,.3);color:#fde68a">
@@ -2411,6 +2424,15 @@ document.querySelectorAll('.tab').forEach(t=>{
     window.scrollTo({top:0,behavior:'smooth'});
   });
 });
+// sub-abas dentro de Treino
+document.querySelectorAll('.subtab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.subtab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.subpane').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById(t.dataset.sub).classList.add('active');
+  });
+});
 // registrar rótulos de dados e defaults globais dos gráficos (se o Chart.js carregou)
 if(typeof Chart!=='undefined'){
   if(window.ChartDataLabels){Chart.register(ChartDataLabels);}
@@ -3040,7 +3062,7 @@ function exportarContexto(){
 <script>
 // Dashboard de corridas — lê os cards semanais da aba Treino Alternativo
 (function(){
-  var pane=document.getElementById('tab-treino-alt');
+  var pane=document.getElementById('sub-treino-alt');
   if(!pane)return;
   var DAYS=['Segunda','Terça','Quarta','Quinta','Sexta','Sábado','Domingo'];
   var RUN=/^✅\s*(Corrida|Longão|Intervalado|Fartlek)/i;
@@ -3132,8 +3154,8 @@ function exportarContexto(){
       scales:{x:{ticks:Object.assign({maxRotation:60,autoSkip:true},tick),grid:{display:false}},
         y:{ticks:tick,grid:{color:'#1e293b'},suggestedMin:120,suggestedMax:180}}})});
   // gráficos criados com a aba oculta: redimensiona ao abrir a aba
-  document.querySelectorAll('.tab').forEach(function(t){
-    if(t.dataset.tab==='treino-alt')t.addEventListener('click',function(){
+  document.querySelectorAll('.subtab').forEach(function(t){
+    if(t.dataset.sub==='sub-dash')t.addEventListener('click',function(){
       setTimeout(function(){charts.forEach(function(c){c.resize();});},60);});
   });
 })();
