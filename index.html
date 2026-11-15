@@ -915,6 +915,12 @@
   <button class="print-btn" onclick="document.body.classList.add('printing-dieta');window.addEventListener('afterprint',function(){document.body.classList.remove('printing-dieta')},{once:true});window.print()">🖨️ Imprimir esta aba</button>
   <button class="print-btn" style="margin-left:8px" onclick="var n=document.getElementById('notas-dieta');var open=(n.style.display==='none');n.style.display=open?'block':'none';this.textContent=open?'📝 Fechar bloco de notas':'📝 Abrir bloco de notas'">📝 Abrir bloco de notas</button>
 
+  <div class="subtabs">
+    <div class="subtab active" data-sub="sub-dieta-cardapio">🍽️ Cardápio</div>
+    <div class="subtab" data-sub="sub-dieta-diario">🍎 Diário Alimentar</div>
+  </div>
+
+  <div class="subpane active" id="sub-dieta-cardapio">
   <div id="notas-dieta" class="qcard" style="display:none;margin-bottom:14px">
   <div class="lead">
     <h3>🍽️ Dieta — protocolo recomposição corporal (jul/2026)</h3>
@@ -1086,6 +1092,28 @@
       <li>1 <b>maçã</b> <span class="kc">80 kcal</span></li>
     </ul>
     <div class="mtot">Subtotal ≈ 80 kcal &nbsp;·&nbsp; P 0 g · C 20 g · G 0 g</div>
+  </div>
+
+  </div>
+
+  <div class="subpane" id="sub-dieta-diario">
+    <div class="lead">
+      <h3>🍎 Diário Alimentar — aderência real</h3>
+      <ul>
+        <li><span class="tag t-good">COMO FUNCIONA</span><div>Registro do que foi comido de fato, mandado por texto num bot de WhatsApp (projeto em teste) que estima as calorias com IA — não é medição exata, é aproximação. Compare com o cardápio planejado na sub-aba 🍽️ Cardápio.</div></li>
+        <li><span class="tag t-warn">SALDO DO DIA</span><div>Meta = <b>2.190 kcal base</b> (TMB 1.900 + NEAT ~290) <b>+ kcal gasto em treino no dia</b>. Saldo = meta − consumido até aquele registro.</div></li>
+      </ul>
+    </div>
+
+    <h2><span class="dot"></span>Refeições registradas</h2>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Data</th><th>Refeição</th><th>Descrição</th><th>Kcal (estimado)</th><th>Saldo do dia</th></tr>
+      </table>
+    </div>
+    <p style="color:var(--muted);font-size:11.5px;margin-top:8px;line-height:1.6">*<b>Estimativa por IA</b>, não medição real (não há pesagem dos alimentos) — valores podem variar ±15-20% frente ao real.</p>
+
+    <div class="disc">⚠️ Esta sub-aba ainda não tem registros — alimentada manualmente a partir do banco local do bot de WhatsApp (projeto em teste, C:\bot-saude). Não substitui acompanhamento nutricional.</div>
   </div>
 
 </div>
