@@ -1873,9 +1873,26 @@
     <div class="card"><div class="name" style="margin-bottom:2px">Km por semana</div><div class="chartbox" style="height:200px"><canvas id="rd-c1"></canvas></div></div>
     <div class="card"><div class="name" style="margin-bottom:2px">Distância por corrida (km)</div><div class="chartbox" style="height:200px"><canvas id="rd-c2"></canvas></div></div>
     <div class="card"><div class="name" style="margin-bottom:2px">Ritmo por corrida (min/km) — linha tracejada: meta 5'00"/km</div><div class="chartbox" style="height:200px"><canvas id="rd-c3"></canvas></div></div>
-    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixa tracejada: Z2 130–140</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">BPM médio por corrida — faixas tracejadas: Z2 do Watch 138–148</div><div class="chartbox" style="height:200px"><canvas id="rd-c4"></canvas></div></div>
   </div>
   <p id="rd-legend" style="color:var(--muted);font-size:11.5px;margin:8px 0 4px"><span style="color:var(--good)">●</span> fácil/Z2 &nbsp; <span style="color:var(--accent)">●</span> longão &nbsp; <span style="color:var(--warn)">●</span> qualidade (intervalado/fartlek)</p>
+  <h3 style="margin:18px 0 6px;color:var(--ink);font-size:16px">❤️ Zonas de frequência cardíaca (Apple Watch)</h3>
+  <p style="color:var(--muted);font-size:11.5px;margin-bottom:6px">Zonas automáticas do Watch (reserva de FC: máx. 182 bpm, repouso 72 bpm; recalculadas todo dia 1º do mês). A classificação por corrida usa o <b>BPM médio</b>, então não mostra o tempo real em cada zona. Obs.: o plano ativo usa 130–140 bpm como Z2 praticável; no Watch a Z2 é 138–148 bpm.</p>
+  <div class="rd-grid">
+    <div class="card"><div class="name" style="margin-bottom:6px">Zonas do Watch</div>
+      <table style="width:100%;font-size:12px;border-collapse:collapse">
+        <tr><td style="color:#60a5fa">Zona 1</td><td>&lt; 137 bpm</td><td style="color:var(--muted)">&lt; 60% reserva</td></tr>
+        <tr><td style="color:#5eead4">Zona 2</td><td>138–148 bpm</td><td style="color:var(--muted)">60–70%</td></tr>
+        <tr><td style="color:#bef264">Zona 3</td><td>149–159 bpm</td><td style="color:var(--muted)">70–80%</td></tr>
+        <tr><td style="color:#fb923c">Zona 4</td><td>160–170 bpm</td><td style="color:var(--muted)">80–90%</td></tr>
+        <tr><td style="color:#f472b6">Zona 5</td><td>171+ bpm</td><td style="color:var(--muted)">&gt; 90%</td></tr>
+      </table></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Corridas por zona (BPM médio de cada corrida)</div><div class="chartbox" style="height:200px"><canvas id="rd-c5"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">Tempo por zona — treino do print do Watch (min)</div><div class="chartbox" style="height:200px"><canvas id="rd-c6"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:2px">% do tempo de corrida por zona, por semana (pelo BPM médio de cada corrida)</div><div class="chartbox" style="height:220px"><canvas id="rd-c7"></canvas></div></div>
+    <div class="card"><div class="name" style="margin-bottom:6px">Resumo por zona (todas as corridas)</div><div id="rd-zt" style="font-size:12px"></div></div>
+  </div>
+
 
   <h3 style="margin:22px 0 6px;color:var(--ink);font-size:16px">🏋️ Musculação</h3>
   <div class="kpi" id="mu-kpis"></div>
@@ -3250,12 +3267,35 @@ function exportarContexto(){
           y:{reverse:true,suggestedMin:4.5,ticks:Object.assign({callback:function(v){return fmtPace(v);}},tick),grid:{color:'#1e293b'}}}})});
     mk('rd-c4',{type:'line',data:{labels:rlabs,datasets:[
       {data:runs.map(function(r){return r.bpm;}),borderColor:'#e2e8f0',borderWidth:1.5,pointBackgroundColor:rcols,pointBorderColor:rcols,pointRadius:4,tension:.25,spanGaps:true},
-      {data:runs.map(function(){return 130;}),borderColor:'#22c55e',borderDash:[6,4],borderWidth:1,pointRadius:0},
-      {data:runs.map(function(){return 140;}),borderColor:'#22c55e',borderDash:[6,4],borderWidth:1,pointRadius:0}]},
+      {data:runs.map(function(){return 138;}),borderColor:'#22c55e',borderDash:[6,4],borderWidth:1,pointRadius:0},
+      {data:runs.map(function(){return 148;}),borderColor:'#22c55e',borderDash:[6,4],borderWidth:1,pointRadius:0}]},
       options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:noDL,
         tooltip:{filter:function(c){return c.datasetIndex===0;},callbacks:{label:function(c){return c.parsed.y+' bpm';}}}},
         scales:{x:{ticks:Object.assign({maxRotation:60,autoSkip:true},tick),grid:{display:false}},
           y:{ticks:tick,grid:{color:'#1e293b'},suggestedMin:120,suggestedMax:180}}})});
+    var ZN=['Z1','Z2','Z3','Z4','Z5'],ZC=['#60a5fa','#5eead4','#bef264','#fb923c','#f472b6'];
+    function zoneOf(b){return b<=137?0:b<=148?1:b<=159?2:b<=170?3:4;}
+    var zc=[0,0,0,0,0];runs.forEach(function(r){if(r.bpm)zc[zoneOf(r.bpm)]++;});
+    mk('rd-c5',{type:'bar',data:{labels:ZN,datasets:[{data:zc,backgroundColor:ZC,borderRadius:4}]},
+      options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#e2e8f0',font:{size:10,weight:'700'}}},
+        scales:{x:{ticks:tick,grid:{display:false}},y:{ticks:{display:false},grid:{display:false},grace:'15%',beginAtZero:true}}})});
+    // Tempo por zona: dados do Apple Watch (mm:ss -> minutos). Acrescente novas entradas aqui.
+    var tz=[10+17/60,5+1/60,0,0,0];
+    mk('rd-c6',{type:'bar',data:{labels:ZN,datasets:[{data:tz.map(function(v){return Math.round(v*10)/10;}),backgroundColor:ZC,borderRadius:4}]},
+      options:Object.assign({},base,{plugins:{legend:{display:false},datalabels:{display:true,anchor:'end',align:'top',color:'#e2e8f0',font:{size:10,weight:'700'}}},
+        scales:{x:{ticks:tick,grid:{display:false}},y:{ticks:{display:false},grid:{display:false},grace:'15%',beginAtZero:true}}})});
+    var zm=[0,0,0,0,0],wz={};
+    runs.forEach(function(r){if(!r.bpm)return;var z=zoneOf(r.bpm);zm[z]+=r.mins;
+      var o=wz[r.wkT]||(wz[r.wkT]=[0,0,0,0,0]);o[z]+=r.mins;});
+    var wzl=wks.filter(function(w){return wz[w.t];});
+    var zsets=ZN.map(function(n,z){return {label:n,backgroundColor:ZC[z],data:wzl.map(function(w){var o=wz[w.t],t=o.reduce(function(a,b){return a+b;},0);return t?Math.round(o[z]/t*100):0;})};});
+    mk('rd-c7',{type:'bar',data:{labels:wzl.map(function(w){return w.lab;}),datasets:zsets},
+      options:Object.assign({},base,{plugins:{legend:{display:true,labels:{color:'#94a3b8',boxWidth:10,font:{size:10}}},datalabels:noDL,
+        tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+c.parsed.y+'%';}}}},
+        scales:{x:{stacked:true,ticks:tick,grid:{display:false}},y:{stacked:true,max:100,ticks:Object.assign({callback:function(v){return v+'%';}},tick),grid:{color:'#1e293b'}}}})});
+    var zt=document.getElementById('rd-zt'),tm=zm.reduce(function(a,b){return a+b;},0),h='<table style="width:100%;border-collapse:collapse"><tr style="color:var(--muted)"><td></td><td>Corridas</td><td>Tempo</td><td>%</td></tr>';
+    ZN.forEach(function(n,z){h+='<tr><td style="color:'+ZC[z]+'">'+n+'</td><td>'+zc[z]+'</td><td>'+fmtDur(zm[z])+'</td><td>'+(tm?Math.round(zm[z]/tm*100):0)+'%</td></tr>';});
+    if(zt)zt.innerHTML=h+'</table>';
   }
 
   // ---------- MUSCULAÇÃO ----------
